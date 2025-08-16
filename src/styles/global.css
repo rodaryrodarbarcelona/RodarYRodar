@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+:root {
+    --color-primary: #BC3D3D;
+}
+
+/* Personalización de scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgb(243 244 246);
+}
+
+.dark ::-webkit-scrollbar-track {
+    background-color: rgb(31 41 55);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(209 213 219);
+    border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background-color: rgb(55 65 81);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(156 163 175);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(75 85 99);
+}
+
+/* Animación para spinner */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* Estilos para transiciones suaves */
+.transition {
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}

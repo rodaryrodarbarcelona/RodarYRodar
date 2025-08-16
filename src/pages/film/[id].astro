@@ -1,0 +1,316 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Spinner from "../../components/ui/Spinner";
+import dbConnect from "../../lib/mongoose";
+import FilmografiaModel from "../../lib/models/filmografia";
+import { useTranslations, defaultLanguage } from "../../i18n/languages";
+
+// Obtener el idioma actual
+const lang = Astro.locals?.lang || defaultLanguage;
+const t = useTranslations(lang);
+
+// Obtener el ID de la película de los parámetros
+const { id } = Astro.params;
+
+// Definir la interfaz para filmografia
+interface FilmografiaItem {
+  titulo: string;
+  tituloEn?: string;
+  tituloCat?: string;
+  genero?: string;
+  generoEn?: string;
+  generoCat?: string;
+  sinopsis: string;
+  sinopsisEn?: string;
+  sinopsisCat?: string;
+  urlPoster?: string;
+  fecha?: number;
+  duracion?: number;
+  director?: string;
+  linkImdb?: string;
+  urlYoutube?: string;
+  urlMakingOf?: string;
+  tipo?: string;
+  plataformas?: string;
+  guionistas?: string;
+  reparto?: string;
+}
+
+// Estado
+let film: FilmografiaItem | null = null;
+let loading = true;
+let error = null;
+
+try {
+  // Conectar a la base de datos
+  await dbConnect();
+
+  // Validar que el ID exista y sea un ObjectId válido de MongoDB
+  if (id) {
+    try {
+      // Buscar la película por ID
+      film = await FilmografiaModel.findById(id);
+    } catch (err) {
+      console.error("Error al buscar película por ID:", err);
+    }
+  }
+
+  if (!film) {
+    error = t("film_not_found");
+  }
+
+  loading = false;
+} catch (e) {
+  console.error(e);
+  error = t("error_loading_film");
+  loading = false;
+}
+
+// Función para obtener el título según el idioma
+function getTitulo(item: FilmografiaItem | null): string {
+  if (!item) return "";
+  if (lang === "en" && item.tituloEn) return item.tituloEn;
+  if (lang === "ca" && item.tituloCat) return item.tituloCat;
+  return item.titulo;
+}
+
+// Función para obtener el género según el idioma
+function getGenero(item: FilmografiaItem | null): string {
+  if (!item) return "";
+  if (lang === "en" && item.generoEn) return item.generoEn;
+  if (lang === "ca" && item.generoCat) return item.generoCat;
+  return item.genero || "";
+}
+
+// Función para obtener la sinopsis según el idioma
+function getSinopsis(item: FilmografiaItem | null): string {
+  if (!item) return "";
+  if (lang === "en" && item.sinopsisEn) return item.sinopsisEn;
+  if (lang === "ca" && item.sinopsisCat) return item.sinopsisCat;
+  return item.sinopsis;
+}
+
+// Extraer el ID de YouTube del enlace completo
+function getYoutubeEmbedUrl(url: string | undefined): string | null {
+  if (!url) return null;
+
+  // Patrones comunes de URLs de YouTube
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=|youtu.be\/|youtube\.com\/embed\/)([^&\/?#]+)/,
+    /youtube\.com\/watch\?.*v=([^&\/?#]+)/,
+  ];
+
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match && match[1]) {
+      return `https://www.youtube.com/embed/${match[1]}`;
+    }
+  }
+
+  // Si no se reconoce el patrón, devolver la URL original
+  return url;
+}
+
+// Metadatos de la página
+const pageTitle = film
+  ? `${getTitulo(film)} - RodaYRodar`
+  : "Película - RodaYRodar";
+---
+
+<Layout
+  title={pageTitle}
+  description={film
+    ? getSinopsis(film).substring(0, 160)
+    : "Detalles de la película"}
+>
+  <div class="container mx-auto px-4 py-12">
+    {loading && <Spinner client:load />}
+
+    {
+      error && (
+        <div
+          class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-8"
+          role="alert"
+        >
+          <span class="block sm:inline">{error}</span>
+          <p class="mt-2">
+            <a href="/filmografias" class="underline hover:text-red-800">
+              {t("back_to_filmography")}
+            </a>
+          </p>
+        </div>
+      )
+    }
+
+    {
+      film && (
+        <div class="max-w-6xl mx-auto">
+          <div class="flex flex-col md:flex-row gap-8">
+            {/* Columna izquierda: Imagen */}
+            <div class="md:w-1/3">
+              <div class="sticky top-24">
+                <img
+                  src={film.urlPoster}
+                  alt={getTitulo(film)}
+                  class="w-full rounded-lg shadow-lg"
+                />
+
+                {/* Información básica en móvil */}
+                <div class="mt-6 md:hidden">
+                  <h1 class="text-3xl font-bold mb-2">{getTitulo(film)}</h1>
+                  <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    {film.fecha} {film.duracion ? `| ${film.duracion} min` : ""}
+                    {getGenero(film) && ` | ${getGenero(film)}`}
+                  </p>
+                </div>
+
+                {/* Enlaces externos */}
+                <div class="mt-6 flex flex-wrap gap-3">
+                  {film.linkImdb && (
+                    <a
+                      href={film.linkImdb}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 transition"
+                    >
+                      <span>IMDb</span>
+                    </a>
+                  )}
+
+                  {film.urlMakingOf && (
+                    <a
+                      href={film.urlMakingOf}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+                    >
+                      <span>Making of</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Columna derecha: Información */}
+            <div class="md:w-2/3">
+              {/* Información básica en desktop */}
+              <div class="hidden md:block">
+                <h1 class="text-4xl font-bold mb-3">{getTitulo(film)}</h1>
+                <p class="text-xl text-gray-600 dark:text-gray-300 mb-6">
+                  {film.fecha} {film.duracion ? `| ${film.duracion} min` : ""}
+                  {getGenero(film) && ` | ${getGenero(film)}`}
+                </p>
+              </div>
+
+              {/* Trailer de YouTube embebido */}
+              {film.urlYoutube && (
+                <div class="mb-8">
+                  <h2 class="text-2xl font-semibold mb-4">Trailer</h2>
+                  <div class="aspect-w-16 aspect-h-9">
+                    <iframe
+                      src={getYoutubeEmbedUrl(film.urlYoutube)}
+                      title={`${getTitulo(film)} - Trailer`}
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                      class="w-full h-96 rounded-lg"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Sinopsis */}
+              <div class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">{t("synopsis")}</h2>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-line">
+                  {getSinopsis(film)}
+                </p>
+              </div>
+
+              {/* Información del equipo */}
+              <div class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">{t("team")}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {film.director && (
+                    <div>
+                      <h3 class="font-medium text-primary">
+                        {t("directed_by")}
+                      </h3>
+                      <p>{film.director}</p>
+                    </div>
+                  )}
+
+                  {film.guionistas && (
+                    <div>
+                      <h3 class="font-medium text-primary">
+                        {t("written_by")}
+                      </h3>
+                      <p>{film.guionistas}</p>
+                    </div>
+                  )}
+
+                  {film.reparto && (
+                    <div class="col-span-1 md:col-span-2 mt-4">
+                      <h3 class="font-medium text-primary">{t("cast")}</h3>
+                      <p>{film.reparto}</p>
+                    </div>
+                  )}
+
+                  {film.plataformas && (
+                    <div class="col-span-1 md:col-span-2 mt-4">
+                      <h3 class="font-medium text-primary">
+                        {t("available_on")}
+                      </h3>
+                      <p>{film.plataformas}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div class="mt-8">
+                <a
+                  href="/filmografias"
+                  class="inline-flex items-center text-primary hover:underline"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 mr-2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                    />
+                  </svg>
+                  {t("back_to_filmography")}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  </div>
+</Layout>
+
+<style>
+  /* Añadir estas clases si no existen en Tailwind */
+  .aspect-w-16 {
+    position: relative;
+    padding-bottom: 56.25%;
+  }
+
+  .aspect-w-16 iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+</style>

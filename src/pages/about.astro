@@ -1,0 +1,228 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Sobre Nosotros - RodaYRodar"
+  description="Conoce al equipo directivo y la historia de RodaYRodar"
+>
+  <div class="container mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-8 text-center">Sobre Nosotros</h1>
+
+    <!-- Historia de la empresa -->
+    <section class="mb-16 max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold mb-6 text-primary">Nuestra Historia</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+        Fundada en 2010, RodaYRodar nació con la visión de crear un estudio de
+        producción cinematográfica que combinara la excelencia técnica con la
+        creatividad artística. Comenzando como un pequeño equipo de apasionados
+        del cine, hemos crecido hasta convertirnos en una productora reconocida
+        en el panorama audiovisual español.
+      </p>
+      <p class="text-lg text-gray-600 dark:text-gray-300">
+        A lo largo de los años, hemos producido una amplia variedad de
+        proyectos, desde cortometrajes experimentales hasta largometrajes
+        premiados, documentales que exploran realidades sociales y campañas
+        publicitarias para marcas líderes. Nuestro compromiso con la calidad y
+        la narrativa auténtica nos ha permitido construir una sólida reputación
+        en la industria.
+      </p>
+    </section>
+
+    <!-- Misión y Visión -->
+    <section class="mb-16 max-w-4xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-md">
+          <h3 class="text-2xl font-bold mb-4 text-primary">Misión</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Crear contenido audiovisual que inspire, emocione y conecte con las
+            audiencias, utilizando la narrativa cinematográfica como herramienta
+            para contar historias significativas que perduren en el tiempo.
+          </p>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-md">
+          <h3 class="text-2xl font-bold mb-4 text-primary">Visión</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Ser referentes en la industria audiovisual por nuestro compromiso
+            con la excelencia, la innovación creativa y la producción de
+            contenido que trascienda fronteras culturales y geográficas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Equipo directivo -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-10 text-center">Equipo Directivo</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Director 1 -->
+        <div class="flex flex-col items-center text-center">
+          <div class="w-40 h-40 rounded-full overflow-hidden mb-4">
+            <img
+              src="https://via.placeholder.com/300x300"
+              alt="Director General"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h3 class="text-xl font-bold mb-1">María García</h3>
+          <p class="text-primary font-medium mb-3">Directora General</p>
+          <p class="text-gray-600 dark:text-gray-300 max-w-xs mx-auto">
+            Con más de 20 años de experiencia en la industria cinematográfica,
+            María ha liderado la empresa desde su fundación con visión y pasión.
+          </p>
+        </div>
+
+        <!-- Director 2 -->
+        <div class="flex flex-col items-center text-center">
+          <div class="w-40 h-40 rounded-full overflow-hidden mb-4">
+            <img
+              src="https://via.placeholder.com/300x300"
+              alt="Director Creativo"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h3 class="text-xl font-bold mb-1">Javier Rodríguez</h3>
+          <p class="text-primary font-medium mb-3">Director Creativo</p>
+          <p class="text-gray-600 dark:text-gray-300 max-w-xs mx-auto">
+            Reconocido director y guionista con múltiples premios
+            internacionales, Javier aporta su visión artística única a cada
+            proyecto.
+          </p>
+        </div>
+
+        <!-- Director 3 -->
+        <div class="flex flex-col items-center text-center">
+          <div class="w-40 h-40 rounded-full overflow-hidden mb-4">
+            <img
+              src="https://via.placeholder.com/300x300"
+              alt="Directora de Producción"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h3 class="text-xl font-bold mb-1">Laura Martínez</h3>
+          <p class="text-primary font-medium mb-3">Directora de Producción</p>
+          <p class="text-gray-600 dark:text-gray-300 max-w-xs mx-auto">
+            Experta en gestión de producciones complejas, Laura garantiza que
+            cada proyecto se realice con eficiencia y dentro del presupuesto.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Logros -->
+    <section class="mb-16 max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold mb-8 text-center">Nuestros Logros</h2>
+      <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-md">
+        <ul class="space-y-4 text-gray-600 dark:text-gray-300">
+          <li class="flex items-start">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 text-primary mr-2 flex-shrink-0"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span
+              >Más de 50 producciones realizadas entre largometrajes,
+              cortometrajes y documentales</span
+            >
+          </li>
+          <li class="flex items-start">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 text-primary mr-2 flex-shrink-0"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span>15 premios internacionales en festivales de cine</span>
+          </li>
+          <li class="flex items-start">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 text-primary mr-2 flex-shrink-0"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span
+              >Colaboraciones con productoras internacionales en 8 países
+              diferentes</span
+            >
+          </li>
+          <li class="flex items-start">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 text-primary mr-2 flex-shrink-0"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span>3 nominaciones a los Premios Goya</span>
+          </li>
+          <li class="flex items-start">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 text-primary mr-2 flex-shrink-0"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span
+              >Participación en más de 30 festivales de cine nacionales e
+              internacionales</span
+            >
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CTA de Contacto -->
+    <section class="text-center max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">¿Quieres trabajar con nosotros?</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+        Estamos siempre abiertos a nuevas colaboraciones y proyectos
+        interesantes. Si tienes una idea que quieres desarrollar o buscas un
+        equipo profesional para tu proyecto audiovisual, no dudes en
+        contactarnos.
+      </p>
+      <a
+        href="mailto:contacto@rodayrodar.com"
+        class="inline-block px-8 py-4 bg-primary text-white font-medium rounded-lg hover:bg-red-700 transition shadow-md text-lg"
+      >
+        Contacta con nuestro equipo
+      </a>
+    </section>
+  </div>
+</Layout>

@@ -1,11 +1,206 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import { useTranslations, defaultLanguage } from "../i18n/languages";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Obtener idioma actual
+const lang = Astro.locals?.lang || defaultLanguage;
+const t = useTranslations(lang);
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title={t("home") + " - RodaYRodar"}
+  description="RodaYRodar - Productora cinematográfica"
+>
+  <section
+    class="py-20 bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800"
+  >
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 text-primary">
+        RodaYRodar
+      </h1>
+      <p
+        class="text-xl md:text-2xl max-w-3xl mx-auto mb-10 text-gray-600 dark:text-gray-300"
+      >
+        {t("hero_description")}
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a
+          href="/filmografias"
+          class="px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-red-700 transition shadow-md"
+        >
+          {t("see_filmography")}
+        </a>
+        <a
+          href="/servicios"
+          class="px-6 py-3 bg-white text-primary border border-primary font-medium rounded-lg hover:bg-gray-50 transition shadow-md dark:bg-gray-800 dark:hover:bg-gray-700"
+        >
+          {t("our_services")}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-12 text-center">
+        {t("recent_productions")}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Estas tarjetas se llenarán dinámicamente desde la base de datos -->
+        <div
+          class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition"
+        >
+          <img
+            src="https://via.placeholder.com/600x400"
+            alt="Película"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-5">
+            <h3 class="text-xl font-semibold mb-2">Lorem Ipsum</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-3">2023 | Drama</p>
+            <p class="text-gray-600 dark:text-gray-300">
+              {t("directed_by")}: John Doe
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition"
+        >
+          <img
+            src="https://via.placeholder.com/600x400"
+            alt="Película"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-5">
+            <h3 class="text-xl font-semibold mb-2">Dolor Sit Amet</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-3">2022 | Comedia</p>
+            <p class="text-gray-600 dark:text-gray-300">
+              {t("directed_by")}: Jane Smith
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition"
+        >
+          <img
+            src="https://via.placeholder.com/600x400"
+            alt="Película"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-5">
+            <h3 class="text-xl font-semibold mb-2">Consectetur Adipiscing</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-3">
+              2021 | Documental
+            </p>
+            <p class="text-gray-600 dark:text-gray-300">
+              {t("directed_by")}: Carlos Rodriguez
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-10">
+        <a
+          href="/filmografias"
+          class="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white font-medium rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+        >
+          {t("view_all_filmography")}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-100 dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-12 text-center">{t("our_services")}</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          class="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg transition"
+        >
+          <div class="text-primary mb-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-12 w-12"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">{t("film_production")}</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            {t("film_production_desc")}
+          </p>
+        </div>
+
+        <div
+          class="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg transition"
+        >
+          <div class="text-primary mb-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-12 w-12"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">{t("post_production")}</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            {t("post_production_desc")}
+          </p>
+        </div>
+
+        <div
+          class="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg transition"
+        >
+          <div class="text-primary mb-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-12 w-12"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">{t("equipment_rental")}</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            {t("equipment_rental_desc")}
+          </p>
+        </div>
+      </div>
+
+      <div class="text-center mt-10">
+        <a
+          href="/servicios"
+          class="px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-red-700 transition shadow-md"
+        >
+          {t("more_about_our_services")}
+        </a>
+      </div>
+    </div>
+  </section>
 </Layout>

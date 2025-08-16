@@ -1,0 +1,227 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Spinner from "../components/ui/Spinner";
+import dbConnect from "../lib/mongoose";
+import FilmografiaModel from "../lib/models/filmografia";
+import { useTranslations, defaultLanguage } from "../i18n/languages";
+
+// Obtener el idioma actual
+const lang = Astro.locals?.lang || defaultLanguage;
+const t = useTranslations(lang);
+
+// Obtener datos de la base de datos
+let filmografia = [];
+let loading = true;
+let error = null;
+
+try {
+  // Conectar a la base de datos
+  await dbConnect();
+  // Obtener filmografía ordenada por fecha (más reciente primero)
+  filmografia = await FilmografiaModel.find({}).sort({ fecha: -1 }).limit(16);
+  loading = false;
+} catch (e) {
+  console.error(e);
+  error = "Error al cargar la filmografía";
+  loading = false;
+}
+
+// Definir la interfaz para filmografia
+interface FilmografiaItem {
+  titulo: string;
+  tituloEn?: string;
+  tituloCat?: string;
+  genero?: string;
+  generoEn?: string;
+  generoCat?: string;
+  sinopsis: string;
+  sinopsisEn?: string;
+  sinopsisCat?: string;
+  urlPoster?: string;
+  fecha?: number;
+  duracion?: number;
+  director?: string;
+  linkImdb?: string;
+  urlYoutube?: string;
+  urlMakingOf?: string;
+  tipo?: string;
+  plataformas?: string;
+  guionistas?: string;
+  reparto?: string;
+}
+
+// Función para obtener el título según el idioma
+function getTitulo(item: FilmografiaItem): string {
+  if (lang === "en" && item.tituloEn) return item.tituloEn;
+  if (lang === "ca" && item.tituloCat) return item.tituloCat;
+  return item.titulo;
+}
+
+// Función para obtener el género según el idioma
+function getGenero(item: FilmografiaItem): string {
+  if (lang === "en" && item.generoEn) return item.generoEn;
+  if (lang === "ca" && item.generoCat) return item.generoCat;
+  return item.genero || "";
+}
+
+// Función para obtener la sinopsis según el idioma
+function getSinopsis(item: FilmografiaItem): string {
+  if (lang === "en" && item.sinopsisEn) return item.sinopsisEn;
+  if (lang === "ca" && item.sinopsisCat) return item.sinopsisCat;
+  return item.sinopsis;
+}
+---
+
+<Layout
+  title="Filmografía - RodaYRodar"
+  description="Explora nuestra filmografía de producciones cinematográficas"
+>
+  <div class="container mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-8 text-center">{t("filmography")}</h1>
+
+    {loading && <Spinner client:load />}
+
+    {
+      error && (
+        <div
+          class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+          role="alert"
+        >
+          <span class="block sm:inline">{error}</span>
+        </div>
+      )
+    }
+
+    {
+      !loading && !error && (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {filmografia.length > 0 ? (
+            filmografia.map((item) => (
+              <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition">
+                <a href={`/film/${item._id}`} class="block">
+                  <img
+                    src={item.urlPoster}
+                    alt={getTitulo(item)}
+                    class="w-full h-56 object-cover hover:opacity-90 transition"
+                  />
+                </a>
+                <div class="p-5">
+                  <a
+                    href={`/film/${item._id}`}
+                    class="block hover:text-primary transition"
+                  >
+                    <h3 class="text-xl font-semibold mb-2">
+                      {getTitulo(item)}
+                    </h3>
+                  </a>
+                  <p class="text-gray-600 dark:text-gray-300 mb-3">
+                    {item.fecha} {item.duracion ? `| ${item.duracion} min` : ""}
+                    {getGenero(item) && ` | ${getGenero(item)}`}
+                  </p>
+                  {item.director && (
+                    <p class="text-gray-600 dark:text-gray-300 mb-3">
+                      {t("directed_by")}: {item.director}
+                    </p>
+                  )}
+                  <p class="text-gray-600 dark:text-gray-300 line-clamp-3">
+                    {getSinopsis(item)}
+                  </p>
+
+                  <div class="mt-4 flex justify-between items-center">
+                    {/* Enlaces externos */}
+                    <div class="flex flex-wrap gap-2">
+                      {item.linkImdb && (
+                        <a
+                          href={item.linkImdb}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center text-sm text-primary hover:underline"
+                        >
+                          <span>IMDb</span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-4 w-4 ml-1"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
+                          </svg>
+                        </a>
+                      )}
+
+                      {item.urlYoutube && (
+                        <a
+                          href={item.urlYoutube}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center text-sm text-primary hover:underline"
+                        >
+                          <span>{t("trailer")}</span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-4 w-4 ml-1"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                            />
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                        </a>
+                      )}
+                    </div>
+
+                    {/* Botón Ver detalles */}
+                    <a
+                      href={`/film/${item._id}`}
+                      class="inline-flex items-center px-3 py-1 bg-primary text-white text-sm rounded hover:bg-red-700 transition"
+                    >
+                      {t("view_details")}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4 ml-1"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div class="col-span-full text-center py-16">
+              <p class="text-xl text-gray-600 dark:text-gray-300">
+                {t("no_filmography_available")}
+              </p>
+              <p class="mt-4">{t("check_back_later")}</p>
+            </div>
+          )}
+        </div>
+      )
+    }
+  </div>
+</Layout>
