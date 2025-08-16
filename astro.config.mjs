@@ -20,7 +20,14 @@ export default defineConfig({
       }
     },
     // Mejorar el reporte de errores
-    logLevel: 'info'
+    logLevel: 'info',
+    // Configuración para CSP y TrustedTypes
+    server: {
+      headers: {
+        // Desactivar restricciones estrictas en desarrollo para facilitar la depuración
+        'Content-Security-Policy': "script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'"
+      }
+    }
   },
 
   integrations: [react()],

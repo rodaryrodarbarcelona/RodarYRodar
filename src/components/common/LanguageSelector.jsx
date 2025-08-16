@@ -9,14 +9,30 @@ import { useI18n } from "../../hooks/useI18n";
 
 const LanguageSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const lang = useStore(currentLanguage);
-  const { t } = useI18n(lang);
-  const dropdownRef = useRef(null);
+  // Para evitar problemas de hidratación, usamos un estado local para el idioma
+  const [mounted, setMounted] = useState(false);
 
+  // Obtenemos el idioma del store sólo después de montarse el componente
+  const langFromStore = useStore(currentLanguage);
+  // Usamos un estado para el idioma durante la hidratación
+  const [currentLang, setCurrentLang] = useState("es");
+
+  // Usar el idioma del localStorage si estamos en el cliente
   useEffect(() => {
     // Inicializar el idioma cuando el componente se monta
     initLanguage();
 
+    // Actualizar el estado local con el idioma del store
+    setCurrentLang(langFromStore);
+    setMounted(true);
+  }, [langFromStore]);
+
+  // Solo usamos el store después del montaje para evitar errores de hidratación
+  const lang = mounted ? langFromStore : currentLang;
+  const { t } = useI18n(lang);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
     // Cerrar el dropdown al hacer clic fuera
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -41,6 +57,34 @@ const LanguageSelector = () => {
       window.location.reload();
     }
   };
+
+  // Si no está montado, mostramos un renderizado simple para evitar errores de hidratación
+  if (!mounted) {
+    return (
+      <div className="relative">
+        <button
+          className="flex items-center space-x-1 text-gray-800 dark:text-white hover:text-primary dark:hover:text-primary transition focus:outline-none"
+          aria-label="Seleccionar idioma"
+        >
+          <span className="uppercase font-medium">es</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="relative" ref={dropdownRef}>
