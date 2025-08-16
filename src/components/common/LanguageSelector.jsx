@@ -9,37 +9,34 @@ import { useI18n } from "../../hooks/useI18n";
 
 const LanguageSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // Para evitar problemas de hidratación, usamos un estado local para el idioma
-  const [mounted, setMounted] = useState(false);
 
-  // Obtenemos el idioma del store sólo después de montarse el componente
-  const langFromStore = useStore(currentLanguage);
-  // Usamos un estado para el idioma durante la hidratación
+  // Estado para saber si ya se montó en cliente
+  const [mounted, setMounted] = useState(false);
   const [currentLang, setCurrentLang] = useState("es");
 
-  // Usar el idioma del localStorage si estamos en el cliente
+  // Store
+  const langFromStore = useStore(currentLanguage);
+
   useEffect(() => {
-    // Inicializar el idioma cuando el componente se monta
+    // Iniciamos una única vez y usamos localStorage para evitar mismatch
     initLanguage();
-
-    // Actualizar el estado local con el idioma del store
-    setCurrentLang(langFromStore);
+    const storedLang = localStorage.getItem("lang") || "es";
+    setCurrentLang(storedLang);
     setMounted(true);
-  }, [langFromStore]);
+  }, []);
 
-  // Solo usamos el store después del montaje para evitar errores de hidratación
+  // Elegimos qué idioma mostrar
   const lang = mounted ? langFromStore : currentLang;
+
   const { t } = useI18n(lang);
   const dropdownRef = useRef(null);
 
   useEffect(() => {
-    // Cerrar el dropdown al hacer clic fuera
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
@@ -52,13 +49,11 @@ const LanguageSelector = () => {
       setIsOpen(false);
     } catch (error) {
       console.error("Error al cambiar el idioma:", error);
-      // Como último recurso, si hay un error al cambiar el idioma,
-      // intentamos recargar la página manualmente
       window.location.reload();
     }
   };
 
-  // Si no está montado, mostramos un renderizado simple para evitar errores de hidratación
+  // Render inicial sencillo para evitar hidratación incorrecta
   if (!mounted) {
     return (
       <div className="relative">

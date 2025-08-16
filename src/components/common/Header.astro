@@ -50,7 +50,8 @@ const t = useTranslations(Astro.locals.lang || "es");
 
     <div class="flex items-center space-x-4">
       <ThemeToggle client:load />
-      <LanguageSelector client:load />
+     <LanguageSelector client:only="react" />
+
 
       <!-- Menú móvil -->
       <button
