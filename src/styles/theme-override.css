@@ -1,0 +1,59 @@
+/* 
+  Este archivo contiene reglas explícitas para garantizar que el modo oscuro funcione correctamente 
+*/
+
+/* Reglas generales para el tema oscuro */
+html.dark {
+    color-scheme: dark;
+}
+
+html.dark body {
+    background-color: #111827 !important;
+    /* gray-900 */
+    color: #ffffff !important;
+}
+
+/* Reglas explícitas para secciones específicas en modo oscuro */
+html.dark .bg-white {
+    background-color: #1f2937 !important;
+    /* gray-800 */
+}
+
+html.dark .bg-gray-100 {
+    background-color: #374151 !important;
+    /* gray-700 */
+}
+
+html.dark .bg-gray-200 {
+    background-color: #4b5563 !important;
+    /* gray-600 */
+}
+
+html.dark .text-gray-800 {
+    color: #f3f4f6 !important;
+    /* gray-100 */
+}
+
+html.dark .text-gray-600 {
+    color: #d1d5db !important;
+    /* gray-300 */
+}
+
+/* Forzar colores en los gradientes en modo oscuro */
+html.dark .bg-gradient-to-b.from-white.to-gray-100 {
+    background-image: linear-gradient(to bottom, #111827, #1f2937) !important;
+}
+
+/* Transición para cambios de tema */
+html,
+body,
+* {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+}
+
+/* Indicador de tema activo */
+#theme-status-indicator {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}

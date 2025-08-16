@@ -14,14 +14,36 @@ const ThemeToggle = () => {
 
     // Inicializar el tema cuando el componente se monta
     if (typeof window !== "undefined") {
+      console.log("ThemeToggle: Inicializando tema");
       initTheme();
     }
+
+    // Registrar un evento personalizado para actualizar la interfaz
+    const handleThemeChange = () => {
+      console.log("ThemeToggle: Evento de cambio de tema detectado");
+      // Forzar una re-renderización obteniendo el valor actualizado
+      const currentDarkMode = isDarkMode.get();
+      if (darkMode !== currentDarkMode) {
+        console.log(
+          "ThemeToggle: Actualizando estado del tema a",
+          currentDarkMode ? "oscuro" : "claro"
+        );
+      }
+    };
 
     // Forzar una re-renderización si el tema cambia a través del localStorage
     const handleStorageChange = (e) => {
       if (e.key === "theme") {
+        console.log(
+          "ThemeToggle: Cambio en localStorage detectado",
+          e.newValue
+        );
         const newIsDark = e.newValue === "dark";
         if (darkMode !== newIsDark) {
+          console.log(
+            "ThemeToggle: Actualizando tema desde localStorage a",
+            newIsDark ? "oscuro" : "claro"
+          );
           isDarkMode.set(newIsDark);
         }
       }
@@ -29,20 +51,32 @@ const ThemeToggle = () => {
 
     if (typeof window !== "undefined") {
       window.addEventListener("storage", handleStorageChange);
+      window.addEventListener("theme-changed", handleThemeChange);
     }
 
     return () => {
       if (typeof window !== "undefined") {
         window.removeEventListener("storage", handleStorageChange);
+        window.removeEventListener("theme-changed", handleThemeChange);
       }
     };
-  }, [darkMode]);
+  }, []);
 
   // Función segura para manejar el cambio de tema
   const handleToggleTheme = (e) => {
     e.preventDefault();
     if (typeof window !== "undefined") {
+      console.log("ThemeToggle: Alternando tema");
       toggleDarkMode();
+
+      // Forzar la actualización del estado local si es necesario
+      setTimeout(() => {
+        const currentDarkMode = isDarkMode.get();
+        console.log(
+          "ThemeToggle: Estado del tema después de alternar:",
+          currentDarkMode ? "oscuro" : "claro"
+        );
+      }, 50);
     }
   };
 
