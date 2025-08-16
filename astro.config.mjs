@@ -1,42 +1,23 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import react from '@astrojs/react';
+import vercel from '@astrojs/vercel';
 
 import tailwindcss from '@tailwindcss/vite';
 
-import react from '@astrojs/react';
-
 // https://astro.build/config
 export default defineConfig({
-  vite: {
-    plugins: [tailwindcss()],
-    // Añadir configuración para manejar errores
-    build: {
-      rollupOptions: {
-        onwarn(warning, warn) {
-          // Suprimir advertencias específicas si es necesario
-          if (warning.code === 'CIRCULAR_DEPENDENCY') return;
-          warn(warning);
-        }
-      }
-    },
-    // Mejorar el reporte de errores
-    logLevel: 'info',
-    // Configuración para CSP y TrustedTypes
-    server: {
-      headers: {
-        // Desactivar restricciones estrictas en desarrollo para facilitar la depuración
-        'Content-Security-Policy': "script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'"
-      }
+  output: 'server',
+
+  adapter: vercel({
+    webAnalytics: {
+      enabled: false
     }
-  },
+  }),
 
   integrations: [react()],
 
-  // Configuración para el manejo de 404 y errores
-  output: 'server',
-
-  // Configurar la gestión de páginas no encontradas
-  server: {
-    host: true
+  vite: {
+    plugins: [tailwindcss()]
   }
 });
