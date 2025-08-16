@@ -4,9 +4,6 @@
   "outputDirectory": "dist",
   "framework": "astro",
   "installCommand": "pnpm install",
-  "env": {
-    "VITE_MONGO_URI": "@vite_mongo_uri"
-  },
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ],
