@@ -1,16 +1,17 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Spinner from "../../components/ui/Spinner";
-import dbConnect from "../../lib/mongoose";
-import FilmografiaModel from "../../lib/models/filmografia";
-import { useTranslations, defaultLanguage } from "../../i18n/languages";
+import Layout from "../layouts/Layout.astro";
+import Spinner from "../components/ui/Spinner.astro";
+import dbConnect from "../lib/mongoose";
+import FilmografiaModel from "../lib/models/filmografia";
+import { useTranslations, defaultLanguage } from "../i18n/languages";
+import { generateSlug, slugManager } from "../utils/slugManager.js";
 
 // Obtener el idioma actual
-const lang = Astro.locals?.lang || defaultLanguage;
+const lang = (Astro.locals as any)?.lang || defaultLanguage;
 const t = useTranslations(lang);
 
-// Obtener el ID de la película de los parámetros
-const { id } = Astro.params;
+// Obtener el slug de la película de los parámetros
+const { slug } = Astro.params;
 
 // Definir la interfaz para filmografia
 interface FilmografiaItem {
@@ -34,6 +35,7 @@ interface FilmografiaItem {
   plataformas?: string;
   guionistas?: string;
   reparto?: string;
+  _id: string;
 }
 
 // Estado
@@ -45,13 +47,36 @@ try {
   // Conectar a la base de datos
   await dbConnect();
 
-  // Validar que el ID exista y sea un ObjectId válido de MongoDB
-  if (id) {
+  if (slug) {
     try {
-      // Buscar la película por ID
-      film = await FilmografiaModel.findById(id);
+      // Obtener todas las películas
+      const peliculas = await FilmografiaModel.find({});
+
+      // Inicializar el slug manager con todas las películas
+      slugManager.initializeWithFilms(peliculas, (item: FilmografiaItem) => {
+        if (lang === "en" && item.tituloEn) return item.tituloEn;
+        if (lang === "ca" && item.tituloCat) return item.tituloCat;
+        return item.titulo;
+      });
+
+      // Obtener el ID asociado al slug
+      const filmId = slugManager.getIdFromSlug(slug);
+
+      if (filmId) {
+        // Buscar la película por ID
+        film = await FilmografiaModel.findById(filmId);
+      } else {
+        // Intento alternativo: buscar la película que coincida con el slug
+        film =
+          peliculas.find((pelicula) => {
+            const titulo = getTitulo(pelicula);
+            const baseSlug = generateSlug(titulo);
+            // Comprobar coincidencia exacta o con número de duplicado
+            return baseSlug === slug || slug.startsWith(baseSlug + "-");
+          }) || null;
+      }
     } catch (err) {
-      console.error("Error al buscar película por ID:", err);
+      console.error("Error al buscar película por slug:", err);
     }
   }
 
@@ -124,7 +149,7 @@ const pageTitle = film
     : "Detalles de la película"}
 >
   <div class="container mx-auto px-4 py-12">
-    {loading && <Spinner client:load />}
+    {loading && <Spinner />}
 
     {
       error && (

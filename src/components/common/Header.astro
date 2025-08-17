@@ -3,7 +3,7 @@ import { useTranslations } from "../../i18n/languages";
 import ThemeToggle from "./ThemeToggle.jsx";
 import LanguageSelector from "./LanguageSelector.jsx";
 
-const t = useTranslations(Astro.locals.lang || "es");
+const t = useTranslations((Astro.locals as any)?.lang || "es");
 ---
 
 <header class="bg-white dark:bg-gray-900 shadow-md fixed w-full top-0 z-50">
@@ -12,11 +12,11 @@ const t = useTranslations(Astro.locals.lang || "es");
       <a href="/" class="flex items-center">
         <img
           src="https://res.cloudinary.com/dvoh9w1ro/image/upload/v1702002254/logo_wakd6k.png"
-          alt="RodaYRodar Logo"
+          alt="RodarYRodar Logo"
           class="h-10"
         />
         <span class="ml-2 text-2xl font-bold text-primary dark:text-white"
-          >RodaYRodar</span
+          >Rodar y Rodar</span
         >
       </a>
     </div>
@@ -50,8 +50,7 @@ const t = useTranslations(Astro.locals.lang || "es");
 
     <div class="flex items-center space-x-4">
       <ThemeToggle client:load />
-     <LanguageSelector client:only="react" />
-
+      <LanguageSelector client:only="react" />
 
       <!-- Menú móvil -->
       <button

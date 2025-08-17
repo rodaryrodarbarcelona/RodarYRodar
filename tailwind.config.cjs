@@ -7,6 +7,9 @@ module.exports = {
             colors: {
                 primary: '#BC3D3D',
             },
+            fontFamily: {
+                sans: ['Roboto', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', 'sans-serif'],
+            },
         },
     },
     plugins: [],

@@ -1,16 +1,11 @@
-// Para usar la API de Middleware en Astro, necesitamos configurar correctamente el tipo para locals
-// Crear archivo src/env.d.ts para definir los tipos
+// Para usar la API de Middleware en Astro, utilizamos casting a 'any' cuando accedemos a locals.lang
+// en lugar de definir tipos adicionales
 
 import { defineMiddleware } from 'astro:middleware';
 import { languages, defaultLanguage } from './i18n/languages';
 
-// Utilidad para depurar el middleware
-const debugMiddleware = false; // Cambiar a true para depurar
-function logDebug(...args) {
-    if (debugMiddleware) {
-        console.log('[Middleware]', ...args);
-    }
-}
+// Función vacía para depuración (desactivada en producción)
+function logDebug() { }
 
 // Definimos nuestra función middleware
 export const onRequest = defineMiddleware(async (context, next) => {

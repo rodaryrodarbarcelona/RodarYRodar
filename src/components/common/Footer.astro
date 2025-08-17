@@ -1,7 +1,7 @@
 ---
 import { useTranslations } from "../../i18n/languages";
 
-const t = useTranslations(Astro.locals.lang || "es");
+const t = useTranslations((Astro.locals as any)?.lang || "es");
 ---
 
 <footer class="bg-gray-100 dark:bg-gray-900 py-8 mt-12">

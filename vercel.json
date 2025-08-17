@@ -6,6 +6,7 @@
   "installCommand": "pnpm install",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [],
   "headers": [
     {
       "source": "/(.*)",

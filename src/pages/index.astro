@@ -3,20 +3,20 @@ import Layout from "../layouts/Layout.astro";
 import { useTranslations, defaultLanguage } from "../i18n/languages";
 
 // Obtener idioma actual
-const lang = Astro.locals?.lang || defaultLanguage;
+const lang = (Astro.locals as any)?.lang || defaultLanguage;
 const t = useTranslations(lang);
 ---
 
 <Layout
-  title={t("home") + " - RodaYRodar"}
-  description="RodaYRodar - Productora cinematográfica"
+  title={t("home") + " - RodarYRodar"}
+  description="RodarYRodar - Productora cinematográfica"
 >
   <section
     class="py-20 bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800"
   >
     <div class="container mx-auto px-4 text-center">
       <h1 class="text-5xl md:text-6xl font-bold mb-6 text-primary">
-        RodaYRodar
+        Rodar y Rodar
       </h1>
       <p
         class="text-xl md:text-2xl max-w-3xl mx-auto mb-10 text-gray-600 dark:text-gray-300"
@@ -72,7 +72,7 @@ const t = useTranslations(lang);
                 dictumst.
               </p>
               <a
-                href="/film/1"
+                href="/lorem-ipsum"
                 class="mt-auto text-primary hover:underline self-end"
                 >Ver más &rarr;</a
               >
@@ -106,7 +106,7 @@ const t = useTranslations(lang);
                   magna.
                 </p>
                 <a
-                  href="/film/2"
+                  href="/dolor-sit-amet"
                   class="mt-auto text-primary hover:underline self-end"
                   >Ver más &rarr;</a
                 >
@@ -142,7 +142,7 @@ const t = useTranslations(lang);
                     primis.
                   </p>
                   <a
-                    href="/film/3"
+                    href="/consectetur-adipiscing"
                     class="mt-auto text-primary hover:underline self-end"
                     >Ver más &rarr;</a
                   >

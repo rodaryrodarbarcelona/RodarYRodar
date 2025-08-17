@@ -1,13 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Spinner from "../components/ui/Spinner.astro";
+import Spinner from "../components/ui/Spinner";
 import dbConnect from "../lib/mongoose";
 import FilmografiaModel from "../lib/models/filmografia";
 import { useTranslations, defaultLanguage } from "../i18n/languages";
 import { generateSlug, slugManager } from "../utils/slugManager.js";
+import SlugMapGenerator from "../components/SlugMapGenerator.astro";
 
 // Obtener el idioma actual
-const lang = (Astro.locals as any)?.lang || defaultLanguage;
+const lang = Astro.locals?.lang || defaultLanguage;
 const t = useTranslations(lang);
 
 // Definir la interfaz para filmografia
@@ -55,6 +56,10 @@ try {
     return item.titulo;
   });
 
+  // Depuración de slugs
+  console.log("Estado del SlugManager:");
+  slugManager.debug();
+
   loading = false;
 } catch (e) {
   console.error(e);
@@ -96,6 +101,9 @@ function getFilmSlug(item: FilmografiaItem): string {
   title="Filmografía - RodaYRodar"
   description="Explora nuestra filmografía de producciones cinematográficas"
 >
+  {/* Componente para generar el mapa de slugs */}
+  <SlugMapGenerator />
+
   <div class="container mx-auto px-4 py-12">
     <h1 class="text-4xl font-bold mb-4 text-center">{t("filmography")}</h1>
     {
@@ -107,7 +115,7 @@ function getFilmSlug(item: FilmografiaItem): string {
       )
     }
 
-    {loading && <Spinner />}
+    {loading && <Spinner client:load />}
 
     {
       error && (
@@ -129,7 +137,7 @@ function getFilmSlug(item: FilmografiaItem): string {
                 <div class="flex flex-row h-64 md:h-72">
                   <div class="w-2/5 bg-black shrink-0 overflow-hidden">
                     <a
-                      href={`/${getFilmSlug(item)}`}
+                      href={`/pelicula/${getFilmSlug(item)}`}
                       class="block h-full w-full"
                     >
                       <img
@@ -141,7 +149,7 @@ function getFilmSlug(item: FilmografiaItem): string {
                   </div>
                   <div class="p-4 flex flex-col w-3/5">
                     <a
-                      href={`/${getFilmSlug(item)}`}
+                      href={`/pelicula/${getFilmSlug(item)}`}
                       class="block hover:text-primary transition"
                     >
                       <h3 class="text-xl font-semibold mb-2">
@@ -224,7 +232,7 @@ function getFilmSlug(item: FilmografiaItem): string {
 
                       {/* Botón Ver detalles */}
                       <a
-                        href={`/${getFilmSlug(item)}`}
+                        href={`/pelicula/${getFilmSlug(item)}`}
                         class="inline-flex items-center px-3 py-1 bg-primary text-white text-sm rounded hover:bg-red-700 transition"
                       >
                         {t("view_details")}
