@@ -48,7 +48,7 @@ const t = useTranslations((Astro.locals as any)?.lang || "es");
       </a>
     </nav>
 
-    <div class="flex items-center space-x-4">
+    <div class="flex items-center gap-4">
       <ThemeToggle client:load />
       <LanguageSelector client:only="react" />
 
