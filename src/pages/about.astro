@@ -1,31 +1,30 @@
 ---
 import Layout from "../layouts/Layout.astro";
+//import { useTranslations } from "../i18n/languages";
+//import { getLanguageFromUrl } from "../lib/language";
+import { useTranslations, defaultLanguage } from "../i18n/languages";
+//const lang = getLanguageFromUrl(Astro.url);
+//const t = useTranslations(lang);
+// Obtener el idioma actual
+const lang = (Astro.locals as any)?.lang || defaultLanguage;
+const t = useTranslations(lang);
 ---
 
 <Layout
-  title="Sobre Nosotros - RodaYRodar"
-  description="Conoce al equipo directivo y la historia de RodaYRodar"
+  title={`${t('about_title')} - RodaYRodar`}
+  description={`${t('about_title')} - RodaYRodar`}
 >
   <div class="container mx-auto px-4 py-12">
-    <h1 class="text-4xl font-bold mb-8 text-center">Sobre Nosotros</h1>
+    <h1 class="text-4xl font-bold mb-8 text-center">{t('about_title')}</h1>
 
     <!-- Historia de la empresa -->
     <section class="mb-16 max-w-4xl mx-auto">
-      <h2 class="text-3xl font-bold mb-6 text-primary">Nuestra Historia</h2>
+      <h2 class="text-3xl font-bold mb-6 text-primary">{t('our_history')}</h2>
       <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
-        Fundada en 2010, RodaYRodar nació con la visión de crear un estudio de
-        producción cinematográfica que combinara la excelencia técnica con la
-        creatividad artística. Comenzando como un pequeño equipo de apasionados
-        del cine, hemos crecido hasta convertirnos en una productora reconocida
-        en el panorama audiovisual español.
+        {t('history_p1')}
       </p>
       <p class="text-lg text-gray-600 dark:text-gray-300">
-        A lo largo de los años, hemos producido una amplia variedad de
-        proyectos, desde cortometrajes experimentales hasta largometrajes
-        premiados, documentales que exploran realidades sociales y campañas
-        publicitarias para marcas líderes. Nuestro compromiso con la calidad y
-        la narrativa auténtica nos ha permitido construir una sólida reputación
-        en la industria.
+        {t('history_p2')}
       </p>
     </section>
 
@@ -33,19 +32,15 @@ import Layout from "../layouts/Layout.astro";
     <section class="mb-16 max-w-4xl mx-auto">
       <div class="grid md:grid-cols-2 gap-8">
         <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-md">
-          <h3 class="text-2xl font-bold mb-4 text-primary">Misión</h3>
+          <h3 class="text-2xl font-bold mb-4 text-primary">{t('mission')}</h3>
           <p class="text-gray-600 dark:text-gray-300">
-            Crear contenido audiovisual que inspire, emocione y conecte con las
-            audiencias, utilizando la narrativa cinematográfica como herramienta
-            para contar historias significativas que perduren en el tiempo.
+            {t('mission_text')}
           </p>
         </div>
         <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-md">
-          <h3 class="text-2xl font-bold mb-4 text-primary">Visión</h3>
+          <h3 class="text-2xl font-bold mb-4 text-primary">{t('vision')}</h3>
           <p class="text-gray-600 dark:text-gray-300">
-            Ser referentes en la industria audiovisual por nuestro compromiso
-            con la excelencia, la innovación creativa y la producción de
-            contenido que trascienda fronteras culturales y geográficas.
+            {t('vision_text')}
           </p>
         </div>
       </div>
@@ -53,96 +48,151 @@ import Layout from "../layouts/Layout.astro";
 
     <!-- Equipo directivo -->
     <section class="mb-16">
-      <h2 class="text-3xl font-bold mb-10 text-center">Equipo Directivo</h2>
+      <h2 class="text-3xl font-bold mb-10 text-center">{t('management_team')}</h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- Director 1 -->
-        <div class="flex flex-col items-center text-center">
-          <div class="w-40 h-40 rounded-full overflow-hidden mb-4">
-            <img
-              src="https://placehold.co/300x300"
-              alt="Director General"
-              class="w-full h-full object-cover"
-            />
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+          <div class="p-6">
+            <div class="flex flex-col sm:flex-row items-center mb-6">
+              <div class="w-32 h-32 rounded-full overflow-hidden mb-4 sm:mb-0 sm:mr-6">
+                <img
+                  src="https://placehold.co/300x300"
+                  alt="Joaquín Padró"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="text-center sm:text-left">
+                <h3 class="text-2xl font-bold mb-2">Joaquín Padró</h3>
+              </div>
+            </div>
+            <div class="relative bio-content">
+              <p class="text-gray-600 dark:text-gray-300 line-clamp-4 mb-4 bio-text">
+                {t('bio_joaquin')}
+              </p>
+              <p class="text-gray-600 dark:text-gray-300 mb-4 bio-text-full hidden">
+                {t('bio_joaquin')}
+              </p>
+              <button class="text-primary hover:text-primary-dark font-medium transition-colors read-more-btn">
+                {t('read_more')}
+              </button>
+            </div>
           </div>
-          <h3 class="text-xl font-bold mb-1">María García</h3>
-          <p class="text-primary font-medium mb-3">Directora General</p>
-          <p class="text-gray-600 dark:text-gray-300 max-w-xs mx-auto">
-            Con más de 20 años de experiencia en la industria cinematográfica,
-            María ha liderado la empresa desde su fundación con visión y pasión.
-          </p>
         </div>
 
         <!-- Director 2 -->
-        <div class="flex flex-col items-center text-center">
-          <div class="w-40 h-40 rounded-full overflow-hidden mb-4">
-            <img
-              src="https://placehold.co/300x300"
-              alt="Director Creativo"
-              class="w-full h-full object-cover"
-            />
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+          <div class="p-6">
+            <div class="flex flex-col sm:flex-row items-center mb-6">
+              <div class="w-32 h-32 rounded-full overflow-hidden mb-4 sm:mb-0 sm:mr-6">
+                <img
+                  src="https://placehold.co/300x300"
+                  alt="Mar Targarona"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="text-center sm:text-left">
+                <h3 class="text-2xl font-bold mb-2">Mar Targarona</h3>
+              </div>
+            </div>
+            <div class="relative bio-content">
+              <p class="text-gray-600 dark:text-gray-300 line-clamp-4 mb-4 bio-text">
+                {t('bio_mar')}
+              </p>
+              <p class="text-gray-600 dark:text-gray-300 mb-4 bio-text-full hidden">
+                {t('bio_mar')}
+              </p>
+              <button class="text-primary hover:text-primary-dark font-medium transition-colors read-more-btn">
+                {t('read_more')}
+              </button>
+            </div>
           </div>
-          <h3 class="text-xl font-bold mb-1">Javier Rodríguez</h3>
-          <p class="text-primary font-medium mb-3">Director Creativo</p>
-          <p class="text-gray-600 dark:text-gray-300 max-w-xs mx-auto">
-            Reconocido director y guionista con múltiples premios
-            internacionales, Javier aporta su visión artística única a cada
-            proyecto.
-          </p>
         </div>
 
         <!-- Director 3 -->
-        <div class="flex flex-col items-center text-center">
-          <div class="w-40 h-40 rounded-full overflow-hidden mb-4">
-            <img
-              src="https://placehold.co/300x300"
-              alt="Directora de Producción"
-              class="w-full h-full object-cover"
-            />
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+          <div class="p-6">
+            <div class="flex flex-col sm:flex-row items-center mb-6">
+              <div class="w-32 h-32 rounded-full overflow-hidden mb-4 sm:mb-0 sm:mr-6">
+                <img
+                  src="https://placehold.co/300x300"
+                  alt="Marina Padró"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="text-center sm:text-left">
+                <h3 class="text-2xl font-bold mb-2">Marina Padró</h3>
+              </div>
+            </div>
+            <div class="relative bio-content">
+              <p class="text-gray-600 dark:text-gray-300 line-clamp-4 mb-4 bio-text">
+                {t('bio_marina')}
+              </p>
+              <p class="text-gray-600 dark:text-gray-300 mb-4 bio-text-full hidden">
+                {t('bio_marina')}
+              </p>
+              <button class="text-primary hover:text-primary-dark font-medium transition-colors read-more-btn">
+                {t('read_more')}
+              </button>
+            </div>
           </div>
-          <h3 class="text-xl font-bold mb-1">Laura Martínez</h3>
-          <p class="text-primary font-medium mb-3">Directora de Producción</p>
-          <p class="text-gray-600 dark:text-gray-300 max-w-xs mx-auto">
-            Experta en gestión de producciones complejas, Laura garantiza que
-            cada proyecto se realice con eficiencia y dentro del presupuesto.
-          </p>
+        </div>
+
+        <!-- Director 4 -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+          <div class="p-6">
+            <div class="flex flex-col sm:flex-row items-center mb-6">
+              <div class="w-32 h-32 rounded-full overflow-hidden mb-4 sm:mb-0 sm:mr-6">
+                <img
+                  src="https://placehold.co/300x300"
+                  alt="Daniel Padró"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="text-center sm:text-left">
+                <h3 class="text-2xl font-bold mb-2">Daniel Padró</h3>
+              </div>
+            </div>
+            <div class="relative bio-content">
+              <p class="text-gray-600 dark:text-gray-300 line-clamp-4 mb-4 bio-text">
+                {t('bio_daniel')}
+              </p>
+              <p class="text-gray-600 dark:text-gray-300 mb-4 bio-text-full hidden">
+                {t('bio_daniel')}
+              </p>
+              <button class="text-primary hover:text-primary-dark font-medium transition-colors read-more-btn">
+                {t('read_more')}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Logros -->
     <section class="mb-16 max-w-4xl mx-auto">
-      <h2 class="text-3xl font-bold mb-8 text-center">Nuestros Logros</h2>
+      <h2 class="text-3xl font-bold mb-8 text-center">{t('achievements')}</h2>
       <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-md">
         <ul class="space-y-4 text-gray-600 dark:text-gray-300">
           <li class="flex items-start">
             <svg ...></svg>
-            <span
-              >Más de 50 producciones realizadas entre largometrajes,
-              cortometrajes y documentales</span
-            >
+            <span>{t('achievement_1')}</span>
           </li>
           <li class="flex items-start">
             <svg ...></svg>
-            <span>15 premios internacionales en festivales de cine</span>
+            <span>{t('achievement_2')}</span>
           </li>
           <li class="flex items-start">
             <svg ...></svg>
-            <span
-              >Colaboraciones con productoras internacionales en 8 países
-              diferentes</span
-            >
+            <span>{t('achievement_3')}</span>
           </li>
           <li class="flex items-start">
             <svg ...></svg>
-            <span>3 nominaciones a los Premios Goya</span>
+            <span>{t('achievement_4')}</span>
           </li>
           <li class="flex items-start">
             <svg ...></svg>
-            <span
-              >Participación en más de 30 festivales de cine nacionales e
-              internacionales</span
-            >
+            <span>{t('achievement_5')}</span>
           </li>
         </ul>
       </div>
@@ -150,18 +200,49 @@ import Layout from "../layouts/Layout.astro";
 
     <!-- CTA de Contacto -->
     <section class="text-center max-w-3xl mx-auto">
-      <h2 class="text-2xl font-bold mb-6">¿Quieres trabajar con nosotros?</h2>
+      <h2 class="text-2xl font-bold mb-6">{t('work_with_us')}</h2>
       <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
-        Estamos siempre abiertos a nuevas colaboraciones y proyectos
-        interesantes...
+        {t('contact_cta')}
       </p>
       <a
         href="mailto:contacto@rodayrodar.com"
         class="inline-block px-8 py-4 bg-primary text-white font-medium rounded-lg hover:bg-red-700 transition shadow-md text-lg"
       >
-        Contacta con nuestro equipo
+        {t('contact_button')}
       </a>
     </section>
   </div>
 </Layout>
 
+<script>
+  // Obtener todos los botones "Leer más"
+  const readMoreButtons = document.querySelectorAll('.read-more-btn');
+  const translations = {
+    'es': { expanded: 'Leer menos', collapsed: 'Leer más' },
+    'en': { expanded: 'Read less', collapsed: 'Read more' },
+    'ca': { expanded: 'Llegir menys', collapsed: 'Llegir més' }
+  };
+
+  // Obtener el idioma actual
+  const currentLang = document.documentElement.lang || 'es';
+
+  readMoreButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const bioContent = button.closest('.bio-content');
+      if (!bioContent) return;
+
+      const truncatedText = bioContent.querySelector('.bio-text');
+      const fullText = bioContent.querySelector('.bio-text-full');
+      if (!truncatedText || !fullText || !(button instanceof HTMLElement)) return;
+      
+      // Alternar la visibilidad de los textos
+      truncatedText.classList.toggle('hidden');
+      fullText.classList.toggle('hidden');
+      
+      // Actualizar el texto del botón
+      const isExpanded = truncatedText.classList.contains('hidden');
+      const lang = currentLang as keyof typeof translations;
+      button.textContent = translations[lang][isExpanded ? 'expanded' : 'collapsed'];
+    });
+  });
+</script>
