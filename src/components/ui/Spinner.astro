@@ -1,10 +1,25 @@
 ---
-// Un componente spinner simple sin dependencias de React
+// Spinner con logo que gira
 ---
 
-<div class="flex justify-center items-center h-40">
-  <div
-    class="w-12 h-12 rounded-full animate-spin border-4 border-solid border-primary border-t-transparent dark:border-white dark:border-t-transparent"
-  >
-  </div>
+<style>
+  .spin {
+    animation: spin 4s linear infinite;
+  }
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+
+<div class="flex justify-center items-center h-20">
+  <img
+    src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1755533379/logo_wakd6k_xzbwdq.png"
+    alt="RodaYRodar Spinner Logo"
+    class="h-12 w-auto spin dark:brightness-90"
+  />
 </div>

@@ -1,5 +1,6 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "../layouts/Layout.astro";   
+    
 //import { useTranslations } from "../i18n/languages";
 //import { getLanguageFromUrl } from "../lib/language";
 import { useTranslations, defaultLanguage } from "../i18n/languages";
@@ -11,11 +12,21 @@ const t = useTranslations(lang);
 ---
 
 <Layout
-  title={`${t('about_title')} - RodaYRodar`}
-  description={`${t('about_title')} - RodaYRodar`}
+  title={`${t('about_title')} - Rodar y Rodar`}
+  description={`${t('about_title')} - Rodar y Rodar`}
 >
   <div class="container mx-auto px-4 py-12">
     <h1 class="text-4xl font-bold mb-8 text-center">{t('about_title')}</h1>
+
+    <!-- Imagen principal -->
+    <div class="w-11/12 md:w-4/5 lg:w-3/4 mx-auto mb-16">
+      <img
+      src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1755689015/DSC06745_yiiqzo_jurle2_a40d96.jpg"
+      alt="Rodar y Rodar panorámica"
+      class="w-full h-auto rounded-lg shadow-lg"
+      />
+    </div>
+
 
     <!-- Historia de la empresa -->
     <section class="mb-16 max-w-4xl mx-auto">

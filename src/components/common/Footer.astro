@@ -1,6 +1,6 @@
 ---
 import { useTranslations } from "../../i18n/languages";
-
+import Spinner from "../ui/Spinner.astro";
 const t = useTranslations((Astro.locals as any)?.lang || "es");
 ---
 
@@ -8,11 +8,12 @@ const t = useTranslations((Astro.locals as any)?.lang || "es");
   <div class="container mx-auto px-4">
     <div class="flex flex-col md:flex-row justify-between items-center">
       <div class="mb-6 md:mb-0">
-        <img
+<!--         <img
           src="https://res.cloudinary.com/dvoh9w1ro/image/upload/v1702002254/logo_wakd6k.png"
           alt="RodaYRodar Logo"
           class="h-12"
-        />
+        /> -->
+        <Spinner class="h-12 w-auto" />
         <p class="text-gray-600 dark:text-gray-300 mt-2">
           © {new Date().getFullYear()} RodaYRodar. Todos los derechos reservados.
         </p>

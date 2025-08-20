@@ -65,9 +65,9 @@ export const ui = {
     post_production: "Postproducción",
     post_production_desc:
       "Edición, efectos visuales, corrección de color y diseño de sonido.",
-    equipment_rental: "Alquiler de equipos",
-    equipment_rental_desc:
-      "Amplia gama de equipos profesionales para rodaje y producción audiovisual.",
+    distribution: "Distribución",
+    distribution_desc:
+      "Nos encargamos de que tu contenido llegue al público adecuado, optimizando su visibilidad y éxito en diferentes plataformas.",
     more_about_our_services: "Más sobre nuestros servicios",
     no_filmography_available: "No hay películas disponibles en este momento.",
     check_back_later:
@@ -194,9 +194,9 @@ export const ui = {
     post_production: "Post-production",
     post_production_desc:
       "Editing, visual effects, color grading and sound design.",
-    equipment_rental: "Equipment rental",
-    equipment_rental_desc:
-      "Wide range of professional equipment for filming and audiovisual production.",
+    distribution: "Distribution",
+    distribution_desc:
+      "We ensure your content reaches the right audience, optimizing its visibility and success across different platforms.",
     more_about_our_services: "More about our services",
     no_filmography_available: "No films available at this moment.",
     check_back_later: "Please check back later or contact us.",
@@ -322,9 +322,9 @@ export const ui = {
     post_production: "Postproducció",
     post_production_desc:
       "Edició, efectes visuals, correcció de color i disseny de so.",
-    equipment_rental: "Lloguer d'equips",
-    equipment_rental_desc:
-      "Àmplia gamma d'equips professionals per a rodatge i producció audiovisual.",
+    distribution: "Distribució",
+    distribution_desc:
+      "Ens encarreguem que el teu contingut arribi al públic adequat, optimitzant la seva visibilitat i èxit en diferents plataformes.",
     more_about_our_services: "Més sobre els nostres serveis",
     no_filmography_available:
       "No hi ha pel·lícules disponibles en aquest moment.",
