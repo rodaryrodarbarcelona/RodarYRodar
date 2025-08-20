@@ -83,6 +83,53 @@ export const ui = {
     back_to_filmography: "Volver a filmografía",
     film_not_found: "Película no encontrada",
     error_loading_film: "Error al cargar la información de la película",
+    services_title: "Nuestros Servicios",
+    services_description:
+      "En Rodar y Rodar ofrecemos un amplio catálogo de servicios profesionales para cubrir todas las necesidades de tu proyecto audiovisual.",
+    film_production_title: "Producción cinematográfica",
+    film_production_description:
+      "Ofrecemos servicios completos de producción para cine, televisión y publicidad. Nuestro equipo de profesionales se encarga de todo el proceso, desde la preproducción hasta la postproducción.",
+    film_production_list: [
+      "Desarrollo de guiones y proyectos",
+      "Planificación y logística de rodaje",
+      "Dirección y producción ejecutiva",
+      "Casting y selección de talento",
+      "Localización de escenarios",
+    ],
+    post_production_title: "Postproducción",
+    post_production_description:
+      "Contamos con un equipo de expertos en postproducción que darán vida a tu proyecto con los más altos estándares de calidad.",
+    post_production_list: [
+      "Edición y montaje profesional",
+      "Efectos visuales y CGI",
+      "Corrección de color",
+      "Diseño y edición de sonido",
+      "Masterización final",
+    ],
+    equipment_rental_title: "Distribución",
+    equipment_rental_description:
+      "Nos encargamos de que tu contenido llegue al público adecuado, optimizando su visibilidad y éxito en diferentes plataformas.",
+    equipment_rental_list: [
+      "Estrategia de distribución personalizada",
+      "Gestión de derechos y licencias",
+      "Marketing y promoción internacional",
+      "Distribución en plataformas digitales y VOD",
+      "Participación en festivales y mercados de cine",
+    ],
+    training_workshops_title: "Formación y talleres",
+    training_workshops_description:
+      "Compartimos nuestro conocimiento y experiencia a través de cursos y talleres especializados para profesionales y estudiantes del sector audiovisual.",
+    training_workshops_list: [
+      "Dirección cinematográfica",
+      "Guion y narrativa audiovisual",
+      "Técnicas de fotografía para cine",
+      "Edición y postproducción",
+      "Producción ejecutiva y financiación de proyectos",
+    ],
+    have_project: "¿Tienes un proyecto en mente?",
+    contact_project_description:
+      "Si tienes una idea brillante y quieres llevarla a la pantalla, Rodar y Rodar es tu aliado perfecto. Ofrecemos presupuestos personalizados adaptados a tus necesidades.",
+    contact_now: "Contactar ahora",
   },
   en: {
     home: "Home",
@@ -164,6 +211,53 @@ export const ui = {
     back_to_filmography: "Back to filmography",
     film_not_found: "Film not found",
     error_loading_film: "Error loading film information",
+    services_title: "Our Services",
+    services_description:
+      "At Rodar y Rodar we offer a wide range of professional services to cover all the needs of your audiovisual project.",
+    film_production_title: "Film Production",
+    film_production_description:
+      "We offer complete production services for film, television and advertising. Our team of professionals handles the entire process, from pre-production to post-production.",
+    film_production_list: [
+      "Script development and projects",
+      "Shooting planning and logistics",
+      "Direction and executive production",
+      "Casting and talent selection",
+      "Location scouting",
+    ],
+    post_production_title: "Post-production",
+    post_production_description:
+      "We have a team of post-production experts who will bring your project to life with the highest quality standards.",
+    post_production_list: [
+      "Professional editing and assembly",
+      "Visual effects and CGI",
+      "Color correction",
+      "Sound design and editing",
+      "Final mastering",
+    ],
+    equipment_rental_title: "Distribution",
+    equipment_rental_description:
+      "We ensure your content reaches the right audience, optimizing its visibility and success across different platforms.",
+    equipment_rental_list: [
+      "Customized distribution strategy",
+      "Rights and licensing management",
+      "International marketing and promotion",
+      "Digital and VOD platform distribution",
+      "Film festival and market participation",
+    ],
+    training_workshops_title: "Training and Workshops",
+    training_workshops_description:
+      "We share our knowledge and experience through specialized courses and workshops for professionals and students in the audiovisual sector.",
+    training_workshops_list: [
+      "Film direction",
+      "Screenplay and audiovisual narrative",
+      "Film photography techniques",
+      "Editing and post-production",
+      "Executive production and project financing",
+    ],
+    have_project: "Have a project in mind?",
+    contact_project_description:
+      "If you have a brilliant idea and want to bring it to the screen, Rodar y Rodar is your perfect ally. We offer customized budgets tailored to your needs.",
+    contact_now: "Contact now",
   },
   ca: {
     home: "Inici",
@@ -247,6 +341,53 @@ export const ui = {
     back_to_filmography: "Tornar a filmografia",
     film_not_found: "Pel·lícula no trobada",
     error_loading_film: "Error en carregar la informació de la pel·lícula",
+    services_title: "Els Nostres Serveis",
+    services_description:
+      "A Rodar y Rodar oferim un ampli catàleg de serveis professionals per cobrir totes les necessitats del teu projecte audiovisual.",
+    film_production_title: "Producció cinematogràfica",
+    film_production_description:
+      "Oferim serveis complets de producció per a cinema, televisió i publicitat. El nostre equip de professionals s'encarrega de tot el procés, des de la preproducció fins a la postproducció.",
+    film_production_list: [
+      "Desenvolupament de guions i projectes",
+      "Planificació i logística de rodatge",
+      "Direcció i producció executiva",
+      "Càsting i selecció de talent",
+      "Localització d'escenaris",
+    ],
+    post_production_title: "Postproducció",
+    post_production_description:
+      "Comptem amb un equip d'experts en postproducció que donaran vida al teu projecte amb els més alts estàndards de qualitat.",
+    post_production_list: [
+      "Edició i muntatge professional",
+      "Efectes visuals i CGI",
+      "Correcció de color",
+      "Disseny i edició de so",
+      "Masterització final",
+    ],
+    equipment_rental_title: "Distribució",
+    equipment_rental_description:
+      "Ens encarreguem que el teu contingut arribi al públic adequat, optimitzant la seva visibilitat i èxit en diferents plataformes.",
+    equipment_rental_list: [
+      "Estratègia de distribució personalitzada",
+      "Gestió de drets i llicències",
+      "Màrqueting i promoció internacional",
+      "Distribució en plataformes digitals i VOD",
+      "Participació en festivals i mercats de cinema",
+    ],
+    training_workshops_title: "Formació i tallers",
+    training_workshops_description:
+      "Compartim el nostre coneixement i experiència a través de cursos i tallers especialitzats per a professionals i estudiants del sector audiovisual.",
+    training_workshops_list: [
+      "Direcció cinematogràfica",
+      "Guió i narrativa audiovisual",
+      "Tècniques de fotografia per a cinema",
+      "Edició i postproducció",
+      "Producció executiva i finançament de projectes",
+    ],
+    have_project: "Tens un projecte en ment?",
+    contact_project_description:
+      "Si tens una idea brillant i vols portar-la a la pantalla, Rodar y Rodar és el teu aliat perfecte. Oferim pressupostos personalitzats adaptats a les teves necessitats.",
+    contact_now: "Contactar ara",
   },
 };
 
