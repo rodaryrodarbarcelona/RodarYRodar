@@ -43,6 +43,7 @@ function getFilmSlug(item: Filmografia): string {
 let recentProductions: any[] = [];
 
 try {
+  // @ts-ignore - Ignoramos los errores de TypeScript ya que no lo estamos usando
   await mongoose.connect(import.meta.env.VITE_MONGO_URI);
   const results = await FilmografiaModel.find()
     .sort({ fecha: -1 })
@@ -62,20 +63,20 @@ try {
   <!-- Hero Section -->
   <section class="py-20 bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800">
     <div class="container mx-auto px-4 text-center">
-      <h1 class="text-5xl md:text-6xl font-bold mb-6 text-primary">Rodar y Rodar</h1>
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 text-gray-100">Rodar y Rodar</h1>
       <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10 text-gray-600 dark:text-gray-300">
         {t("hero_description")}
       </p>
       <div class="flex flex-wrap justify-center gap-4">
         <a
           href="/filmografias"
-          class="px-6 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition shadow-md dark:bg-gray-800 dark:hover:bg-gray-700"
+          class="px-6 py-3 bg-red-800 text-white font-medium rounded-lg hover:bg-red-900 transition shadow-md"
         >
           {t("see_filmography")}
         </a>
         <a
           href="/servicios"
-          class="px-6 py-3 bg-white text-primary border border-primary font-medium rounded-lg hover:bg-gray-50 transition shadow-md dark:bg-gray-800 dark:hover:bg-gray-700"
+          class="px-6 py-3 bg-red-800 text-white font-medium rounded-lg hover:bg-red-900 transition shadow-md"
         >
           {t("our_services")}
         </a>
@@ -129,7 +130,7 @@ try {
         <div class="text-center lg:text-left mt-6">
           <a
             href="/filmografias"
-            class="px-6 py-2 bg-red-600 dark:bg-gray-700 text-white dark:text-white font-medium rounded-lg hover:bg-red-700 dark:hover:bg-red-800 transition text-sm"
+            class="px-6 py-2 bg-red-800 text-white font-medium rounded-lg hover:bg-red-900 transition text-sm shadow-md"
           >
             {t("view_all_filmography")}
           </a>
@@ -173,7 +174,7 @@ try {
         <div class="text-center lg:text-left mt-6 self-start">
           <a
             href="/servicios"
-            class="px-6 py-2 bg-red-600 dark:bg-red-700 text-white font-medium rounded-lg hover:bg-red-700 dark:hover:bg-red-800 transition shadow-md text-sm"
+            class="px-6 py-2 bg-red-800 text-white font-medium rounded-lg hover:bg-red-900 transition shadow-md text-sm"
           >
             {t("more_about_our_services")}
           </a>
