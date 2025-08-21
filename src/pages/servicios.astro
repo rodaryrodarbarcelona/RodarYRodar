@@ -13,185 +13,211 @@ const t = useTranslations(lang);
   title={`${t("services")} - RodaYRodar`}
   description={t("services_description")}
 >
-  <div class="container mx-auto px-4 py-12">
-    <h1 class="text-4xl font-bold mb-8 text-center">{t("services_title")}</h1>
+  <div class="relative min-h-screen">
+    <!-- Estilo para el fondo -->
+    <style>
+      .bg-service-image {
+        background-image: url("https://res.cloudinary.com/dxytyvnn2/image/upload/v1755798942/service_backgorund-removebg-preview_t7gfmd.png");
+        background-repeat: repeat;
+        background-size: 100% auto;
+        background-attachment: fixed;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.25;
+        z-index: 0;
+        pointer-events: none;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
 
-    <div class="max-w-4xl mx-auto">
-      <p class="text-lg text-gray-600 dark:text-gray-300 mb-12 text-center">
-        {t("services_description")}
-      </p>
+    <!-- Div que contiene la imagen de fondo -->
+    <div class="bg-service-image"></div>
 
-      <!-- Servicio 1 -->
-      <div class="mb-16">
-        <div class="flex flex-col md:flex-row items-start mb-8">
-          <div class="md:w-auto mb-6 md:mb-0 md:mr-12 flex-shrink-0">
-            <div
-              class="bg-primary bg-opacity-10 dark:bg-opacity-20 rounded-full p-6 inline-block"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-16 w-16 text-primary"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+    <!-- Contenido principal -->
+    <div class="container mx-auto px-4 py-12 relative z-10">
+      <h1 class="text-4xl font-bold mb-8 text-center">{t("services_title")}</h1>
+
+      <div class="max-w-4xl mx-auto">
+        <p class="text-lg text-gray-600 dark:text-gray-300 mb-12 text-center">
+          {t("services_description")}
+        </p>
+
+        <!-- Servicio 1 -->
+        <div class="mb-16">
+          <div class="flex flex-col md:flex-row items-start mb-8">
+            <div class="md:w-auto mb-6 md:mb-0 md:mr-12 flex-shrink-0">
+              <div
+                class="bg-primary bg-opacity-10 dark:bg-opacity-20 rounded-full p-6 inline-block"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
-                ></path>
-              </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-16 w-16 text-primary"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="flex-grow">
+              <h2 class="text-2xl font-bold mb-4 text-gray-300 text-left">
+                {t("film_production_title")}
+              </h2>
+              <p class="text-gray-600 dark:text-gray-300 mb-4 text-left">
+                {t("film_production_description")}
+              </p>
+              <ul
+                class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-2 text-left"
+              >
+                {t("film_production_list").map((item) => <li>{item}</li>)}
+              </ul>
             </div>
           </div>
-          <div class="flex-grow">
-            <h2 class="text-2xl font-bold mb-4 text-gray-300 text-left">
-              {t("film_production_title")}
-            </h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4 text-left">
-              {t("film_production_description")}
-            </p>
-            <ul
-              class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-2 text-left"
-            >
-              {t("film_production_list").map((item) => <li>{item}</li>)}
-            </ul>
+        </div>
+
+        <!-- Servicio 2 -->
+        <div class="mb-16">
+          <div class="flex flex-col md:flex-row items-start mb-8">
+            <div class="md:w-auto mb-6 md:mb-0 md:mr-12 flex-shrink-0">
+              <div
+                class="bg-primary bg-opacity-10 dark:bg-opacity-20 rounded-full p-6 inline-block"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-16 w-16 text-primary"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="flex-grow">
+              <h2 class="text-2xl font-bold mb-4 text-gray-300 text-left">
+                {t("post_production_title")}
+              </h2>
+              <p class="text-gray-600 dark:text-gray-300 mb-4 text-left">
+                {t("post_production_description")}
+              </p>
+              <ul
+                class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-2 text-left"
+              >
+                {t("post_production_list").map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Servicio 3 -->
+        <div class="mb-16">
+          <div class="flex flex-col md:flex-row items-start mb-8">
+            <div class="md:w-auto mb-6 md:mb-0 md:mr-12 flex-shrink-0">
+              <div
+                class="bg-primary bg-opacity-10 dark:bg-opacity-20 rounded-full p-6 inline-block"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-16 w-16 text-primary"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="flex-grow">
+              <h2 class="text-2xl font-bold mb-4 text-gray-300 text-left">
+                {t("equipment_rental_title")}
+              </h2>
+              <p class="text-gray-600 dark:text-gray-300 mb-4 text-left">
+                {t("equipment_rental_description")}
+              </p>
+              <ul
+                class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-2 text-left"
+              >
+                {t("equipment_rental_list").map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Servicio 4 -->
+        <div>
+          <div class="flex flex-col md:flex-row items-start mb-8">
+            <div class="md:w-auto mb-6 md:mb-0 md:mr-12 flex-shrink-0">
+              <div
+                class="bg-primary bg-opacity-10 dark:bg-opacity-20 rounded-full p-6 inline-block"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-16 w-16 text-primary"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="flex-grow">
+              <h2 class="text-2xl font-bold mb-4 text-gray-300 text-left">
+                {t("training_workshops_title")}
+              </h2>
+              <p class="text-gray-600 dark:text-gray-300 mb-4 text-left">
+                {t("training_workshops_description")}
+              </p>
+              <ul
+                class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-2 text-left"
+              >
+                {t("training_workshops_list").map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Servicio 2 -->
-      <div class="mb-16">
-        <div class="flex flex-col md:flex-row items-start mb-8">
-          <div class="md:w-auto mb-6 md:mb-0 md:mr-12 flex-shrink-0">
-            <div
-              class="bg-primary bg-opacity-10 dark:bg-opacity-20 rounded-full p-6 inline-block"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-16 w-16 text-primary"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
-                ></path>
-              </svg>
-            </div>
-          </div>
-          <div class="flex-grow">
-            <h2 class="text-2xl font-bold mb-4 text-gray-300 text-left">
-              {t("post_production_title")}
-            </h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4 text-left">
-              {t("post_production_description")}
-            </p>
-            <ul
-              class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-2 text-left"
-            >
-              {t("post_production_list").map((item) => <li>{item}</li>)}
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Servicio 3 -->
-      <div class="mb-16">
-        <div class="flex flex-col md:flex-row items-start mb-8">
-          <div class="md:w-auto mb-6 md:mb-0 md:mr-12 flex-shrink-0">
-            <div
-              class="bg-primary bg-opacity-10 dark:bg-opacity-20 rounded-full p-6 inline-block"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-16 w-16 text-primary"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"
-                ></path>
-              </svg>
-            </div>
-          </div>
-          <div class="flex-grow">
-            <h2 class="text-2xl font-bold mb-4 text-gray-300 text-left">
-              {t("equipment_rental_title")}
-            </h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4 text-left">
-              {t("equipment_rental_description")}
-            </p>
-            <ul
-              class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-2 text-left"
-            >
-              {t("equipment_rental_list").map((item) => <li>{item}</li>)}
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Servicio 4 -->
-      <div>
-        <div class="flex flex-col md:flex-row items-start mb-8">
-          <div class="md:w-auto mb-6 md:mb-0 md:mr-12 flex-shrink-0">
-            <div
-              class="bg-primary bg-opacity-10 dark:bg-opacity-20 rounded-full p-6 inline-block"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-16 w-16 text-primary"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                ></path>
-              </svg>
-            </div>
-          </div>
-          <div class="flex-grow">
-            <h2 class="text-2xl font-bold mb-4 text-gray-300 text-left">
-              {t("training_workshops_title")}
-            </h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4 text-left">
-              {t("training_workshops_description")}
-            </p>
-            <ul
-              class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-2 text-left"
-            >
-              {t("training_workshops_list").map((item) => <li>{item}</li>)}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CTA -->
-    <div
-      class="mt-16 bg-gray-100 dark:bg-gray-800 rounded-xl p-8 text-center max-w-4xl mx-auto"
-    >
-      <h3 class="text-2xl font-bold mb-4">{t("have_project")}</h3>
-      <p class="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-        {t("contact_project_description")}
-      </p>
-      <a
-        href="mailto:info@rodayrodar.com"
-        class="inline-block px-6 py-3 bg-red-600 dark:bg-gray-700 text-white font-medium rounded-lg hover:bg-red-700 dark:hover:bg-red-800 transition shadow-md"
+      <!-- CTA -->
+      <div
+        class="mt-16 bg-gray-100 dark:bg-gray-800 rounded-xl p-8 text-center max-w-4xl mx-auto"
       >
-        {t("contact_now")}
-      </a>
+        <h3 class="text-2xl font-bold mb-4">{t("have_project")}</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+          {t("contact_project_description")}
+        </p>
+        <a
+          href="mailto:info@rodayrodar.com"
+          class="inline-block px-6 py-3 bg-red-600 dark:bg-gray-700 text-white font-medium rounded-lg hover:bg-red-700 dark:hover:bg-red-800 transition shadow-md"
+        >
+          {t("contact_now")}
+        </a>
+      </div>
     </div>
   </div>
 </Layout>
