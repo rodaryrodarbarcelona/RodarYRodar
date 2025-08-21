@@ -29,14 +29,11 @@ const t = useTranslations(lang);
         opacity: 0.25;
         z-index: 0;
         pointer-events: none;
-        width: 100%;
-        height: 100%;
       }
     </style>
 
     <!-- Div que contiene la imagen de fondo -->
     <div class="bg-service-image"></div>
-
     <!-- Contenido principal -->
     <div class="container mx-auto px-4 py-12 relative z-10">
       <h1
@@ -219,7 +216,9 @@ const t = useTranslations(lang);
       <div
         class="mt-16 bg-gray-100 dark:bg-gray-800 rounded-xl p-8 text-center max-w-4xl mx-auto"
       >
-        <h3 class="text-2xl font-bold mb-4">{t("have_project")}</h3>
+        <h3 class="text-2xl font-bold mb-4 text-gray-700 dark:text-white">
+          {t("have_project")}
+        </h3>
         <p class="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
           {t("contact_project_description")}
         </p>
