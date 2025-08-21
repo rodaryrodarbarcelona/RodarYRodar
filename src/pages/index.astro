@@ -61,10 +61,20 @@ try {
   description="Rodar y Rodar - Productora cinematográfica"
 >
   <!-- Hero Section -->
-  <section class="py-20 bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800">
-    <div class="container mx-auto px-4 text-center">
-      <h1 class="text-5xl md:text-6xl font-bold mb-6 text-gray-100">Rodar y Rodar</h1>
-      <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10 text-gray-600 dark:text-gray-300">
+  <section class="py-20 relative bg-gray-900">
+    <!-- Imagen de fondo con superposición -->
+    <div class="absolute inset-0 overflow-hidden">
+      <img 
+        src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1755791964/IMG_0054_tkknqf.png" 
+        alt="Film background" 
+        class="w-full h-full object-cover opacity-50"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-gray-900/90"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 text-center relative z-10">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white">Rodar y Rodar</h1>
+      <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10 text-gray-200">
         {t("hero_description")}
       </p>
       <div class="flex flex-wrap justify-center gap-4">
@@ -76,7 +86,7 @@ try {
         </a>
         <a
           href="/servicios"
-          class="px-6 py-3 bg-red-800 text-white font-medium rounded-lg hover:bg-red-900 transition shadow-md"
+          class="px-6 py-3 bg-white text-red-800 border border-white font-medium rounded-lg hover:bg-white/90 transition shadow-md"
         >
           {t("our_services")}
         </a>
@@ -119,7 +129,7 @@ try {
                 <p class="text-gray-600 dark:text-gray-300 text-sm line-clamp-3 flex-grow">
                   {lang === 'en' ? film.sinopsisEn || film.sinopsis : lang === 'ca' ? film.sinopsisCat || film.sinopsis : film.sinopsis}
                 </p>
-                <a href={`/${getFilmSlug(film)}`} class="inline-block text-primary hover:underline text-sm mt-2">
+                <a href={`/${getFilmSlug(film)}`} class="inline-block text-gray-300 hover:underline text-sm mt-2">
                   {t("view_details")} &rarr;
                 </a>
               </div>
@@ -150,7 +160,7 @@ try {
             { icon: "globe", title: t("distribution"), desc: t("distribution_desc") }
           ].map((service) => (
             <div class="p-5 bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg transition min-h-60 flex flex-col">
-              <div class="text-primary mb-3 flex justify-center lg:justify-start">
+              <div class="text-gray-300 mb-3 flex justify-center lg:justify-start">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   {service.icon === "camera" && (
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
