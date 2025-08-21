@@ -1,6 +1,6 @@
 ---
-import Layout from "../layouts/Layout.astro";   
-    
+import Layout from "../layouts/Layout.astro";
+
 //import { useTranslations } from "../i18n/languages";
 //import { getLanguageFromUrl } from "../lib/language";
 import { useTranslations, defaultLanguage } from "../i18n/languages";
@@ -12,30 +12,29 @@ const t = useTranslations(lang);
 ---
 
 <Layout
-  title={`${t('about_title')} - Rodar y Rodar`}
-  description={`${t('about_title')} - Rodar y Rodar`}
+  title={`${t("about_title")} - Rodar y Rodar`}
+  description={`${t("about_title")} - Rodar y Rodar`}
 >
   <div class="container mx-auto px-4 py-12">
-    <h1 class="text-4xl font-bold mb-8 text-center">{t('about_title')}</h1>
+    <h1 class="text-4xl font-bold mb-8 text-center">{t("about_title")}</h1>
 
     <!-- Imagen principal -->
     <div class="w-11/12 md:w-4/5 lg:w-3/4 mx-auto mb-16">
       <img
-      src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1755689015/DSC06745_yiiqzo_jurle2_a40d96.jpg"
-      alt="Rodar y Rodar panorámica"
-      class="w-full h-auto rounded-lg shadow-lg"
+        src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1755689015/DSC06745_yiiqzo_jurle2_a40d96.jpg"
+        alt="Rodar y Rodar panorámica"
+        class="w-full h-auto rounded-lg shadow-lg"
       />
     </div>
 
-
     <!-- Historia de la empresa -->
     <section class="mb-16 max-w-4xl mx-auto">
-      <h2 class="text-3xl font-bold mb-6 text-primary">{t('our_history')}</h2>
+      <h2 class="text-3xl font-bold mb-6 text-primary">{t("our_history")}</h2>
       <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
-        {t('history_p1')}
+        {t("history_p1")}
       </p>
       <p class="text-lg text-gray-600 dark:text-gray-300">
-        {t('history_p2')}
+        {t("history_p2")}
       </p>
     </section>
 
@@ -43,15 +42,15 @@ const t = useTranslations(lang);
     <section class="mb-16 max-w-4xl mx-auto">
       <div class="grid md:grid-cols-2 gap-8">
         <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-md">
-          <h3 class="text-2xl font-bold mb-4 text-primary">{t('mission')}</h3>
+          <h3 class="text-2xl font-bold mb-4 text-primary">{t("mission")}</h3>
           <p class="text-gray-600 dark:text-gray-300">
-            {t('mission_text')}
+            {t("mission_text")}
           </p>
         </div>
         <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-md">
-          <h3 class="text-2xl font-bold mb-4 text-primary">{t('vision')}</h3>
+          <h3 class="text-2xl font-bold mb-4 text-primary">{t("vision")}</h3>
           <p class="text-gray-600 dark:text-gray-300">
-            {t('vision_text')}
+            {t("vision_text")}
           </p>
         </div>
       </div>
@@ -59,14 +58,20 @@ const t = useTranslations(lang);
 
     <!-- Equipo directivo -->
     <section class="mb-16">
-      <h2 class="text-3xl font-bold mb-10 text-center">{t('management_team')}</h2>
+      <h2 class="text-3xl font-bold mb-10 text-center">
+        {t("management_team")}
+      </h2>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- Director 1 -->
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+        <div
+          class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+        >
           <div class="p-6">
             <div class="flex flex-col sm:flex-row items-center mb-6">
-              <div class="w-32 h-32 rounded-full overflow-hidden mb-4 sm:mb-0 sm:mr-6">
+              <div
+                class="w-32 h-32 rounded-full overflow-hidden mb-4 sm:mb-0 sm:mr-6"
+              >
                 <img
                   src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1755676455/DSC06420_jkysvj_sidrxn.jpg"
                   alt="Joaquín Padró"
@@ -78,24 +83,34 @@ const t = useTranslations(lang);
               </div>
             </div>
             <div class="relative bio-content">
-              <p class="text-gray-600 dark:text-gray-300 line-clamp-4 mb-4 bio-text">
-                {t('bio_joaquin')}
+              <p
+                class="text-gray-600 dark:text-gray-300 line-clamp-4 mb-4 bio-text"
+              >
+                {t("bio_joaquin")}
               </p>
-              <p class="text-gray-600 dark:text-gray-300 mb-4 bio-text-full hidden">
-                {t('bio_joaquin')}
+              <p
+                class="text-gray-600 dark:text-gray-300 mb-4 bio-text-full hidden"
+              >
+                {t("bio_joaquin")}
               </p>
-              <button class="text-primary hover:text-primary-dark font-medium transition-colors read-more-btn">
-                {t('read_more')}
+              <button
+                class="text-primary hover:text-primary-dark font-medium transition-colors read-more-btn"
+              >
+                {t("read_more")}
               </button>
             </div>
           </div>
         </div>
 
         <!-- Director 2 -->
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+        <div
+          class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+        >
           <div class="p-6">
             <div class="flex flex-col sm:flex-row items-center mb-6">
-              <div class="w-32 h-32 rounded-full overflow-hidden mb-4 sm:mb-0 sm:mr-6">
+              <div
+                class="w-32 h-32 rounded-full overflow-hidden mb-4 sm:mb-0 sm:mr-6"
+              >
                 <img
                   src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1755676145/DSC06190_dcrftd_nhkhya.jpg"
                   alt="Mar Targarona"
@@ -107,24 +122,34 @@ const t = useTranslations(lang);
               </div>
             </div>
             <div class="relative bio-content">
-              <p class="text-gray-600 dark:text-gray-300 line-clamp-4 mb-4 bio-text">
-                {t('bio_mar')}
+              <p
+                class="text-gray-600 dark:text-gray-300 line-clamp-4 mb-4 bio-text"
+              >
+                {t("bio_mar")}
               </p>
-              <p class="text-gray-600 dark:text-gray-300 mb-4 bio-text-full hidden">
-                {t('bio_mar')}
+              <p
+                class="text-gray-600 dark:text-gray-300 mb-4 bio-text-full hidden"
+              >
+                {t("bio_mar")}
               </p>
-              <button class="text-primary hover:text-primary-dark font-medium transition-colors read-more-btn">
-                {t('read_more')}
+              <button
+                class="text-primary hover:text-primary-dark font-medium transition-colors read-more-btn"
+              >
+                {t("read_more")}
               </button>
             </div>
           </div>
         </div>
 
         <!-- Director 3 -->
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+        <div
+          class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+        >
           <div class="p-6">
             <div class="flex flex-col sm:flex-row items-center mb-6">
-              <div class="w-32 h-32 rounded-full overflow-hidden mb-4 sm:mb-0 sm:mr-6">
+              <div
+                class="w-32 h-32 rounded-full overflow-hidden mb-4 sm:mb-0 sm:mr-6"
+              >
                 <img
                   src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1755629951/DSC05992_d2vq97_psbqvr.jpg"
                   alt="Marina Padró"
@@ -136,24 +161,34 @@ const t = useTranslations(lang);
               </div>
             </div>
             <div class="relative bio-content">
-              <p class="text-gray-600 dark:text-gray-300 line-clamp-4 mb-4 bio-text">
-                {t('bio_marina')}
+              <p
+                class="text-gray-600 dark:text-gray-300 line-clamp-4 mb-4 bio-text"
+              >
+                {t("bio_marina")}
               </p>
-              <p class="text-gray-600 dark:text-gray-300 mb-4 bio-text-full hidden">
-                {t('bio_marina')}
+              <p
+                class="text-gray-600 dark:text-gray-300 mb-4 bio-text-full hidden"
+              >
+                {t("bio_marina")}
               </p>
-              <button class="text-primary hover:text-primary-dark font-medium transition-colors read-more-btn">
-                {t('read_more')}
+              <button
+                class="text-primary hover:text-primary-dark font-medium transition-colors read-more-btn"
+              >
+                {t("read_more")}
               </button>
             </div>
           </div>
         </div>
 
         <!-- Director 4 -->
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+        <div
+          class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+        >
           <div class="p-6">
             <div class="flex flex-col sm:flex-row items-center mb-6">
-              <div class="w-32 h-32 rounded-full overflow-hidden mb-4 sm:mb-0 sm:mr-6">
+              <div
+                class="w-32 h-32 rounded-full overflow-hidden mb-4 sm:mb-0 sm:mr-6"
+              >
                 <img
                   src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1755632244/DSC05771_ob7w9q_k7z3tc.jpg"
                   alt="Daniel Padró"
@@ -165,14 +200,20 @@ const t = useTranslations(lang);
               </div>
             </div>
             <div class="relative bio-content">
-              <p class="text-gray-600 dark:text-gray-300 line-clamp-4 mb-4 bio-text">
-                {t('bio_daniel')}
+              <p
+                class="text-gray-600 dark:text-gray-300 line-clamp-4 mb-4 bio-text"
+              >
+                {t("bio_daniel")}
               </p>
-              <p class="text-gray-600 dark:text-gray-300 mb-4 bio-text-full hidden">
-                {t('bio_daniel')}
+              <p
+                class="text-gray-600 dark:text-gray-300 mb-4 bio-text-full hidden"
+              >
+                {t("bio_daniel")}
               </p>
-              <button class="text-primary hover:text-primary-dark font-medium transition-colors read-more-btn">
-                {t('read_more')}
+              <button
+                class="text-primary hover:text-primary-dark font-medium transition-colors read-more-btn"
+              >
+                {t("read_more")}
               </button>
             </div>
           </div>
@@ -182,44 +223,98 @@ const t = useTranslations(lang);
 
     <!-- Logros -->
     <section class="mb-16 max-w-4xl mx-auto">
-      <h2 class="text-3xl font-bold mb-8 text-center">{t('achievements')}</h2>
-      <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-md">
-        <ul class="space-y-4 text-gray-600 dark:text-gray-300">
-          <li class="flex items-start">
-            <svg ...></svg>
-            <span>{t('achievement_1')}</span>
-          </li>
-          <li class="flex items-start">
-            <svg ...></svg>
-            <span>{t('achievement_2')}</span>
-          </li>
-          <li class="flex items-start">
-            <svg ...></svg>
-            <span>{t('achievement_3')}</span>
-          </li>
-          <li class="flex items-start">
-            <svg ...></svg>
-            <span>{t('achievement_4')}</span>
-          </li>
-          <li class="flex items-start">
-            <svg ...></svg>
-            <span>{t('achievement_5')}</span>
-          </li>
-        </ul>
+      <h2 class="text-3xl font-bold mb-8 text-center">{t("achievements")}</h2>
+
+      <div
+        class="space-y-8 text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-md"
+      >
+        <div>
+          <h3 class="text-xl font-semibold mb-2 text-primary">
+            {t("achievements_cannes_title")}
+          </h3>
+          <p class="mb-4">{t("achievements_cannes_desc")}</p>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-2 text-primary">
+            {t("achievements_film_awards_title")}
+          </h3>
+          <p class="mb-2">
+            <span class="font-medium">{t("achievements_forque_title")}</span><br
+            />
+            {t("achievements_forque_desc")}
+          </p>
+          <p class="mb-2">
+            <span class="font-medium">{t("achievements_paris_title")}</span><br
+            />
+            {t("achievements_paris_desc")}
+          </p>
+          <p class="mb-2">
+            <span class="font-medium">{t("achievements_goya_title")}</span><br
+            />
+            {t("achievements_goya_desc")}
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-2 text-primary">
+            {t("achievements_nominations_title")}
+          </h3>
+          <p class="mb-1">{t("achievements_nominations_filmaffinity")}</p>
+          <ul class="list-disc pl-5 mb-2">
+            <li>{t("achievements_nominations_list1")}</li>
+            <li>{t("achievements_nominations_list2")}</li>
+            <li>{t("achievements_nominations_list3")}</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-2 text-primary">
+            {t("achievements_trajectory_title")}
+          </h3>
+          <p class="mb-2">{t("achievements_foundation")}</p>
+          <p class="mb-2">{t("achievements_first_film")}</p>
+          <p class="mb-1">{t("achievements_other_productions")}</p>
+          <ul class="list-disc pl-5 mb-2 grid grid-cols-1 md:grid-cols-2 gap-1">
+            <li>{t("achievements_film1")}</li>
+            <li>{t("achievements_film2")}</li>
+            <li>{t("achievements_film3")}</li>
+            <li>{t("achievements_film4")}</li>
+            <li>{t("achievements_film5")}</li>
+            <li>{t("achievements_film6")}</li>
+            <li>{t("achievements_film7")}</li>
+            <li>{t("achievements_film8")}</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-2 text-primary">
+            {t("achievements_talent_title")}
+          </h3>
+          <p>{t("achievements_talent_desc")}</p>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-2 text-primary">
+            {t("achievements_recent_title")}
+          </h3>
+          <p class="mb-2">{t("achievements_recent_desc1")}</p>
+          <p class="mb-2">{t("achievements_recent_desc2")}</p>
+          <p>{t("achievements_recent_desc3")}</p>
+        </div>
       </div>
     </section>
-
     <!-- CTA de Contacto -->
     <section class="text-center max-w-3xl mx-auto">
-      <h2 class="text-2xl font-bold mb-6">{t('work_with_us')}</h2>
+      <h2 class="text-2xl font-bold mb-6">{t("work_with_us")}</h2>
       <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
-        {t('contact_cta')}
+        {t("contact_cta")}
       </p>
       <a
         href="mailto:contacto@rodayrodar.com"
         class="inline-block px-8 py-4 bg-primary text-white font-medium rounded-lg hover:bg-red-700 transition shadow-md text-lg"
       >
-        {t('contact_button')}
+        {t("contact_button")}
       </a>
     </section>
   </div>
@@ -227,33 +322,35 @@ const t = useTranslations(lang);
 
 <script>
   // Obtener todos los botones "Leer más"
-  const readMoreButtons = document.querySelectorAll('.read-more-btn');
+  const readMoreButtons = document.querySelectorAll(".read-more-btn");
   const translations = {
-    'es': { expanded: 'Leer menos', collapsed: 'Leer más' },
-    'en': { expanded: 'Read less', collapsed: 'Read more' },
-    'ca': { expanded: 'Llegir menys', collapsed: 'Llegir més' }
+    es: { expanded: "Leer menos", collapsed: "Leer más" },
+    en: { expanded: "Read less", collapsed: "Read more" },
+    ca: { expanded: "Llegir menys", collapsed: "Llegir més" },
   };
 
   // Obtener el idioma actual
-  const currentLang = document.documentElement.lang || 'es';
+  const currentLang = document.documentElement.lang || "es";
 
-  readMoreButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const bioContent = button.closest('.bio-content');
+  readMoreButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const bioContent = button.closest(".bio-content");
       if (!bioContent) return;
 
-      const truncatedText = bioContent.querySelector('.bio-text');
-      const fullText = bioContent.querySelector('.bio-text-full');
-      if (!truncatedText || !fullText || !(button instanceof HTMLElement)) return;
-      
+      const truncatedText = bioContent.querySelector(".bio-text");
+      const fullText = bioContent.querySelector(".bio-text-full");
+      if (!truncatedText || !fullText || !(button instanceof HTMLElement))
+        return;
+
       // Alternar la visibilidad de los textos
-      truncatedText.classList.toggle('hidden');
-      fullText.classList.toggle('hidden');
-      
+      truncatedText.classList.toggle("hidden");
+      fullText.classList.toggle("hidden");
+
       // Actualizar el texto del botón
-      const isExpanded = truncatedText.classList.contains('hidden');
+      const isExpanded = truncatedText.classList.contains("hidden");
       const lang = currentLang as keyof typeof translations;
-      button.textContent = translations[lang][isExpanded ? 'expanded' : 'collapsed'];
+      button.textContent =
+        translations[lang][isExpanded ? "expanded" : "collapsed"];
     });
   });
 </script>
