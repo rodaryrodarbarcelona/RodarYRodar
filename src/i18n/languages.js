@@ -29,8 +29,32 @@ export const ui = {
         bio_mar:
             'Es directora, productora de cine y actriz. Es directora de la Fundación Taller de Guionistas y productora ejecutiva de Rodar y Rodar Cine S.L. Estudió Arte dramático en el "Institut del Teatre" de Barcelona, en Estrasburgo y con Lee Strasberg, e inició su carrera profesional en el teatro. Fue miembro Fundador de la compañía "Dagoll Dagom". Más tarde se decantó por el mundo cinematográfico y de la televisión, realizando spots publicitarios para Rodar y Rodar y, a partir de 1995, trabajando como directora, guionista y productora. Dirigió la película Muere mí vida, un capítulo de la serie Abuela de Verano, Ojo por Ojo, Secuestro, El Fotógrafo de Mauthausen, Dos y El Cuco.',
         bio_marina:
+            'Comenzó su carrera como guionista con la película "Paranormal Xperience 3D" mientras cursaba sus estudios en la ESCAC, donde se especializó en guión. Su cortometraje "Un día Especial", su proyecto final de carrera se estrenó en el Festival de Cine de Sitges. Desde entonces se desempeña como analista y supervisor de Guión en la productora Rodar y Rodar. También ha dirigido otros cortometrajes de bajo presupuesto. En la película "Espejo Espejo" actuó como productor delegado.',
+        filmography: "Filmografía",
+        about: "Nosotros",
+        about_title: "Sobre Nosotros",
+        our_history: "Nuestra Historia",
+        history_p1:
+            "Fundada hace más de 30 años, Rodar y Rodar es dirigida en la actualidad por Joaquín Padró y Mar Targarona, junto con sus hijos Marina y Daniel Padró. Aunque inicialmente se dedicó a la publicidad, obteniendo reconocimientos como el Gran Prix de Cannes. Se ha posicionado como una de las productoras más sólidas en la industria audiovisual española y catalana.",
+        history_p2:
+            "A lo largo de los años, ha producido una amplia variedad de proyectos, desde cortometrajes hasta largometrajes premiados, documentales que exploran realidades sociales y campañas publicitarias para marcas líderes. El compromiso con la calidad y la narrativa auténtica ha permitido a Rodar y Rodar, construir una sólida reputación en la industria.",
+        mission: "Misión",
+        mission_text:
+            "Crear contenido audiovisual que inspire, emocione y conecte con las audiencias, utilizando la narrativa cinematográfica como herramienta para contar historias significativas que perduren en el tiempo.",
+        vision: "Visión",
+        vision_text:
+            "Ser referentes en la industria audiovisual por nuestro compromiso con la excelencia, la innovación creativa y la producción de contenido que trascienda fronteras culturales y geográficas.",
+        management_team: "Equipo Directivo",
+        role_ceo: "Directora General",
+        role_creative: "Director Creativo",
+        role_production: "Directora de Producción",
+        bio_joaquin:
+            'Es productor. Graduado en Cine-Tv y antropología por la Universidad de "San Francisco State Unniversity" y "Berkeley University". Fundador y responsable de "Magus Films", productora de publicidad en San Francisco, California. Presidente de "Movieland", productora de Publicidad en Barcelona. Presidente de "Rodar y Rodar", productora de Publicidad, Cine y T.V.; desde esta compañía ha producido numerosos spots publicitarios que han obtenido el reconocimiento internacional y ha ganado numerosos premios, entre ellos el prestigioso Grand Prix de Cannes. Desde hace más de 30 años dirige "Rodar y Rodar Cine" que se ha convertido en una de las productoras con mayor solidez dentro de la industria audiovisual, especializándose en la producción de ficción para cine y televisión.',
+        bio_mar:
+            'Es directora, productora de cine y actriz. Es directora de la Fundación Taller de Guionistas y productora ejecutiva de Rodar y Rodar Cine S.L. Estudió Arte dramático en el "Institut del Teatre" de Barcelona, en Estrasburgo y con Lee Strasberg, e inició su carrera profesional en el teatro. Fue miembro Fundador de la compañía "Dagoll Dagom". Más tarde se decantó por el mundo cinematográfico y de la televisión, realizando spots publicitarios para Rodar y Rodar y, a partir de 1995, trabajando como directora, guionista y productora. Dirigió la película Muere mí vida, un capítulo de la serie Abuela de Verano, Ojo por Ojo, Secuestro, El Fotógrafo de Mauthausen, Dos y El Cuco.',
+        bio_marina:
             "Estudió en ESCAC (Escola Superior de Cinema i Audiovisual de Catalunya) Tras licenciarse en Producción se trasladó a Madrid para trabajar en National Geographic Channel hasta 2012 cuando volvió a Barcelona y empezó a trabajar en Rodar y Rodar. Primero en administración y productora asociada hasta que en 2019 trajo a la compañía el proyecto EL PÁRAMO. Desde entonces, Marina junto con Daniel, se hicieron cargo de la adquisición y producción de guion.",
-        achievements: "Logros y premios de Rodar y Rodar",
+        achievements: "Logros y Premios",
         achievements_cannes_title: "1. Gran Premio del Jurado en el Festival de Publicidad de Cannes",
         achievements_cannes_desc: "Rodar y Rodar inició su trayectoria en publicidad y es la única productora española que ha ganado el Gran Prix del Jurado en el Festival de Publicidad de Cannes.",
         achievements_film_awards_title: "2. Premios cinematográficos destacados",
@@ -183,7 +207,7 @@ export const ui = {
             'She is a director, film producer and actress. She is director of the Screenwriters Workshop Foundation and executive producer of Rodar y Rodar Cine S.L. She studied Dramatic Art at the "Institut del Teatre" in Barcelona, in Strasbourg and with Lee Strasberg, and began her professional career in theater. She was a Founding Member of the "Dagoll Dagom" company. Later, she turned to film and television, making commercials for Rodar y Rodar and, from 1995, working as a director, screenwriter and producer. She directed the film Muere mí vida, an episode of the series Abuela de Verano, Ojo por Ojo, Secuestro, El Fotógrafo de Mauthausen, Dos and El Cuco.',
         bio_marina:
             "She studied at ESCAC (Escola Superior de Cinema i Audiovisual de Catalunya). After graduating in Production, she moved to Madrid to work at National Geographic Channel until 2012 when she returned to Barcelona and started working at Rodar y Rodar. First in administration and as associate producer until 2019 when she brought the project EL PÁRAMO to the company. Since then, Marina along with Daniel, have been in charge of script acquisition and production.",
-        achievements: "Achievements and Awards of Rodar y Rodar",
+        achievements: "Achievements and Awards",
         achievements_cannes_title: "1. Grand Prix at the Cannes Advertising Festival",
         achievements_cannes_desc: "Rodar y Rodar began its journey in advertising and is the only Spanish production company that has won the Grand Prix at the Cannes Advertising Festival.",
         achievements_film_awards_title: "2. Outstanding Film Awards",
@@ -335,7 +359,7 @@ export const ui = {
             'És directora, productora de cinema i actriu. És directora de la Fundació Taller de Guionistes i productora executiva de Rodar y Rodar Cine S.L. Va estudiar Art dramàtic a l\'Institut del Teatre de Barcelona, a Estrasburg i amb Lee Strasberg, i va iniciar la seva carrera professional al teatre. Va ser membre Fundador de la companyia "Dagoll Dagom". Més tard es va decantar pel món cinematogràfic i de la televisió, realitzant spots publicitaris per a Rodar y Rodar i, a partir de 1995, treballant com a directora, guionista i productora. Va dirigir la pel·lícula Muere mí vida, un capítol de la sèrie Abuela de Verano, Ojo por Ojo, Secuestro, El Fotógrafo de Mauthausen, Dos i El Cuco.',
         bio_marina:
             "Va estudiar a l'ESCAC (Escola Superior de Cinema i Audiovisual de Catalunya). Després de llicenciar-se en Producció es va traslladar a Madrid per treballar a National Geographic Channel fins al 2012 quan va tornar a Barcelona i va començar a treballar a Rodar y Rodar. Primer en administració i productora associada fins que el 2019 va portar a la companyia el projecte EL PÁRAMO. Des de llavors, Marina juntament amb Daniel, es van fer càrrec de l'adquisició i producció de guió.",
-        achievements: "Èxits i premis de Rodar y Rodar",
+        achievements: "Èxits i Premis",
         achievements_cannes_title: "1. Gran Premi del Jurat al Festival de Publicitat de Cannes",
         achievements_cannes_desc: "Rodar y Rodar va iniciar la seva trajectòria en publicitat i és l'única productora espanyola que ha guanyat el Gran Prix del Jurat al Festival de Publicitat de Cannes.",
         achievements_film_awards_title: "2. Premis cinematogràfics destacats",
