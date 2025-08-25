@@ -25,3 +25,17 @@ pnpm-debug.log*
 
 # vercel deployment files
 .vercel/
+
+# Archivos no deseados específicos
+src/components/SlugMapGenerator.astro
+src/pages/debug-urls.astro
+src/lib/themeDebug.js
+src/pages/filmografias.astro.new
+src/pages/url-redirector.astro
+src/pages/filmografias-updated.astro
+src/env.d.ts
+src/csp.js
+src/utils/security.js
+src/pages/film/
+src/pages/pelicula/
+src/pages/peliculas/

@@ -16,24 +16,68 @@ const t = useTranslations(lang);
   <div class="relative min-h-screen">
     <!-- Estilo para el fondo -->
     <style>
-      .bg-service-image {
-        background-image: url("https://res.cloudinary.com/dxytyvnn2/image/upload/v1755798942/service_backgorund-removebg-preview_t7gfmd.png");
-        background-repeat: repeat;
-        background-size: 100% auto;
-        background-attachment: fixed;
+      .bg-service-image-top-right {
+        background-image: url("https://res.cloudinary.com/dxytyvnn2/image/upload/v1755874774/7_rzrtnx_d109e1-removebg-preview_bhjyh4.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: top right;
         position: fixed;
         top: 0;
-        left: 0;
         right: 0;
-        bottom: 0;
+        width: 40%;
+        height: 40%;
         opacity: 0.25;
         z-index: 0;
         pointer-events: none;
       }
+
+      .bg-service-image-bottom-left {
+        background-image: url("https://res.cloudinary.com/dxytyvnn2/image/upload/v1755874774/6_ufxocv_a725c8-removebg-preview_gprmza.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: bottom left;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 40%;
+        height: 40%;
+        opacity: 0.25;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      @media (max-width: 768px) {
+        .bg-service-image-top-right {
+          width: 45%;
+          height: 20%;
+          background-position: top right;
+          top: 70px; /* Ajustado para que aparezca debajo del header en móvil */
+        }
+        .bg-service-image-bottom-left {
+          width: 45%;
+          height: 20%;
+          background-position: bottom left;
+        }
+      }
+
+      /* Ajuste específico para pantallas muy pequeñas */
+      @media (max-width: 480px) {
+        .bg-service-image-top-right {
+          width: 50%;
+          height: 18%;
+          opacity: 0.25; /* Mantenemos la opacidad original */
+        }
+        .bg-service-image-bottom-left {
+          width: 50%;
+          height: 18%;
+          opacity: 0.25; /* Mantenemos la opacidad original */
+        }
+      }
     </style>
 
-    <!-- Div que contiene la imagen de fondo -->
-    <div class="bg-service-image"></div>
+    <!-- Divs que contienen las imágenes de fondo -->
+    <div class="bg-service-image-top-right"></div>
+    <div class="bg-service-image-bottom-left"></div>
     <!-- Contenido principal -->
     <div class="container mx-auto px-4 py-12 relative z-10">
       <h1
