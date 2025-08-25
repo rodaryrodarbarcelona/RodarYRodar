@@ -1,19 +1,18 @@
 import { atom } from 'nanostores';
 
-// Inicializamos con un valor por defecto, que será actualizado en initTheme
-export const isDarkMode = atom(false);
+// Inicializamos con modo oscuro por defecto
+export const isDarkMode = atom(true);
 
 // Función para comprobar si el tema debe ser oscuro (para uso interno)
 function shouldBeDarkTheme() {
-    if (typeof window === 'undefined') return false;
+    if (typeof window === 'undefined') return true; // Por defecto oscuro incluso en SSR
 
-    // Comprobar preferencia guardada
+    // Comprobar preferencia guardada (pero solo permitir cambio si el usuario explícitamente eligió tema claro)
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') return true;
     if (savedTheme === 'light') return false;
 
-    // Si no hay preferencia guardada, usar la preferencia del sistema
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // En todos los demás casos, usar tema oscuro
+    return true;
 }
 
 export function toggleDarkMode() {

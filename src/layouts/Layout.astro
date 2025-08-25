@@ -17,10 +17,7 @@ const { title = "Rodar Y Rodar", description = "Productora cinematográfica" } =
 ---
 
 <!doctype html>
-<html
-  lang={currentLang}
-  class={`${Astro.cookies.get("theme")?.value === "dark" ? "dark" : ""}`}
->
+<html lang={currentLang} class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,29 +26,29 @@ const { title = "Rodar Y Rodar", description = "Productora cinematográfica" } =
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
-    <!-- Google Font Roboto -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Inicialización del tema -->
+    <!-- Inicialización del tema (forzado a oscuro por defecto) -->
     <script is:inline>
       (function () {
+        // Establecer modo oscuro por defecto si no hay preferencia guardada
+        if (!localStorage.getItem("theme")) {
+          localStorage.setItem("theme", "dark");
+        }
+
+        // Siempre iniciar con modo oscuro a menos que el usuario haya elegido explícitamente modo claro
         const shouldUseDarkTheme = () => {
           const saved = localStorage.getItem("theme");
-          if (saved === "dark") return true;
           if (saved === "light") return false;
-          return window.matchMedia("(prefers-color-scheme: dark)").matches;
+          return true; // Modo oscuro por defecto
         };
+
         const isDark = shouldUseDarkTheme();
         if (isDark) {
           document.documentElement.classList.add("dark");
         } else {
           document.documentElement.classList.remove("dark");
         }
+
+        // Seguir escuchando cambios de tema
         document.addEventListener("themeChanged", (e) => {
           const newTheme = e.detail.theme;
           if (newTheme === "dark") {
@@ -66,7 +63,7 @@ const { title = "Rodar Y Rodar", description = "Productora cinematográfica" } =
 
   <body
     class="bg-white dark:bg-gray-900 text-gray-800 dark:text-white min-h-screen flex flex-col transition-colors duration-300"
-    data-theme={Astro.cookies.get("theme")?.value || "light"}
+    data-theme="dark"
   >
     <Header />
     <main class="flex-grow">
