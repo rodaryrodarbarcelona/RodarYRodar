@@ -123,12 +123,12 @@ function getFilmSlug(item: FilmografiaItem): string {
                 </a>
 
                 <!-- Texto -->
-                <div class="flex-1 p-4 flex flex-col">
+                <div class="flex-1  flex flex-col">
                   <a
                     href={`/${getFilmSlug(item)}`}
                     class="block hover:text-primary transition"
                   >
-                    <h3 class="text-xl font-semibold mb-2">
+                    <h3 class="text-lg font-semibold mb-2">
                       {getTitulo(item)}
                     </h3>
                   </a>
@@ -140,12 +140,12 @@ function getFilmSlug(item: FilmografiaItem): string {
                   </p>
 
                   {item.director && (
-                    <p class="text-gray-600 dark:text-gray-300 mb-3">
+                    <p class="text-gray-600 dark:text-gray-300 mb-2">
                       {t("directed_by")}: {item.director}
                     </p>
                   )}
 
-                  <p class="text-gray-600 dark:text-gray-300 line-clamp-3 mb-4">
+                  <p class="text-gray-600 dark:text-gray-300 line-clamp-3 mb-2">
                     {getSinopsis(item)}
                   </p>
 
