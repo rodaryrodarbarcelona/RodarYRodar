@@ -1,0 +1,136 @@
+---
+import { useTranslations, defaultLanguage } from "../i18n/languages";
+
+const lang = (Astro.locals as any)?.lang || defaultLanguage;
+const t = useTranslations(lang);
+
+// Traducciones específicas para el banner de cookies
+const cookieText = {
+  es: {
+    title: "Uso de cookies",
+    description:
+      "Utilizamos cookies propias y de terceros para mejorar nuestros servicios y mostrarle contenido relacionado con sus preferencias. Si continúa navegando, consideramos que acepta su uso.",
+    accept: "Aceptar",
+    reject: "Rechazar",
+    settings: "Configurar",
+    moreInfo: "Más información",
+  },
+  en: {
+    title: "Cookie Usage",
+    description:
+      "We use our own and third-party cookies to improve our services and show you content related to your preferences. If you continue browsing, we consider that you accept their use.",
+    accept: "Accept",
+    reject: "Reject",
+    settings: "Settings",
+    moreInfo: "More info",
+  },
+  ca: {
+    title: "Ús de cookies",
+    description:
+      "Utilitzem cookies pròpies i de tercers per millorar els nostres serveis i mostrar-li contingut relacionat amb les seves preferències. Si continua navegant, considerem que accepta el seu ús.",
+    accept: "Acceptar",
+    reject: "Rebutjar",
+    settings: "Configurar",
+    moreInfo: "Més informació",
+  },
+};
+
+const cookie = cookieText[lang] || cookieText.es;
+---
+
+<div
+  id="cookie-banner"
+  class="fixed bottom-0 left-0 w-full bg-gray-900/95 text-white p-4 shadow-lg z-50 transform translate-y-full transition-transform duration-300"
+>
+  <div class="container mx-auto max-w-screen-lg">
+    <div
+      class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+    >
+      <div class="flex-1">
+        <h3 class="text-lg font-semibold mb-2">{cookie.title}</h3>
+        <p class="text-sm text-gray-300">{cookie.description}</p>
+      </div>
+      <div class="flex flex-wrap gap-2 mt-2 md:mt-0">
+        <a
+          href="/politica-cookies"
+          class="px-3 py-1.5 text-sm bg-transparent border border-gray-500 text-gray-300 rounded hover:bg-gray-700 transition"
+        >
+          {cookie.moreInfo}
+        </a>
+        <button
+          id="reject-cookies"
+          class="px-3 py-1.5 text-sm bg-gray-600 text-white rounded hover:bg-gray-500 transition"
+        >
+          {cookie.reject}
+        </button>
+        <button
+          id="accept-cookies"
+          class="px-3 py-1.5 text-sm bg-primary text-white rounded hover:bg-red-700 transition"
+        >
+          {cookie.accept}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Función para mostrar el banner de cookies
+  function showCookieBanner() {
+    const cookieBanner = document.getElementById("cookie-banner");
+    if (cookieBanner) {
+      setTimeout(() => {
+        cookieBanner.classList.remove("translate-y-full");
+      }, 1000);
+    }
+  }
+
+  // Función para ocultar el banner de cookies
+  function hideCookieBanner() {
+    const cookieBanner = document.getElementById("cookie-banner");
+    if (cookieBanner) {
+      cookieBanner.classList.add("translate-y-full");
+    }
+  }
+
+  // Función para establecer una cookie
+  function setCookie(name: string, value: string, days: number) {
+    let expires = "";
+    if (days) {
+      const date = new Date();
+      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+      expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+  }
+
+  // Función para obtener el valor de una cookie
+  function getCookie(name: string) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(";");
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) === " ") c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  }
+
+  // Comprobar si el usuario ya ha aceptado las cookies
+  const cookiesAccepted = getCookie("cookies-accepted");
+
+  if (!cookiesAccepted) {
+    showCookieBanner();
+  }
+
+  // Eventos para los botones
+  document.getElementById("accept-cookies")?.addEventListener("click", () => {
+    setCookie("cookies-accepted", "true", 365);
+    hideCookieBanner();
+  });
+
+  document.getElementById("reject-cookies")?.addEventListener("click", () => {
+    setCookie("cookies-accepted", "false", 365);
+    hideCookieBanner();
+  });
+</script>

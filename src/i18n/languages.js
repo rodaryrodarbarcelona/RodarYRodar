@@ -4,6 +4,8 @@ export const defaultLanguage = "es";
 export const ui = {
     es: {
         home: "Inicio",
+        privacy_policy: "Política de Privacidad",
+        cookie_policy: "Política de Cookies",
         bio_daniel:
             'Comenzó su carrera como guionista con la película "Paranormal Xperience 3D" mientras cursaba sus estudios en la ESCAC, donde se especializó en guión. Su cortometraje "Un día Especial", su proyecto final de carrera se estrenó en el Festival de Cine de Sitges. Desde entonces se desempeña como analista y supervisor de Guión en la productora Rodar y Rodar. También ha dirigido otros cortometrajes de bajo presupuesto. En la película "Espejo Espejo" actuó como productor delegado.',
         filmography: "Filmografía",
@@ -181,6 +183,8 @@ export const ui = {
     },
     en: {
         home: "Home",
+        privacy_policy: "Privacy Policy",
+        cookie_policy: "Cookie Policy",
         bio_daniel:
             'He began his career as a screenwriter with the film "Paranormal Xperience 3D" while studying at ESCAC, where he specialized in screenwriting. His short film "Un día Especial", his final year project, premiered at the Sitges Film Festival. Since then, he has been working as a script analyst and supervisor at Rodar y Rodar. He has also directed other low-budget short films. In the film "Espejo Espejo" he served as delegate producer.',
         filmography: "Filmography",
@@ -333,6 +337,8 @@ export const ui = {
     },
     ca: {
         home: "Inici",
+        privacy_policy: "Política de Privacitat",
+        cookie_policy: "Política de Cookies",
         bio_daniel:
             'Va començar la seva carrera com a guionista amb la pel·lícula "Paranormal Xperience 3D" mentre estudiava a l\'ESCAC, on es va especialitzar en guió. El seu curtmetratge "Un día Especial", el seu projecte final de carrera, es va estrenar al Festival de Cinema de Sitges. Des de llavors, treballa com a analista i supervisor de Guió a la productora Rodar y Rodar. També ha dirigit altres curtmetratges de baix pressupost. A la pel·lícula "Espejo Espejo" va actuar com a productor delegat.',
         filmography: "Filmografia",

@@ -1,0 +1,434 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { useTranslations, defaultLanguage } from "../i18n/languages";
+
+// Obtener idioma actual
+const lang = (Astro.locals as any)?.lang || defaultLanguage;
+const t = useTranslations(lang);
+
+// Título y descripción específicos para cada idioma
+const titles = {
+  es: "Política de Cookies",
+  en: "Cookie Policy",
+  ca: "Política de Cookies",
+};
+
+const descriptions = {
+  es: "Información sobre el uso de cookies en Rodar y Rodar",
+  en: "Information about the use of cookies on Rodar y Rodar",
+  ca: "Informació sobre l'ús de cookies a Rodar y Rodar",
+};
+
+const title = titles[lang] || titles.es;
+const description = descriptions[lang] || descriptions.es;
+---
+
+<Layout title={title + " - Rodar y Rodar"} description={description}>
+  <div class="container mx-auto px-4 py-12 max-w-4xl">
+    <h1 class="text-4xl font-bold mb-8 text-center">{title}</h1>
+
+    <div class="prose dark:prose-invert max-w-none">
+      {
+        lang === "en" ? (
+          <>
+            <h2>What are cookies?</h2>
+            <p>
+              A cookie is a file that is downloaded to your device when you
+              access certain websites. Cookies allow a website, among other
+              things, to store and retrieve information about a user's browsing
+              habits or their device, and depending on the information they
+              contain and the way they use their device, they can be used to
+              recognize the user.
+            </p>
+
+            <h2>Types of cookies</h2>
+            <p>This website uses the following types of cookies:</p>
+
+            <h3>According to the entity that manages them:</h3>
+            <ul>
+              <li>
+                <strong>Own cookies:</strong> These are those that are sent to
+                the user's terminal equipment from a computer or domain managed
+                by the publisher itself and from which the service requested by
+                the user is provided.
+              </li>
+              <li>
+                <strong>Third-party cookies:</strong> These are those that are
+                sent to the user's terminal equipment from a computer or domain
+                that is not managed by the publisher, but by another entity that
+                processes the data obtained through the cookies.
+              </li>
+            </ul>
+
+            <h3>According to the time they remain activated:</h3>
+            <ul>
+              <li>
+                <strong>Session cookies:</strong> These are a type of cookie
+                designed to collect and store data while the user accesses a
+                website.
+              </li>
+              <li>
+                <strong>Persistent cookies:</strong> These are a type of cookie
+                in which the data is still stored in the terminal and can be
+                accessed and processed for a period defined by the person
+                responsible for the cookie, which can range from a few minutes
+                to several years.
+              </li>
+            </ul>
+
+            <h3>According to their purpose:</h3>
+            <ul>
+              <li>
+                <strong>Technical cookies:</strong> These are those that allow
+                the user to navigate through a website, platform or application
+                and use the different options or services that exist in it.
+              </li>
+              <li>
+                <strong>Preference or personalization cookies:</strong> These
+                are those that allow information to be remembered so that the
+                user accesses the service with certain characteristics that can
+                differentiate their experience from that of other users.
+              </li>
+              <li>
+                <strong>Analysis or measurement cookies:</strong> These are
+                those that allow the person responsible for them to monitor and
+                analyze the behavior of the users of the websites to which they
+                are linked.
+              </li>
+              <li>
+                <strong>Advertising cookies:</strong> These are those that store
+                information on the behavior of users obtained through the
+                continuous observation of their browsing habits, which allows
+                the development of a specific profile to display advertising
+                based on it.
+              </li>
+            </ul>
+
+            <h2>Disabling cookies</h2>
+            <p>
+              You can allow, block or delete the cookies installed on your
+              device by configuring the options of the browser installed on your
+              computer. Below you can find information on how to adjust these
+              settings in the main browsers:
+            </p>
+
+            <ul>
+              <li>
+                <a
+                  href="https://support.microsoft.com/en-us/windows/delete-and-manage-cookies-168dab11-0753-043d-7c16-ede5947fc64d"
+                  target="_blank"
+                  rel="nofollow noopener"
+                >
+                  Internet Explorer
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop"
+                  target="_blank"
+                  rel="nofollow noopener"
+                >
+                  Firefox
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://support.google.com/chrome/answer/95647?hl=en"
+                  target="_blank"
+                  rel="nofollow noopener"
+                >
+                  Chrome
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac"
+                  target="_blank"
+                  rel="nofollow noopener"
+                >
+                  Safari
+                </a>
+              </li>
+            </ul>
+
+            <h2>Third Party Cookies</h2>
+            <p>
+              This website may use third-party services that, on behalf of Rodar
+              y Rodar, will collect information for statistical purposes, of use
+              of the Site by the user and for the provision of other services
+              related to the activity of the Website and other Internet
+              services.
+            </p>
+          </>
+        ) : lang === "ca" ? (
+          <>
+            <h2>Què són les cookies?</h2>
+            <p>
+              Una cookie és un fitxer que es descarrega al vostre dispositiu en
+              accedir a determinades pàgines web. Les cookies permeten a una
+              pàgina web, entre d'altres coses, emmagatzemar i recuperar
+              informació sobre els hàbits de navegació d'un usuari o del seu
+              equip i, depenent de la informació que continguin i de la forma en
+              què utilitzi el seu equip, es poden utilitzar per reconèixer
+              l'usuari.
+            </p>
+
+            <h2>Tipus de cookies</h2>
+            <p>Aquest lloc web utilitza els següents tipus de cookies:</p>
+
+            <h3>Segons l'entitat que les gestioni:</h3>
+            <ul>
+              <li>
+                <strong>Cookies pròpies:</strong> Són aquelles que s'envien a
+                l'equip terminal de l'usuari des d'un equip o domini gestionat
+                pel propi editor i des del qual es presta el servei sol·licitat
+                per l'usuari.
+              </li>
+              <li>
+                <strong>Cookies de tercers:</strong> Són aquelles que s'envien a
+                l'equip terminal de l'usuari des d'un equip o domini que no és
+                gestionat per l'editor, sinó per una altra entitat que tracta
+                les dades obtingudes a través de les cookies.
+              </li>
+            </ul>
+
+            <h3>Segons el termini de temps que romanen activades:</h3>
+            <ul>
+              <li>
+                <strong>Cookies de sessió:</strong> Són un tipus de cookies
+                dissenyades per recaptar i emmagatzemar dades mentre l'usuari
+                accedeix a una pàgina web.
+              </li>
+              <li>
+                <strong>Cookies persistents:</strong> Són un tipus de cookies en
+                les quals les dades segueixen emmagatzemades al terminal i poden
+                ser accedides i tractades durant un període definit pel
+                responsable de la cookie, que pot anar d'uns minuts a diversos
+                anys.
+              </li>
+            </ul>
+
+            <h3>Segons la seva finalitat:</h3>
+            <ul>
+              <li>
+                <strong>Cookies tècniques:</strong> Són aquelles que permeten a
+                l'usuari la navegació a través d'una pàgina web, plataforma o
+                aplicació i la utilització de les diferents opcions o serveis
+                que hi ha.
+              </li>
+              <li>
+                <strong>Cookies de preferències o personalització:</strong> Són
+                aquelles que permeten recordar informació perquè l'usuari
+                accedeixi al servei amb determinades característiques que poden
+                diferenciar la seva experiència de la d'altres usuaris.
+              </li>
+              <li>
+                <strong>Cookies d'anàlisi o mesurament:</strong> Són aquelles
+                que permeten al responsable d'aquestes el seguiment i anàlisi
+                del comportament dels usuaris dels llocs web als quals estan
+                vinculades.
+              </li>
+              <li>
+                <strong>Cookies publicitàries:</strong> Són aquelles que
+                emmagatzemen informació del comportament dels usuaris obtinguda
+                a través de l'observació continuada dels seus hàbits de
+                navegació, el que permet desenvolupar un perfil específic per
+                mostrar publicitat en funció d'aquest.
+              </li>
+            </ul>
+
+            <h2>Desactivació de cookies</h2>
+            <p>
+              Podeu permetre, bloquejar o eliminar les cookies instal·lades al
+              vostre dispositiu mitjançant la configuració de les opcions del
+              navegador instal·lat al vostre ordinador. A continuació podeu
+              trobar informació sobre com ajustar aquests paràmetres als
+              navegadors principals:
+            </p>
+
+            <ul>
+              <li>
+                <a
+                  href="https://support.microsoft.com/ca-es/windows/eliminar-i-administrar-les-galetes-168dab11-0753-043d-7c16-ede5947fc64d"
+                  target="_blank"
+                  rel="nofollow noopener"
+                >
+                  Internet Explorer
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://support.mozilla.org/ca/kb/proteccio-contra-seguiment-millorada-firefox-desktop"
+                  target="_blank"
+                  rel="nofollow noopener"
+                >
+                  Firefox
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://support.google.com/chrome/answer/95647?hl=ca"
+                  target="_blank"
+                  rel="nofollow noopener"
+                >
+                  Chrome
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://support.apple.com/ca-es/guide/safari/sfri11471/mac"
+                  target="_blank"
+                  rel="nofollow noopener"
+                >
+                  Safari
+                </a>
+              </li>
+            </ul>
+
+            <h2>Cookies de Tercers</h2>
+            <p>
+              Aquest lloc web pot utilitzar serveis de tercers que, per compte
+              de Rodar y Rodar, recopilaran informació amb finalitats
+              estadístiques, d'ús del Lloc per part de l'usuari i per a la
+              prestació d'altres serveis relacionats amb l'activitat del Lloc
+              Web i altres serveis d'Internet.
+            </p>
+          </>
+        ) : (
+          <>
+            <h2>¿Qué son las cookies?</h2>
+            <p>
+              Una cookie es un archivo que se descarga en su dispositivo al
+              acceder a determinadas páginas web. Las cookies permiten a una
+              página web, entre otras cosas, almacenar y recuperar información
+              sobre los hábitos de navegación de un usuario o de su equipo y,
+              dependiendo de la información que contengan y de la forma en que
+              utilice su equipo, pueden utilizarse para reconocer al usuario.
+            </p>
+
+            <h2>Tipos de cookies</h2>
+            <p>Este sitio web utiliza los siguientes tipos de cookies:</p>
+
+            <h3>Según la entidad que las gestione:</h3>
+            <ul>
+              <li>
+                <strong>Cookies propias:</strong> Son aquéllas que se envían al
+                equipo terminal del usuario desde un equipo o dominio gestionado
+                por el propio editor y desde el que se presta el servicio
+                solicitado por el usuario.
+              </li>
+              <li>
+                <strong>Cookies de terceros:</strong> Son aquéllas que se envían
+                al equipo terminal del usuario desde un equipo o dominio que no
+                es gestionado por el editor, sino por otra entidad que trata los
+                datos obtenidos través de las cookies.
+              </li>
+            </ul>
+
+            <h3>Según el plazo de tiempo que permanecen activadas:</h3>
+            <ul>
+              <li>
+                <strong>Cookies de sesión:</strong> Son un tipo de cookies
+                diseñadas para recabar y almacenar datos mientras el usuario
+                accede a una página web.
+              </li>
+              <li>
+                <strong>Cookies persistentes:</strong> Son un tipo de cookies en
+                el que los datos siguen almacenados en el terminal y pueden ser
+                accedidos y tratados durante un periodo definido por el
+                responsable de la cookie, que puede ir de unos minutos a varios
+                años.
+              </li>
+            </ul>
+
+            <h3>Según su finalidad:</h3>
+            <ul>
+              <li>
+                <strong>Cookies técnicas:</strong> Son aquéllas que permiten al
+                usuario la navegación a través de una página web, plataforma o
+                aplicación y la utilización de las diferentes opciones o
+                servicios que en ella existan.
+              </li>
+              <li>
+                <strong>Cookies de preferencias o personalización:</strong> Son
+                aquéllas que permiten recordar información para que el usuario
+                acceda al servicio con determinadas características que pueden
+                diferenciar su experiencia de la de otros usuarios.
+              </li>
+              <li>
+                <strong>Cookies de análisis o medición:</strong> Son aquéllas
+                que permiten al responsable de las mismas el seguimiento y
+                análisis del comportamiento de los usuarios de los sitios web a
+                los que están vinculadas.
+              </li>
+              <li>
+                <strong>Cookies publicitarias:</strong> Son aquéllas que
+                almacenan información del comportamiento de los usuarios
+                obtenida a través de la observación continuada de sus hábitos de
+                navegación, lo que permite desarrollar un perfil específico para
+                mostrar publicidad en función del mismo.
+              </li>
+            </ul>
+
+            <h2>Desactivación de cookies</h2>
+            <p>
+              Puede usted permitir, bloquear o eliminar las cookies instaladas
+              en su dispositivo mediante la configuración de las opciones del
+              navegador instalado en su ordenador. A continuación puede
+              encontrar información sobre cómo ajustar estos parámetros en los
+              principales navegadores:
+            </p>
+
+            <ul>
+              <li>
+                <a
+                  href="https://support.microsoft.com/es-es/windows/eliminar-y-administrar-cookies-168dab11-0753-043d-7c16-ede5947fc64d"
+                  target="_blank"
+                  rel="nofollow noopener"
+                >
+                  Internet Explorer
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://support.mozilla.org/es/kb/proteccion-antirrastreo-mejorada-en-firefox-para-escritorio"
+                  target="_blank"
+                  rel="nofollow noopener"
+                >
+                  Firefox
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://support.google.com/chrome/answer/95647?hl=es"
+                  target="_blank"
+                  rel="nofollow noopener"
+                >
+                  Chrome
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://support.apple.com/es-es/guide/safari/sfri11471/mac"
+                  target="_blank"
+                  rel="nofollow noopener"
+                >
+                  Safari
+                </a>
+              </li>
+            </ul>
+
+            <h2>Cookies de Terceros</h2>
+            <p>
+              Este sitio web puede utilizar servicios de terceros que, por
+              cuenta de Rodar y Rodar, recopilarán información con fines
+              estadísticos, de uso del Sitio por parte del usuario y para la
+              prestación de otros servicios relacionados con la actividad del
+              Sitio Web y otros servicios de Internet.
+            </p>
+          </>
+        )
+      }
+    </div>
+  </div>
+</Layout>

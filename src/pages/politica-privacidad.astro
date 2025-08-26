@@ -1,0 +1,375 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { useTranslations, defaultLanguage } from "../i18n/languages";
+
+// Obtener idioma actual
+const lang = (Astro.locals as any)?.lang || defaultLanguage;
+const t = useTranslations(lang);
+
+// Título y descripción específicos para cada idioma
+const titles = {
+  es: "Política de Privacidad",
+  en: "Privacy Policy",
+  ca: "Política de Privacitat",
+};
+
+const descriptions = {
+  es: "Información sobre el tratamiento de datos personales en Rodar y Rodar",
+  en: "Information about the processing of personal data at Rodar y Rodar",
+  ca: "Informació sobre el tractament de dades personals a Rodar y Rodar",
+};
+
+const title = titles[lang] || titles.es;
+const description = descriptions[lang] || descriptions.es;
+---
+
+<Layout title={title + " - Rodar y Rodar"} description={description}>
+  <div class="container mx-auto px-4 py-12 max-w-4xl">
+    <h1 class="text-4xl font-bold mb-8 text-center">{title}</h1>
+
+    <div class="prose dark:prose-invert max-w-none">
+      {
+        lang === "en" ? (
+          <>
+            <h2>Privacy Policy</h2>
+            <p>
+              At Rodar y Rodar, we are committed to protecting your privacy.
+              This Privacy Policy explains how we collect, use, disclose, and
+              safeguard your information when you visit our website.
+            </p>
+
+            <h2>Information We Collect</h2>
+            <p>We may collect information about you in a variety of ways:</p>
+            <ul>
+              <li>
+                <strong>Personal Data:</strong> We may collect personally
+                identifiable information, such as your name, email address, and
+                telephone number, when you voluntarily submit it to us through
+                forms on our website.
+              </li>
+              <li>
+                <strong>Derivative Data:</strong> Information our servers
+                automatically collect when you access our website, such as your
+                IP address, browser type, operating system, access times, and
+                the pages you have viewed.
+              </li>
+              <li>
+                <strong>Cookies:</strong> We may use cookies, web beacons, and
+                other tracking technologies to collect information about you
+                when you interact with our website.
+              </li>
+            </ul>
+
+            <h2>Use of Your Information</h2>
+            <p>
+              We may use the information we collect about you for various
+              purposes:
+            </p>
+            <ul>
+              <li>To provide and maintain our website</li>
+              <li>To respond to your inquiries and fulfill your requests</li>
+              <li>
+                To send administrative information, such as updates or changes
+                to our terms, conditions, and policies
+              </li>
+              <li>To improve our website and user experience</li>
+              <li>To personalize your experience on our website</li>
+              <li>For analytics and statistical purposes</li>
+            </ul>
+
+            <h2>Disclosure of Your Information</h2>
+            <p>
+              We may share information we have collected about you in certain
+              situations:
+            </p>
+            <ul>
+              <li>
+                <strong>Compliance with Laws:</strong> If required to do so by
+                law or in response to valid requests by public authorities.
+              </li>
+              <li>
+                <strong>Business Transfers:</strong> If we are involved in a
+                merger, acquisition, or sale of all or a portion of our assets.
+              </li>
+              <li>
+                <strong>Third-Party Service Providers:</strong> With
+                contractors, service providers, and other third parties we use
+                to support our business.
+              </li>
+            </ul>
+
+            <h2>Security of Your Information</h2>
+            <p>
+              We use administrative, technical, and physical security measures
+              to help protect your personal information. However, despite our
+              efforts, no security measures are perfect or impenetrable, and no
+              method of data transmission can be guaranteed against interception
+              or other types of misuse.
+            </p>
+
+            <h2>Your Rights Regarding Your Data</h2>
+            <p>
+              Under the General Data Protection Regulation (GDPR) and other
+              applicable data protection laws, you have certain rights regarding
+              your personal data, including:
+            </p>
+            <ul>
+              <li>The right to access your personal data</li>
+              <li>The right to rectify inaccurate personal data</li>
+              <li>The right to erasure of your personal data</li>
+              <li>The right to restrict processing of your personal data</li>
+              <li>The right to data portability</li>
+              <li>The right to object to processing of your personal data</li>
+            </ul>
+
+            <h2>Contact Us</h2>
+            <p>
+              If you have questions or comments about this Privacy Policy and
+              our privacy practices, please contact us at:
+            </p>
+            <p>
+              Rodar y Rodar
+              <br />
+              Email: info@rodaryrodar.com
+            </p>
+          </>
+        ) : lang === "ca" ? (
+          <>
+            <h2>Política de Privacitat</h2>
+            <p>
+              A Rodar y Rodar, estem compromesos amb la protecció de la vostra
+              privacitat. Aquesta Política de Privacitat explica com recopilem,
+              utilitzem, divulguem i protegim la vostra informació quan visiteu
+              el nostre lloc web.
+            </p>
+
+            <h2>Informació que Recopilem</h2>
+            <p>
+              Podem recopilar informació sobre vosaltres de diverses maneres:
+            </p>
+            <ul>
+              <li>
+                <strong>Dades Personals:</strong> Podem recopilar informació
+                personalment identificable, com el vostre nom, adreça de correu
+                electrònic i número de telèfon, quan ens la envieu
+                voluntàriament a través de formularis al nostre lloc web.
+              </li>
+              <li>
+                <strong>Dades Derivades:</strong> Informació que els nostres
+                servidors recopilen automàticament quan accediu al nostre lloc
+                web, com la vostra adreça IP, tipus de navegador, sistema
+                operatiu, temps d'accés i les pàgines que heu vist.
+              </li>
+              <li>
+                <strong>Cookies:</strong> Podem utilitzar cookies, balises web i
+                altres tecnologies de seguiment per recopilar informació sobre
+                vosaltres quan interactueu amb el nostre lloc web.
+              </li>
+            </ul>
+
+            <h2>Ús de la Vostra Informació</h2>
+            <p>
+              Podem utilitzar la informació que recopilem sobre vosaltres per a
+              diversos propòsits:
+            </p>
+            <ul>
+              <li>Per proporcionar i mantenir el nostre lloc web</li>
+              <li>
+                Per respondre a les vostres consultes i complir les vostres
+                sol·licituds
+              </li>
+              <li>
+                Per enviar informació administrativa, com ara actualitzacions o
+                canvis en els nostres termes, condicions i polítiques
+              </li>
+              <li>Per millorar el nostre lloc web i l'experiència d'usuari</li>
+              <li>
+                Per personalitzar la vostra experiència al nostre lloc web
+              </li>
+              <li>Per a finalitats analítiques i estadístiques</li>
+            </ul>
+
+            <h2>Divulgació de la Vostra Informació</h2>
+            <p>
+              Podem compartir la informació que hem recopilat sobre vosaltres en
+              determinades situacions:
+            </p>
+            <ul>
+              <li>
+                <strong>Compliment de les Lleis:</strong> Si així ho requereix
+                la llei o en resposta a sol·licituds vàlides per part de les
+                autoritats públiques.
+              </li>
+              <li>
+                <strong>Transferències Empresarials:</strong> Si participem en
+                una fusió, adquisició o venda de la totalitat o una part dels
+                nostres actius.
+              </li>
+              <li>
+                <strong>Proveïdors de Serveis Tercers:</strong> Amb
+                contractistes, proveïdors de serveis i altres tercers que
+                utilitzem per donar suport al nostre negoci.
+              </li>
+            </ul>
+
+            <h2>Seguretat de la Vostra Informació</h2>
+            <p>
+              Utilitzem mesures de seguretat administratives, tècniques i
+              físiques per ajudar a protegir la vostra informació personal. No
+              obstant això, malgrat els nostres esforços, cap mesura de
+              seguretat és perfecta o impenetrable, i cap mètode de transmissió
+              de dades pot garantir-se contra la intercepció o altres tipus de
+              mal ús.
+            </p>
+
+            <h2>Els Vostres Drets Respecte a les Vostres Dades</h2>
+            <p>
+              En virtut del Reglament General de Protecció de Dades (RGPD) i
+              altres lleis de protecció de dades aplicables, teniu certs drets
+              respecte a les vostres dades personals, inclosos:
+            </p>
+            <ul>
+              <li>El dret d'accedir a les vostres dades personals</li>
+              <li>El dret a rectificar les dades personals inexactes</li>
+              <li>El dret a l'esborrat de les vostres dades personals</li>
+              <li>
+                El dret a restringir el tractament de les vostres dades
+                personals
+              </li>
+              <li>El dret a la portabilitat de les dades</li>
+              <li>
+                El dret a oposar-se al tractament de les vostres dades personals
+              </li>
+            </ul>
+
+            <h2>Contacteu amb Nosaltres</h2>
+            <p>
+              Si teniu preguntes o comentaris sobre aquesta Política de
+              Privacitat i les nostres pràctiques de privacitat, si us plau,
+              contacteu amb nosaltres a:
+            </p>
+            <p>
+              Rodar y Rodar
+              <br />
+              Correu electrònic: info@rodaryrodar.com
+            </p>
+          </>
+        ) : (
+          <>
+            <h2>Política de Privacidad</h2>
+            <p>
+              En Rodar y Rodar, estamos comprometidos con la protección de su
+              privacidad. Esta Política de Privacidad explica cómo recopilamos,
+              utilizamos, divulgamos y protegemos su información cuando visita
+              nuestro sitio web.
+            </p>
+
+            <h2>Información que Recopilamos</h2>
+            <p>Podemos recopilar información sobre usted de varias maneras:</p>
+            <ul>
+              <li>
+                <strong>Datos Personales:</strong> Podemos recopilar información
+                personalmente identificable, como su nombre, dirección de correo
+                electrónico y número de teléfono, cuando nos la envía
+                voluntariamente a través de formularios en nuestro sitio web.
+              </li>
+              <li>
+                <strong>Datos Derivados:</strong> Información que nuestros
+                servidores recopilan automáticamente cuando accede a nuestro
+                sitio web, como su dirección IP, tipo de navegador, sistema
+                operativo, tiempos de acceso y las páginas que ha visto.
+              </li>
+              <li>
+                <strong>Cookies:</strong> Podemos utilizar cookies, balizas web
+                y otras tecnologías de seguimiento para recopilar información
+                sobre usted cuando interactúa con nuestro sitio web.
+              </li>
+            </ul>
+
+            <h2>Uso de Su Información</h2>
+            <p>
+              Podemos utilizar la información que recopilamos sobre usted para
+              diversos propósitos:
+            </p>
+            <ul>
+              <li>Para proporcionar y mantener nuestro sitio web</li>
+              <li>Para responder a sus consultas y cumplir sus solicitudes</li>
+              <li>
+                Para enviar información administrativa, como actualizaciones o
+                cambios en nuestros términos, condiciones y políticas
+              </li>
+              <li>
+                Para mejorar nuestro sitio web y la experiencia del usuario
+              </li>
+              <li>Para personalizar su experiencia en nuestro sitio web</li>
+              <li>Para fines analíticos y estadísticos</li>
+            </ul>
+
+            <h2>Divulgación de Su Información</h2>
+            <p>
+              Podemos compartir la información que hemos recopilado sobre usted
+              en determinadas situaciones:
+            </p>
+            <ul>
+              <li>
+                <strong>Cumplimiento de las Leyes:</strong> Si así lo requiere
+                la ley o en respuesta a solicitudes válidas por parte de las
+                autoridades públicas.
+              </li>
+              <li>
+                <strong>Transferencias Empresariales:</strong> Si participamos
+                en una fusión, adquisición o venta de la totalidad o una parte
+                de nuestros activos.
+              </li>
+              <li>
+                <strong>Proveedores de Servicios Terceros:</strong> Con
+                contratistas, proveedores de servicios y otros terceros que
+                utilizamos para apoyar nuestro negocio.
+              </li>
+            </ul>
+
+            <h2>Seguridad de Su Información</h2>
+            <p>
+              Utilizamos medidas de seguridad administrativas, técnicas y
+              físicas para ayudar a proteger su información personal. Sin
+              embargo, a pesar de nuestros esfuerzos, ninguna medida de
+              seguridad es perfecta o impenetrable, y ningún método de
+              transmisión de datos puede garantizarse contra la interceptación u
+              otros tipos de mal uso.
+            </p>
+
+            <h2>Sus Derechos Respecto a Sus Datos</h2>
+            <p>
+              En virtud del Reglamento General de Protección de Datos (RGPD) y
+              otras leyes de protección de datos aplicables, tiene ciertos
+              derechos respecto a sus datos personales, incluidos:
+            </p>
+            <ul>
+              <li>El derecho de acceder a sus datos personales</li>
+              <li>El derecho a rectificar los datos personales inexactos</li>
+              <li>El derecho a la supresión de sus datos personales</li>
+              <li>
+                El derecho a restringir el tratamiento de sus datos personales
+              </li>
+              <li>El derecho a la portabilidad de los datos</li>
+              <li>
+                El derecho a oponerse al tratamiento de sus datos personales
+              </li>
+            </ul>
+
+            <h2>Contáctenos</h2>
+            <p>
+              Si tiene preguntas o comentarios sobre esta Política de Privacidad
+              y nuestras prácticas de privacidad, por favor, contáctenos en:
+            </p>
+            <p>
+              Rodar y Rodar
+              <br />
+              Correo electrónico: info@rodaryrodar.com
+            </p>
+          </>
+        )
+      }
+    </div>
+  </div>
+</Layout>
