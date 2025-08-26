@@ -1,0 +1,92 @@
+---
+import { useTranslations } from "../../i18n/languages";
+const t = useTranslations((Astro.locals as any)?.lang || "es");
+---
+
+<button
+  id="scrollToTopBtn"
+  aria-label="Volver arriba"
+  class="fixed bottom-8 right-6 bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center shadow-xl transform transition-all duration-300 opacity-0 translate-y-10 z-50 hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-900 md:bottom-10 md:right-8 md:w-20 md:h-20 border-2 border-white dark:border-gray-800"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="h-8 w-8 md:h-10 md:w-10"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+  >
+    <path d="M12 2L4.5 9.5h3.5v10h8v-10h3.5z"></path>
+  </svg>
+</button>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+    if (!scrollToTopBtn) return; // Salir si no se encuentra el botón
+
+    // Mostrar el botón cuando se desplaza hacia abajo (100px) - reducido para que aparezca antes
+    const toggleScrollBtn = () => {
+      if (window.scrollY > 100) {
+        scrollToTopBtn.classList.remove("opacity-0", "translate-y-10");
+        scrollToTopBtn.classList.add("opacity-100", "translate-y-0");
+
+        // Añadir un pequeño rebote cuando aparece el botón
+        if (!scrollToTopBtn.classList.contains("appeared")) {
+          scrollToTopBtn.classList.add("appeared");
+          scrollToTopBtn.animate(
+            [
+              { transform: "scale(0.8)" },
+              { transform: "scale(1.1)" },
+              { transform: "scale(1)" },
+            ],
+            { duration: 400, easing: "ease-out" }
+          );
+        }
+      } else {
+        scrollToTopBtn.classList.remove(
+          "opacity-100",
+          "translate-y-0",
+          "appeared"
+        );
+        scrollToTopBtn.classList.add("opacity-0", "translate-y-10");
+      }
+    };
+
+    // Volver arriba cuando se hace clic en el botón
+    scrollToTopBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+
+    // Evento scroll
+    window.addEventListener("scroll", toggleScrollBtn);
+
+    // Comprobar inicialmente la posición del scroll
+    toggleScrollBtn();
+
+    // Añadir una animación suave de pulsación para llamar la atención
+    if (scrollToTopBtn) {
+      // Pulsar cuando aparece por primera vez
+      setTimeout(() => {
+        if (window.scrollY > 100) {
+          scrollToTopBtn.classList.add("animate-pulse");
+          setTimeout(() => {
+            scrollToTopBtn.classList.remove("animate-pulse");
+          }, 2000);
+        }
+      }, 500);
+
+      // Repetir pulsación ocasionalmente
+      setInterval(() => {
+        if (window.scrollY > 100) {
+          scrollToTopBtn.classList.add("animate-pulse");
+          setTimeout(() => {
+            scrollToTopBtn.classList.remove("animate-pulse");
+          }, 1500);
+        }
+      }, 7000); // Pulsar cada 7 segundos
+    }
+  });
+</script>
