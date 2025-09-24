@@ -1,0 +1,124 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { useTranslations } from "../i18n/languages";
+
+const t = useTranslations((Astro.locals as any)?.lang || "es");
+---
+
+<Layout
+  title={t("copyright_page_title")}
+  description={t("copyright_page_description")}
+>
+  <div class="container mx-auto px-4 py-12">
+    <div class="max-w-4xl mx-auto">
+      <h1
+        class="text-4xl font-bold mb-8 text-center text-gray-900 dark:text-white"
+      >
+        {t("copyright_page_header")}
+      </h1>
+
+      <div class="prose prose-lg max-w-none dark:prose-invert">
+        <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+          {t("copyright_intro")}
+        </p>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
+            {t("copyright_content_ownership_title")}
+          </h2>
+          <div class="space-y-4 text-gray-700 dark:text-gray-300">
+            <p>
+              {t("copyright_content_ownership_p1")}
+            </p>
+            <p class="font-medium">
+              {t("copyright_content_ownership_p2")}
+            </p>
+          </div>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
+            {t("copyright_productions_title")}
+          </h2>
+          <div class="space-y-4 text-gray-700 dark:text-gray-300">
+            <p>
+              {t("copyright_productions_p1")}
+            </p>
+            <ul class="list-disc pl-6 space-y-2">
+              <li>
+                {t("copyright_productions_list_item1")}
+              </li>
+              <li>
+                {t("copyright_productions_list_item2")}
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
+            {t("copyright_infringement_title")}
+          </h2>
+          <div class="space-y-4 text-gray-700 dark:text-gray-300">
+            <p>
+              {t("copyright_infringement_p1")}
+            </p>
+            <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
+              <p class="font-medium">
+                {t("copyright_infringement_contact")}
+                <a
+                  href="mailto:web@rodaryrodar.com"
+                  class="text-primary hover:text-primary-dark transition-colors"
+                >
+                  web@rodaryrodar.com
+                </a>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
+            {t("copyright_authorized_use_title")}
+          </h2>
+          <div class="space-y-4 text-gray-700 dark:text-gray-300">
+            <p>
+              {t("copyright_authorized_use_p1")}
+            </p>
+            <ol class="list-decimal pl-6 space-y-2">
+              <li>{t("copyright_authorized_use_list_item1")}</li>
+              <li>{t("copyright_authorized_use_list_item2")}</li>
+              <li>{t("copyright_authorized_use_list_item3")}</li>
+              <li>{t("copyright_authorized_use_list_item4")}</li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
+            {t("copyright_legal_contact_title")}
+          </h2>
+          <div class="bg-primary/10 dark:bg-primary/20 p-6 rounded-lg">
+            <p class="text-gray-700 dark:text-gray-300">
+              {t("copyright_legal_contact_p1")}
+            </p>
+            <div class="mt-4">
+              <p class="font-medium text-gray-900 dark:text-white">
+                {t("copyright_legal_contact_email")}
+                <a
+                  href="mailto:legal@rodaryrodar.com"
+                  class="text-primary hover:text-primary-dark transition-colors"
+                >
+                  legal@rodaryrodar.com
+                </a>
+              </p>
+              <p class="font-medium text-gray-900 dark:text-white">
+                {t("copyright_legal_contact_phone")}
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</Layout>
