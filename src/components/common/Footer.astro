@@ -5,7 +5,7 @@ const t = useTranslations((Astro.locals as any)?.lang || "es");
 ---
 
 <footer
-  class="bg-gray-100 dark:bg-gray-900 dark:text-white py-12 mt-12 transition-colors duration-300"
+  class="bg-gray-100 dark:bg-gray-900 dark:text-white py-12 mt-2 transition-colors duration-300"
 >
   <div class="container mx-auto px-4">
     <!-- VERSIÓN ESCRITORIO -->
@@ -14,7 +14,7 @@ const t = useTranslations((Astro.locals as any)?.lang || "es");
       <div class="text-left col-span-1">
         <Spinner class="h-12 w-auto mb-4" />
         <p class="text-base text-gray-600 dark:text-gray-400">
-          © {new Date().getFullYear()} Rodar y Rodar
+          © {new Date().getFullYear()} Rodar y Rodar Cine, S.L.
         </p>
         <p class="text-sm text-gray-500 dark:text-gray-500 mt-1">
           Todos los derechos reservados
@@ -206,10 +206,13 @@ const t = useTranslations((Astro.locals as any)?.lang || "es");
         <div class="text-center">
           <Spinner class="h-12 w-auto mx-auto mb-4" />
           <p class="text-base text-gray-600 dark:text-gray-400">
-            © {new Date().getFullYear()} Rodar y Rodar
+            © {new Date().getFullYear()} Rodar y Rodar Cine, S.L.
+          </p>
+          <p class="text-sm text-gray-500 dark:text-gray-500 mt-1">
+            Todos los derechos reservados
           </p>
         </div>
-        <div class="text-left">
+        <div class="text-left ml-10">
           <h3 class="text-lg font-semibold mb-3">{t("navigation")}</h3>
           <ul class="space-y-2">
             <li>
@@ -246,7 +249,7 @@ const t = useTranslations((Astro.locals as any)?.lang || "es");
 
       <!-- Contacto + Redes -->
       <div class="grid grid-cols-2 gap-4">
-        <div class="text-left">
+        <div class="text-left ml-2">
           <h3 class="text-lg font-semibold mb-3">{t("contact")}</h3>
           <ul class="space-y-2">
             <li class="text-gray-600 dark:text-gray-300 text-base break-words">
@@ -257,9 +260,9 @@ const t = useTranslations((Astro.locals as any)?.lang || "es");
             </li>
           </ul>
         </div>
-        <div class="text-left">
+        <div class="text-left ml-10">
           <h3 class="text-lg font-semibold mb-3">{t("follow_us")}</h3>
-          <div class="flex flex-wrap gap-3">
+          <div class="flex flex-wrap gap-4 ">
             <!-- Instagram -->
             <a
               href="https://www.instagram.com/rodarfilms/"

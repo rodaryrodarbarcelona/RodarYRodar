@@ -16,52 +16,21 @@ const t = useTranslations(lang);
   description={`${t("about_title")} - Rodar y Rodar`}
 >
   <div class="container mx-auto px-4 py-12">
-    <h1 class="text-4xl font-bold mb-8 text-center">{t("about_title")}</h1>
+    <!--  <h1 class="text-4xl font-bold mb-8 text-center">{t("about_title")}</h1> -->
 
     <!-- Imagen principal -->
-    <div class="w-11/12 md:w-4/5 lg:w-3/4 mx-auto mb-16">
+    <!-- <div class="w-11/12 md:w-4/5 lg:w-3/4 mx-auto mb-16">
       <img
         src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1755987560/familia_yiiqzo_jurle2_7b1c3d_cropped_msptle.jpg"
         alt="Rodar y Rodar panorámica"
         class="w-full h-auto rounded-lg shadow-lg"
       />
-    </div>
-
-    <!-- Historia de la empresa -->
-    <section class="mb-16 max-w-4xl mx-auto">
-      <h2 class="text-3xl font-bold mb-6 text-primary">{t("our_history")}</h2>
-      <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
-        {t("history_p1")}
-      </p>
-      <p class="text-lg text-gray-600 dark:text-gray-300">
-        {t("history_p2")}
-      </p>
-    </section>
-
-    <!-- Misión y Visión -->
-    <section class="mb-16 max-w-4xl mx-auto">
-      <div class="grid md:grid-cols-2 gap-8">
-        <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-md">
-          <h3 class="text-2xl font-bold mb-4 text-primary">{t("mission")}</h3>
-          <p class="text-gray-600 dark:text-gray-300">
-            {t("mission_text")}
-          </p>
-        </div>
-        <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-md">
-          <h3 class="text-2xl font-bold mb-4 text-primary">{t("vision")}</h3>
-          <p class="text-gray-600 dark:text-gray-300">
-            {t("vision_text")}
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Equipo directivo -->
+    </div> -->
     <section class="mb-16">
       <h2 class="text-3xl font-bold mb-10 text-center">
         {t("management_team")}
       </h2>
-
+      <!-- Equipo directivo -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- Director 1 -->
         <div
@@ -221,7 +190,36 @@ const t = useTranslations(lang);
       </div>
     </section>
 
-    <!-- Logros -->
+    <!-- Historia de la empresa -->
+    <section class="mb-16 max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold mb-6 text-primary">{t("our_history")}</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+        {t("history_p1")}
+      </p>
+      <p class="text-lg text-gray-600 dark:text-gray-300">
+        {t("history_p2")}
+      </p>
+    </section>
+
+    <!-- Misión y Visión -->
+    <!-- <section class="mb-16 max-w-4xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-md">
+          <h3 class="text-2xl font-bold mb-4 text-primary">{t("mission")}</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            {t("mission_text")}
+          </p>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-md">
+          <h3 class="text-2xl font-bold mb-4 text-primary">{t("vision")}</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            {t("vision_text")}
+          </p>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Premios -->
     <section class="mb-16 max-w-4xl mx-auto">
       <h2 class="text-3xl font-bold mb-8 text-center">{t("achievements")}</h2>
 

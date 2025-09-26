@@ -49,10 +49,10 @@ try {
     .sort({ fecha: -1 })
     .limit(3)
     .lean();
-  
+
   recentProductions = results;
 } catch (error) {
-  console.error('Error al obtener producciones:', error);
+  console.error("Error al obtener producciones:", error);
 }
 ---
 
@@ -64,20 +64,25 @@ try {
   <section class="py-20 relative bg-gray-900">
     <!-- Imagen de fondo con superposición -->
     <div class="absolute inset-0 overflow-hidden">
-      <img 
-        src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1755791964/IMG_0054_tkknqf.png" 
-        alt="Film background" 
+      <img
+        src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1755791964/IMG_0054_tkknqf.png"
+        alt="Film background"
         class="w-full h-full object-cover opacity-50"
       />
-      <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-gray-900/90"></div>
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-black/70 to-gray-900/90"
+      >
+      </div>
     </div>
-    
+
     <div class="container mx-auto px-4 text-center relative z-10">
-      <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white">Rodar y Rodar</h1>
-      <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10 text-gray-200">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white">
+        Rodar y Rodar Cine
+      </h1>
+      <!-- <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10 text-gray-200">
         {t("hero_description")}
-      </p>
-      <div class="flex flex-wrap justify-center gap-4">
+      </p> -->
+      <!--   <div class="flex flex-wrap justify-center gap-4">
         <a
           href="/filmografias"
           class="px-6 py-3 bg-red-800 text-white font-medium rounded-lg hover:bg-red-900 transition shadow-md"
@@ -90,209 +95,69 @@ try {
         >
           {t("our_services")}
         </a>
-      </div>
+      </div> -->
     </div>
   </section>
 
-  <!-- Sección dividida: Producciones y Servicios -->
-  <section class="py-16 bg-white dark:bg-gray-900">
+  <section
+    class="bg-gray-50 py-14 md:py-20 border-t border-gray-200 dark:border-gray-700"
+  >
     <div class="container mx-auto px-4">
-      <div class="flex flex-col lg:flex-row gap-12">
+      <!-- Título según normativa oficial -->
+      <h2
+        class="text-2xl text-gray-900 md:text-3xl font-semibold mb-10 text-center"
+      >
+        {t("collaboration_with")} 
+      </h2>
 
-        <!-- Producciones Recientes (Izquierda) -->
-        <div class="lg:w-1/2 h-full flex flex-col">
-          <h2 class="text-2xl font-bold mb-8 text-center lg:text-left text-gray-800 dark:text-white">
-            {t("recent_productions")}
-          </h2>
+      <!-- Logos alineados en vertical en móvil y horizontal en escritorio -->
+      <div
+        class="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16"
+      >
+        <!-- Logo ICEC (primero según petición) -->
+        <a
+          href="https://icec.gencat.cat"
+          target="_blank"
+          rel="noopener"
+          class="relative p-4 mb-4 md:mb-0 flex items-center justify-center"
+          aria-label="Institut Català de les Empreses Culturals"
+        >
+          <img
+            src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1758906188/icec_logo_y3ba8v.png"
+            alt="Institut Català de les Empreses Culturals"
+            class="max-h-10 md:max-h-10 lg:max-h-10 w-auto object-contain dark:brightness-[1.05]"
+          />
+        </a>
 
-          <div class="space-y-4 flex-grow">
-            {recentProductions.map((film) => (
-              <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition h-full flex flex-col">
-                <div class="flex h-64 md:h-72 gap-4">
-                  <!-- Póster con bordes redondeados y hover tipo catálogo -->
-                  <a
-                    href={`/${getFilmSlug(film)}`}
-                    class="group flex-none h-full aspect-[2/3] rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800"
-                  >
-                    <img
-                      src={film.urlPoster || "https://placehold.co/600x900"}
-                      alt={getTitulo(film)}
-                      class="w-full h-full object-conver transition-transform duration-300 group-hover:scale-[1.05]"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </a>
+        <!-- Logo Generalitat de Catalunya (segundo según petición) -->
+        <a
+          href="https://cultura.gencat.cat"
+          target="_blank"
+          rel="noopener"
+          class="relative p-4 mb-4 md:mb-0 flex items-center justify-center"
+          aria-label="Departament de Cultura - Generalitat de Catalunya"
+        >
+          <img
+            src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1758906188/gencat_beu0ew.png"
+            alt="Departament de Cultura - Generalitat de Catalunya"
+            class="max-h-10 md:max-h-10 lg:max-h-10 w-auto object-contain dark:brightness-[1.05]"
+          />
+        </a>
 
-                  <!-- Texto -->
-                  <div class="flex-1 flex flex-col p-1">
-                    <a
-                      href={`/${getFilmSlug(film)}`}
-                      class="block hover:text-primary transition"
-                    >
-                      <h3 class="text-lg font-semibold mb-2">
-                        {getTitulo(film)}
-                      </h3>
-                    </a>
-
-                    <p class="text-gray-600 dark:text-gray-300 mb-2">
-                      {film.fecha}{" "}
-                      {film.duracion ? `| ${film.duracion} min` : ""}
-                      | {lang === 'en' ? film.generoEn || film.genero : lang === 'ca' ? film.generoCat || film.genero : film.genero}
-                    </p>
-
-                    {film.director && (
-                      <p class="text-gray-600 dark:text-gray-300 mb-2">
-                        {t("directed_by")}: {film.director}
-                      </p>
-                    )}
-
-                    <p class="text-gray-600 dark:text-gray-300 line-clamp-3 mb-2">
-                      {lang === 'en' ? film.sinopsisEn || film.sinopsis : lang === 'ca' ? film.sinopsisCat || film.sinopsis : film.sinopsis}
-                    </p>
-
-                    <div class="mt-auto flex justify-between items-center flex-wrap gap-y-3">
-                      <div class="flex flex-wrap gap-2">
-                        {film.linkImdb && (
-                          <a
-                            href={film.linkImdb}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="inline-flex items-center text-sm text-primary hover:underline"
-                          >
-                            <span>IMDb</span>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              class="h-4 w-4 ml-1"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                              />
-                            </svg>
-                          </a>
-                        )}
-
-                        {film.urlYoutube && (
-                          <a
-                            href={film.urlYoutube}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="inline-flex items-center text-sm text-primary hover:underline"
-                          >
-                            <span>{t("trailer")}</span>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              class="h-4 w-4 ml-1"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                              />
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                              />
-                            </svg>
-                          </a>
-                        )}
-                      </div>
-
-                      <a
-                        href={`/${getFilmSlug(film)}`}
-                        class="inline-flex items-center px-3 py-1 bg-primary text-white text-sm rounded hover:bg-red-700 transition"
-                      >
-                        {t("view_details")}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-4 w-4 ml-1"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div class="text-center lg:text-left mt-6">
-            <a
-              href="/filmografias"
-              class="px-6 py-2 bg-red-800 text-white font-medium rounded-lg hover:bg-red-900 transition text-sm shadow-md"
-            >
-              {t("view_all_filmography")}
-            </a>
-          </div>
-        </div>
-
-        <!-- Nuestros Servicios (Derecha) -->
-        <div class="lg:w-1/2 h-full flex flex-col">
-          <h2 class="text-3xl font-bold mb-8 text-center lg:text-left text-gray-800 dark:text-white">
-            {t("our_services")}
-          </h2>
-
-          <div class="grid grid-cols-1 gap-4 flex-grow">
-            {[
-              { icon: "camera", title: t("film_production"), desc: t("film_production_desc") },
-              { icon: "sound", title: t("post_production"), desc: t("post_production_desc") },
-              { icon: "globe", title: t("distribution"), desc: t("distribution_desc") }
-            ].map((service) => (
-              <div class="p-5 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition min-h-60 flex flex-col">
-                <!-- Icono con fondo -->
-                <div class="flex justify-center lg:justify-start mb-3">
-                  <div class="p-3 bg-gray-100 dark:bg-gray-700 rounded-full text-primary dark:text-white shadow-sm transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      {service.icon === "camera" && (
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      )}
-                      {service.icon === "sound" && (
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                      )}
-                      {service.icon === "globe" && (
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                      )}
-                    </svg>
-                  </div>
-                </div>
-
-                <h3 class="text-lg font-semibold mb-2 text-center lg:text-left text-gray-800 dark:text-white">{service.title}</h3>
-                <p class="text-gray-600 dark:text-gray-300 text-sm text-center lg:text-left flex-grow">
-                  {service.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div class="text-center lg:text-left mt-6 self-start">
-            <a
-              href="/servicios"
-              class="px-6 py-2 bg-red-800 text-white font-medium rounded-lg hover:bg-red-900 transition shadow-md text-sm"
-            >
-              {t("more_about_our_services")}
-            </a>
-          </div>
-        </div>
+        <!-- Logo Catalan Films (tercero) con tamaño ajustado -->
+        <a
+          href="https://catalanfilms.cat/ca/qui-som"
+          target="_blank"
+          rel="noopener"
+          class="relative p-4 flex items-center justify-center"
+          aria-label="Catalan Films"
+        >
+          <img
+            src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1758904096/1610661171-cf-color_cvvfh9.png"
+            alt="Catalan Films"
+            class="max-h-26 md:max-h-26 lg:max-h-26 w-auto object-contain dark:brightness-[1.05]"
+          />
+        </a>
       </div>
     </div>
   </section>
