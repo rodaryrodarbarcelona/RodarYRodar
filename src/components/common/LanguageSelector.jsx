@@ -113,8 +113,8 @@ const LanguageSelector = () => {
               className={`block px-4 py-2 text-sm w-full text-left ${
                 lang === "es"
                   ? "text-primary font-medium"
-                  : "text-gray-700 dark:text-gray-200"
-              } hover:bg-gray-100 dark:hover:bg-gray-700`}
+                  : "text-amber-700 dark:text-gray-200"
+              } hover:bg-gray-400 dark:hover:bg-gray-700`}
               role="menuitem"
             >
               Español
@@ -124,8 +124,8 @@ const LanguageSelector = () => {
               className={`block px-4 py-2 text-sm w-full text-left ${
                 lang === "ca"
                   ? "text-primary font-medium"
-                  : "text-gray-700 dark:text-gray-200"
-              } hover:bg-gray-100 dark:hover:bg-gray-700`}
+                  : "text-amber-700 dark:text-gray-200"
+              } hover:bg-gray-400 dark:hover:bg-gray-700`}
               role="menuitem"
             >
               Català
@@ -135,8 +135,8 @@ const LanguageSelector = () => {
               className={`block px-4 py-2 text-sm w-full text-left ${
                 lang === "en"
                   ? "text-primary font-medium"
-                  : "text-gray-700 dark:text-gray-200"
-              } hover:bg-gray-100 dark:hover:bg-gray-700`}
+                  : "text-amber-700 dark:text-gray-200"
+              } hover:bg-gray-400 dark:hover:bg-gray-700`}
               role="menuitem"
             >
               English
