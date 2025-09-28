@@ -198,7 +198,19 @@ export const ui = {
         contact_now: "Contactar ahora",
         // ... otros
         read_more: 'Leer más',
-        read_less: 'Leer menos'        
+        read_less: 'Leer menos',
+        year: 'Año',
+        duration: 'Duración',
+        genre: 'Género',
+        director: 'Director',
+        cast: 'Reparto',
+        synopsis: 'Sinopsis',
+        trailer: 'Tráiler',
+        makingOf: 'Making Of',
+        imdb: 'IMDb',
+        loading_posters: 'Cargando posters...',
+        no_film_info: 'No hay información disponible para esta película.',
+
     },
     en: {
         home: "Home",
@@ -372,6 +384,17 @@ export const ui = {
         // ... otros
         read_more: 'Read more',
         read_less: 'Read less',
+        year: 'Year',
+        duration: 'Duration',
+        genre: 'Genre',
+        director: 'Director',
+        cast: 'Cast',
+        synopsis: 'Synopsis',
+        trailer: 'Trailer',
+        makingOf: 'Making Of',
+        imdb: 'IMDb',
+        loading_posters: 'Loading posters...',
+        no_film_info: 'No information available for this film.',
     },
     ca: {
         home: "Inici",
@@ -547,6 +570,17 @@ export const ui = {
         // ... otros
         read_more: 'Llegeix-ne més',
         read_less: 'Llegeix-ne menys',
+        year: 'Any',
+        duration: 'Durada',
+        genre: 'Gènere',
+        director: 'Director',
+        cast: 'Repartiment',
+        synopsis: 'Sinopsi',
+        trailer: 'Tràiler',
+        makingOf: 'Making of',
+        imdb: 'IMDb',
+        loading_posters: 'Carregant cartells...',
+        no_film_info: 'No hi ha informació disponible per aquesta pel·lícula.',
     },
 };
 

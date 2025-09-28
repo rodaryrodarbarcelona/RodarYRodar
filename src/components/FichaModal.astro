@@ -1,158 +1,161 @@
 ---
 // src/components/FichaModal.astro
+import { useTranslations } from "../i18n/languages";
 
 interface Props {
   film: any;
   lang: string;
-  onClose: () => void;
 }
 
-const { film, lang, onClose } = Astro.props;
+const { film, lang } = Astro.props;
 
-// Helper para traducción
-const getTitulo = () => {
-  if (lang === "en" && film.tituloEn) return film.tituloEn;
-  if (lang === "ca" && film.tituloCat) return film.tituloCat;
-  return film.titulo || "Sin título";
+const t = useTranslations(lang);
+
+// Helper para campos multilingües. Ahora que los datos están anidados, esta función funcionará.
+const getText = (field) => {
+  if (!field) return '—';
+  if (typeof field === 'string') return field;
+  // Prioriza el idioma seleccionado, si no, usa español como fallback.
+  return field[lang] || field.es || '—';
 };
 
-const getGenero = () => {
-  if (lang === "en" && film.generoEn) return film.generoEn;
-  if (lang === "ca" && film.generoCat) return film.generoCat;
-  return film.genero || "";
-};
-
-const getSinopsis = () => {
-  if (lang === "en" && film.sinopsisEn) return film.sinopsisEn;
-  if (lang === "ca" && film.sinopsisCat) return film.sinopsisCat;
-  return film.sinopsis || "";
-};
-
-// Traducciones
-const labels = {
-  year: lang === 'ca' ? 'Any' : lang === 'en' ? 'Year' : 'Año',
-  duration: lang === 'ca' ? 'Durada' : lang === 'en' ? 'Duration' : 'Duración',
-  genre: lang === 'ca' ? 'Gènere' : lang === 'en' ? 'Genre' : 'Género',
-  director: lang === 'ca' ? 'Director' : lang === 'en' ? 'Director' : 'Director',
-  screenplay: lang === 'ca' ? 'Guió' : lang === 'en' ? 'Screenplay' : 'Guión',
-  cast: lang === 'ca' ? 'Repartiment' : lang === 'en' ? 'Cast' : 'Reparto',
-  synopsis: lang === 'ca' ? 'Sinopsi' : lang === 'en' ? 'Synopsis' : 'Sinopsis',
-  trailer: lang === 'ca' ? 'Tràiler' : lang === 'en' ? 'Trailer' : 'Tráiler',
-  makingOf: lang === 'ca' ? 'Making of' : lang === 'en' ? 'Making of' : 'Making of',
-  imdb: 'IMDb'
-};
+// Generar un ID único para el modal para seleccionarlo de forma segura en el script.
+const modalId = `modal-${film._id || crypto.randomUUID()}`;
 ---
 
-<style>
-  .modal-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.95);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    animation: fadeIn 0.3s ease;
-  }
-  .modal-content {
-    background: #111;
-    color: white;
-    max-width: 900px;
-    max-height: 90vh;
-    overflow-y: auto;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-    width: 90%;
-  }
-  .modal-header {
-    padding: 20px;
-    border-bottom: 1px solid #333;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .modal-body {
-    padding: 20px;
-    line-height: 1.7;
-  }
-  .poster-large {
-    width: 200px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 8px;
-    float: left;
-    margin: 0 20px 20px 0;
-  }
-  .btn-close {
-    background: none;
-    border: none;
-    font-size: 1.8em;
-    color: white;
-    cursor: pointer;
-  }
-  .links a {
-    margin-right: 15px;
-    color: #e50914;
-    text-decoration: underline;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-  }
-</style>
-
-<!-- Usamos client:visible para activar el script solo cuando se renderiza -->
-<div class="modal-backdrop" >
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>{getTitulo()}</h2>
-      <button class="btn-close" onclick="closeModal()">×</button>
+<!-- 
+  Fondo oscuro del modal. 
+  - role="dialog" y aria-modal="true" son cruciales para la accesibilidad.
+  - Se elimina aria-hidden="true" que impedía que el modal fuera detectado por lectores de pantalla.
+  - El ID único permite que el script encuentre este elemento de forma segura.
+-->
+<div
+  id={modalId}
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby={`modal-title-${film._id}`}
+>
+  <!-- Contenedor principal del modal -->
+  <div class="w-full max-w-3xl rounded-lg bg-white dark:bg-gray-900  dark:text-white shadow-xl max-h-[90vh] overflow-y-auto">
+    <!-- Cabecera -->
+    <div class="p-6 border-b border-gray-200 dark:border-gray-700 relative">
+      <h2 id={`modal-title-${film._id}`} class="text-2xl font-bold dark:text-white">{getText(film.titulo)}</h2>
+      <button
+        type="button"
+        class="absolute top-6 right-6 text-2xl font-bold hover:text-gray-800 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 rounded-full"
+        data-action="close-modal"
+        aria-label={t('close')}
+      >
+        &times;
+      </button>
     </div>
-    <div class="modal-body">
-      {film.urlPoster && (
-        <img src={film.urlPoster} alt={getTitulo()} class="poster-large" />
-      )}
-      <p><strong>{labels.year}:</strong> {film.fecha}</p>
-      <p><strong>{labels.duration}:</strong> {film.duracion} min</p>
-      <p><strong>{labels.genre}:</strong> {getGenero()}</p>
-      <p><strong>{labels.director}:</strong> {film.director}</p>
-      {film.guionistas && <p><strong>{labels.screenplay}:</strong> {film.guionistas}</p>}
-      {film.reparto && <p><strong>{labels.cast}:</strong> {film.reparto}</p>}
-      <p><strong>{labels.synopsis}:</strong></p>
-      <p>{getSinopsis()}</p>
-      <div class="links" style="margin-top: 20px;">
-        {film.linkImdb && (
-          <a href={film.linkImdb} target="_blank" rel="noopener">{labels.imdb}</a>
+
+    <!-- Cuerpo -->
+    <div class="p-6">
+      <div class="grid md:grid-cols-4 gap-6">
+        <!-- Poster -->
+        {film.urlPoster && (
+          <div class="md:col-span-1">
+            <img
+              src={film.urlPoster}
+              alt={getText(film.titulo)}
+              class="w-full h-auto object-cover rounded-md shadow-md"
+              loading="lazy"
+            />
+          </div>
         )}
-        {film.urlYoutube && (
-          <a href={film.urlYoutube} target="_blank" rel="noopener">{labels.trailer}</a>
-        )}
-        {film.urlMakingOf && (
-          <a href={film.urlMakingOf} target="_blank" rel="noopener">{labels.makingOf}</a>
-        )}
+
+        <!-- Información -->
+        <div class:list={["space-y-3", { 'md:col-span-3': film.urlPoster, 'md:col-span-4': !film.urlPoster }]}>
+          {film.fecha && <p><strong>{t("year")}:</strong> {film.fecha}</p>}
+          {film.duracion && <p><strong>{t("duration")}:</strong> {film.duracion} min</p>}
+          <p><strong>{t("genre")}:</strong> {getText(film.genero)}</p>
+          {film.director && <p><strong>{t("director")}:</strong> {film.director}</p>}
+          {film.reparto && <p><strong>{t("cast")}:</strong> {Array.isArray(film.reparto) ? film.reparto.join(', ') : film.reparto}</p>}
+
+          <div>
+            <p class="font-medium"><strong>{t("synopsis")}:</strong></p>
+            <p class="text-sm leading-relaxed mt-1">{getText(film.sinopsis)}</p>
+          </div>
+
+          <!-- Enlaces -->
+          <div class="flex flex-wrap gap-2 mt-4">
+            {film.linkImdb && (
+              <a href={film.linkImdb} target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-yellow-600 text-white rounded text-sm hover:bg-yellow-700 transition">
+                {t("imdb")}
+              </a>
+            )}
+            {film.urlYoutube && (
+              <a href={film.urlYoutube} target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-teal-600 text-white rounded text-sm hover:bg-teal-700 transition">
+                {t("trailer")}
+              </a>
+            )}
+            {film.urlMakingOf && (
+              <a href={film.urlMakingOf} target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-indigo-600 text-white rounded text-sm hover:bg-indigo-700 transition">
+                {t("makingOf")}
+              </a>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<script>
-  // Cierra el modal
-  function closeModal() {
-    const backdrop = document.querySelector('.modal-backdrop');
-    if (backdrop) {
-      backdrop.remove();
-    }
-    // Llama a onClose del componente
-    window.dispatchEvent(new CustomEvent('modal:closed'));
+<script define:vars={{ modalId }}>
+  // Este script es autocontenido y maneja el cierre del modal.
+  // Se comunica con el exterior disparando un evento 'close' en lugar de
+  // intentar llamar a una función de Astro que no está disponible en el cliente.
+
+  const modalElement = document.getElementById(modalId);
+  if (!modalElement) {
+    console.error(`Modal element with ID #${modalId} not found.`);
+  } else {
+    const closeBtn = modalElement.querySelector('[data-action="close-modal"]');
+
+    // Función para despachar el evento de cierre.
+    const closeModal = () => {
+      modalElement.dispatchEvent(new CustomEvent('close', { bubbles: true }));
+    };
+
+    // Cierra al hacer clic en el botón.
+    closeBtn?.addEventListener('click', closeModal);
+
+    // Cierra al hacer clic en el fondo oscuro (backdrop).
+    const handleBackdropClick = (event) => {
+      if (event.target === modalElement) {
+        closeModal();
+      }
+    };
+    modalElement.addEventListener('click', handleBackdropClick);
+
+    // Cierra con la tecla 'Escape'.
+    const handleKeydown = (event) => {
+      if (event.key === 'Escape') {
+        closeModal();
+        // Elimina el listener del teclado una vez que se usa.
+        document.removeEventListener('keydown', handleKeydown);
+      }
+    };
+    document.addEventListener('keydown', handleKeydown);
+
+    // Limpieza: Cuando el modal se elimina del DOM, también eliminamos
+    // los listeners globales para evitar memory leaks.
+    const observer = new MutationObserver((mutations, obs) => {
+      for (const mutation of mutations) {
+        if (Array.from(mutation.removedNodes).includes(modalElement)) {
+          document.removeEventListener('keydown', handleKeydown);
+          modalElement.removeEventListener('click', handleBackdropClick);
+          obs.disconnect(); // Dejar de observar
+          return;
+        }
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
   }
-
-  // Escuchar tecla ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
-  });
-
-  // Opcional: permite que el padre escuche el cierre
-  window.addEventListener('modal:closed', () => {
-    // Aquí puedes hacer algo si necesitas reaccionar desde fuera
-  });
 </script>
