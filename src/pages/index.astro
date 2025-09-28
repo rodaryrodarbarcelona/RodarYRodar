@@ -1,59 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+// Idioma
 import { useTranslations, defaultLanguage } from "../i18n/languages";
-import mongoose from "mongoose";
-import FilmografiaModel from "../lib/models/filmografia";
-import { generateSlug, slugManager } from "../utils/slugManager.js";
-
-type Filmografia = {
-  _id: mongoose.Types.ObjectId;
-  titulo: string;
-  tituloEn?: string;
-  tituloCat?: string;
-  urlPoster?: string;
-  sinopsis: string;
-  sinopsisEn?: string;
-  sinopsisCat?: string;
-  fecha: number;
-  genero?: string;
-  generoEn?: string;
-  generoCat?: string;
-  director?: string;
-  __v?: number;
-};
-
-// Obtener idioma actual
 const lang = (Astro.locals as any)?.lang || defaultLanguage;
 const t = useTranslations(lang);
-
-// Función para obtener el título según el idioma
-function getTitulo(item: Filmografia): string {
-  if (lang === "en" && item.tituloEn) return item.tituloEn;
-  if (lang === "ca" && item.tituloCat) return item.tituloCat;
-  return item.titulo;
-}
-
-// Función para generar el slug de la película
-function getFilmSlug(item: Filmografia): string {
-  const baseSlug = generateSlug(getTitulo(item));
-  return slugManager.registerSlug(baseSlug, item._id.toString());
-}
-
-// Conectar a MongoDB y obtener las últimas 3 producciones
-let recentProductions: any[] = [];
-
-try {
-  // @ts-ignore - Ignoramos los errores de TypeScript ya que no lo estamos usando
-  await mongoose.connect(import.meta.env.VITE_MONGO_URI);
-  const results = await FilmografiaModel.find()
-    .sort({ fecha: -1 })
-    .limit(3)
-    .lean();
-
-  recentProductions = results;
-} catch (error) {
-  console.error("Error al obtener producciones:", error);
-}
 ---
 
 <Layout
@@ -62,103 +13,329 @@ try {
 >
   <!-- Hero Section -->
   <section class="py-20 relative bg-gray-900">
-    <!-- Imagen de fondo con superposición -->
     <div class="absolute inset-0 overflow-hidden">
       <img
         src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1755791964/IMG_0054_tkknqf.png"
         alt="Film background"
         class="w-full h-full object-cover opacity-50"
       />
-      <div
-        class="absolute inset-0 bg-gradient-to-b from-black/70 to-gray-900/90"
-      >
-      </div>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-gray-900/90"></div>
     </div>
 
     <div class="container mx-auto px-4 text-center relative z-10">
       <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white">
         Rodar y Rodar Cine
       </h1>
-      <!-- <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10 text-gray-200">
-        {t("hero_description")}
-      </p> -->
-      <!--   <div class="flex flex-wrap justify-center gap-4">
-        <a
-          href="/filmografias"
-          class="px-6 py-3 bg-red-800 text-white font-medium rounded-lg hover:bg-red-900 transition shadow-md"
-        >
-          {t("see_filmography")}
-        </a>
-        <a
-          href="/servicios"
-          class="px-6 py-3 bg-red-800 text-white font-medium rounded-lg hover:bg-red-900 transition shadow-md"
-        >
-          {t("our_services")}
-        </a>
-      </div> -->
+
+      <!-- Carrusel de Posters -->
+      <div id="poster-carousel" class="overflow-hidden w-full mt-8">
+        <p class="text-gray-400">{t("loading_posters")}...</p>
+      </div>
     </div>
   </section>
 
-  <section
-    class="bg-gray-50 py-14 md:py-20 border-t border-gray-200 dark:border-gray-700"
-  >
+  <section class="bg-gray-50 py-14 md:py-20 border-t border-gray-200 dark:border-gray-700">
     <div class="container mx-auto px-4">
-      <!-- Título según normativa oficial -->
-      <h2
-        class="text-2xl text-gray-900 md:text-3xl font-semibold mb-10 text-center"
-      >
-        {t("collaboration_with")} 
+      <h2 class="text-2xl text-gray-900 md:text-3xl font-semibold mb-10 text-center">
+        {t("collaboration_with")}
       </h2>
 
-      <!-- Logos alineados en vertical en móvil y horizontal en escritorio -->
-      <div
-        class="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16"
-      >
-        <!-- Logo ICEC (primero según petición) -->
-        <a
-          href="https://icec.gencat.cat"
-          target="_blank"
-          rel="noopener"
-          class="relative p-4 mb-4 md:mb-0 flex items-center justify-center"
-          aria-label="Institut Català de les Empreses Culturals"
-        >
-          <img
-            src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1758906188/icec_logo_y3ba8v.png"
-            alt="Institut Català de les Empreses Culturals"
-            class="max-h-10 md:max-h-10 lg:max-h-10 w-auto object-contain dark:brightness-[1.05]"
-          />
+      <div class="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
+        <a href="https://icec.gencat.cat" target="_blank" rel="noopener" class="relative p-4 mb-4 md:mb-0 flex items-center justify-center" aria-label={t("icec_label")}>
+          <img src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1758906188/icec_logo_y3ba8v.png" alt={t("icec_label")} class="max-h-10 w-auto object-contain dark:brightness-[1.05]" />
         </a>
 
-        <!-- Logo Generalitat de Catalunya (segundo según petición) -->
-        <a
-          href="https://cultura.gencat.cat"
-          target="_blank"
-          rel="noopener"
-          class="relative p-4 mb-4 md:mb-0 flex items-center justify-center"
-          aria-label="Departament de Cultura - Generalitat de Catalunya"
-        >
-          <img
-            src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1758906188/gencat_beu0ew.png"
-            alt="Departament de Cultura - Generalitat de Catalunya"
-            class="max-h-10 md:max-h-10 lg:max-h-10 w-auto object-contain dark:brightness-[1.05]"
-          />
+        <a href="https://cultura.gencat.cat" target="_blank" rel="noopener" class="relative p-4 mb-4 md:mb-0 flex items-center justify-center" aria-label={t("gencat_label")}>
+          <img src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1758906188/gencat_beu0ew.png" alt={t("gencat_label")} class="max-h-10 w-auto object-contain dark:brightness-[1.05]" />
         </a>
 
-        <!-- Logo Catalan Films (tercero) con tamaño ajustado -->
-        <a
-          href="https://catalanfilms.cat/ca/qui-som"
-          target="_blank"
-          rel="noopener"
-          class="relative p-4 flex items-center justify-center"
-          aria-label="Catalan Films"
-        >
-          <img
-            src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1758904096/1610661171-cf-color_cvvfh9.png"
-            alt="Catalan Films"
-            class="max-h-26 md:max-h-26 lg:max-h-26 w-auto object-contain dark:brightness-[1.05]"
-          />
+        <a href="https://catalanfilms.cat/ca/qui-som" target="_blank" rel="noopener" class="relative p-4 flex items-center justify-center" aria-label="Catalan Films">
+          <img src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1758904096/1610661171-cf-color_cvvfh9.png" alt="Catalan Films" class="max-h-26 w-auto object-contain dark:brightness-[1.05]" />
         </a>
       </div>
     </div>
   </section>
 </Layout>
+
+
+<!-- Script cliente: carga posters y abre modal con traducción -->
+<script type="module">
+  // Inyectamos traducciones desde el servidor
+  //const lang = "<%= lang %>";
+    // ✅ Obtén el idioma del atributo data
+  const lang = document.body.getAttribute('data-lang') || 'es';
+  console.log(lang)
+
+  const translations = {
+    es: {
+      year: 'Año',
+      duration: 'Duración',
+      genre: 'Género',
+      director: 'Director',
+      cast: 'Reparto',
+      synopsis: 'Sinopsis',
+      trailer: 'Tráiler',
+      makingOf: 'Making Of',
+      imdb: 'IMDb',
+      loading_posters: 'Cargando posters...',
+      no_film_info: 'No hay información disponible para esta película.'
+    },
+    ca: {
+      year: 'Any',
+      duration: 'Durada',
+      genre: 'Gènere',
+      director: 'Director',
+      cast: 'Repartiment',
+      synopsis: 'Sinopsi',
+      trailer: 'Tràiler',
+      makingOf: 'Making of',
+      imdb: 'IMDb',
+      loading_posters: 'Carregant cartells...',
+      no_film_info: 'No hi ha informació disponible per aquesta pel·lícula.'
+    },
+    en: {
+      year: 'Year',
+      duration: 'Duration',
+      genre: 'Genre',
+      director: 'Director',
+      cast: 'Cast',
+      synopsis: 'Synopsis',
+      trailer: 'Trailer',
+      makingOf: 'Making Of',
+      imdb: 'IMDb',
+      loading_posters: 'Loading posters...',
+      no_film_info: 'No information available for this film.'
+    }
+  };
+
+  const t = (key) => translations[lang]?.[key] || translations['es'][key];
+
+  // Helper: obtener campo por idioma
+  function getText(field) {
+    return lang === 'en' && field.en ? field.en :
+           lang === 'ca' && field.ca ? field.ca :
+           field.es || field || '—';
+  }
+
+  async function initCarousel() {
+    const container = document.getElementById('poster-carousel');
+    if (!container) return;
+
+    try {
+      const res = await fetch('/api/images');
+      if (!res.ok) throw new Error(await res.text());
+      const images = await res.json();
+
+      const posterUrls = (Array.isArray(images) && images.length)
+        ? images.map(i => i.secure_url.trim()).filter(Boolean)
+        : ['https://res.cloudinary.com/dxytyvnn2/image/upload/v1755791964/IMG_0054_tkknqf.png'];
+
+      // Limpiar contenedor
+      container.innerHTML = '';
+
+      // Crear contenedor animado
+      const scroller = document.createElement('div');
+      scroller.className = 'animate-scroll gap-6 no-scrollbar';
+
+      // Duplicar imágenes para efecto continuo
+      [...posterUrls, ...posterUrls].forEach(url => {
+        const card = document.createElement('div');
+        card.className = 'flex-shrink-0 w-44 md:w-56 lg:w-40 rounded-lg shadow-2xl overflow-hidden hover:scale-105 transition-transform duration-300 cursor-pointer bg-white dark:bg-gray-800';
+        card.dataset.url = url;
+
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = 'Poster';
+        img.loading = 'lazy';
+        img.className = 'w-full h-full object-cover block';
+        card.appendChild(img);
+
+        card.addEventListener('click', () => openModal(url));
+        scroller.appendChild(card);
+      });
+
+      container.appendChild(scroller);
+    } catch (err) {
+      console.error('Error cargando imágenes:', err);
+      container.innerHTML = `<p class="text-red-500">${t('loading_error')}</p>`;
+    }
+  }
+
+  async function openModal(posterUrl) {
+    const existing = document.getElementById('modal-backdrop');
+    if (existing) existing.remove();
+
+    let film = null;
+    try {
+      const res = await fetch(`/api/films?poster=${encodeURIComponent(posterUrl)}`);
+      if (res.ok) {
+        const data = await res.json();
+        film = Array.isArray(data) ? data[0] || null : data;
+      }
+    } catch (err) {
+      console.error('Error al cargar ficha:', err);
+    }
+
+    if (!film) {
+      alert(t('no_film_info'));
+      return;
+    }
+
+    document.documentElement.classList.add('overflow-hidden');
+
+    const backdrop = document.createElement('div');
+    backdrop.id = 'modal-backdrop';
+    backdrop.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4';
+
+    const dialog = document.createElement('div');
+    dialog.setAttribute('role', 'dialog');
+    dialog.setAttribute('aria-modal', 'true');
+    dialog.className = 'w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white dark:bg-gray-900  dark:text-white rounded-lg p-6 relative shadow-lg';
+
+    const closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.className = 'absolute top-3 right-3 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none';
+    closeBtn.innerHTML = '<span class="sr-only dark:text-white">Close</span>✕';
+    closeBtn.addEventListener('click', closeModal);
+
+    const title = document.createElement('h2');
+    title.className = 'text-2xl font-semibold mb-3' ;
+    title.textContent = getText({ es: film.titulo, en: film.tituloEn, ca: film.tituloCat });
+
+    const contentWrap = document.createElement('div');
+    contentWrap.className = 'flex flex-col md:flex-row gap-4';
+
+    // Poster
+    const posterDiv = document.createElement('div');
+    posterDiv.className = 'w-full md:w-44 flex-shrink-0';
+    const posterImg = document.createElement('img');
+    posterImg.src = film.urlPoster || posterUrl;
+    posterImg.alt = title.textContent;
+    posterImg.className = 'w-full h-auto rounded-md object-cover';
+    posterDiv.appendChild(posterImg);
+
+    const infoDiv = document.createElement('div');
+    infoDiv.className = 'flex-1';
+
+    // Función para crear campo con etiqueta traducida
+    const addField = (labelKey, value) => {
+      if (!value || value === '—') return;
+      const p = document.createElement('p');
+      p.className = 'text-sm  dark:text-gray-300 mb-1';
+      const strong = document.createElement('strong');
+      strong.textContent = t(labelKey) + ': ';
+      p.appendChild(strong);
+      p.appendChild(document.createTextNode(value));
+      infoDiv.appendChild(p);
+    };
+
+    if (film.fecha) addField('year', film.fecha);
+    if (film.duracion) addField('duration', `${film.duracion} min`);
+
+    const genero = getText({ es: film.genero, en: film.generoEn, ca: film.generoCat });
+    addField('genre', genero);
+
+    if (film.director) addField('director', film.director);
+
+    if (film.reparto) {
+      const repartoText = Array.isArray(film.reparto) ? film.reparto.join(', ') : film.reparto;
+      addField('cast', repartoText);
+    }
+
+    // Sinopsis
+  const sinopsisVal = getText({ es: film.sinopsis, en: film.sinopsisEn, ca: film.sinopsisCat });
+
+// === SINOPSIS CON BOTÓN "LEER MÁS" ===
+const sinopWrap = document.createElement('div');
+sinopWrap.className = 'mt-3';
+
+const sinopTitle = document.createElement('p');
+sinopTitle.className = 'text-sm font-medium mb-1';
+sinopTitle.textContent = t('synopsis') + ':';
+sinopWrap.appendChild(sinopTitle);
+
+const sinopText = document.createElement('p');
+sinopText.className = 'text-sm  dark:text-gray-300 leading-relaxed max-h-[14rem] overflow-hidden';
+sinopText.textContent = sinopsisVal;
+
+// Añadir siempre el párrafo al contenedor
+sinopWrap.appendChild(sinopText);
+
+// Solo mostrar botón si el texto es largo
+if (sinopsisVal.length > 100) { // Umbral razonable para 10 líneas
+  const expandBtn = document.createElement('button');
+  expandBtn.type = 'button';
+  expandBtn.className = 'text-primary text-sm mt-2 font-medium inline-block hover:underline focus:outline-none';
+  expandBtn.textContent = t('read_more');
+  
+
+  let expanded = false;
+  expandBtn.addEventListener('click', () => {
+    if (expanded) {
+      sinopText.classList.add('max-h-[14rem]', 'overflow-hidden');
+      expandBtn.textContent = t('read_more');
+    } else {
+      sinopText.classList.remove('max-h-[14rem]', 'overflow-hidden');
+      expandBtn.textContent = t('read_less');
+    }
+    expanded = !expanded;
+  });
+
+  // ✅ Añadimos el botón INCONDICIONALMENTE después del párrafo
+  sinopWrap.appendChild(expandBtn);
+}
+
+infoDiv.appendChild(sinopWrap);
+
+    // Enlaces
+    const linksDiv = document.createElement('div');
+    linksDiv.className = 'mt-4 flex flex-wrap gap-3';
+
+    const addLink = (href, labelKey) => {
+      if (!href) return;
+      const a = document.createElement('a');
+      a.href = href;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.className = 'inline-block px-3 py-1.5 text-sm rounded-md border-0 border-gray-200 bg-yellow-600 text-white dark:border-gray-700 hover:bg-yellow-700 dark:hover:bg-teal-800';
+      a.textContent = t(labelKey);
+      linksDiv.appendChild(a);
+    };
+
+    addLink(film.linkImdb, 'imdb');
+    addLink(film.urlYoutube, 'trailer');
+    addLink(film.urlMakingOf, 'makingOf');
+
+    infoDiv.appendChild(linksDiv);
+    contentWrap.appendChild(posterDiv);
+    contentWrap.appendChild(infoDiv);
+
+    dialog.appendChild(closeBtn);
+    dialog.appendChild(title);
+    dialog.appendChild(contentWrap);
+    backdrop.appendChild(dialog);
+    document.body.appendChild(backdrop);
+    document.documentElement.classList.add('modal-open');  // agregado para pausar el carrusel
+
+    const onBackdropClick = (e) => e.target === backdrop && closeModal();
+    const onKeyDown = (e) => e.key === 'Escape' && closeModal();
+
+    backdrop.addEventListener('click', onBackdropClick);
+    document.addEventListener('keydown', onKeyDown);
+
+    function closeModal() {
+      backdrop.removeEventListener('click', onBackdropClick);
+      document.removeEventListener('keydown', onKeyDown);
+      backdrop.remove();
+      document.documentElement.classList.remove('modal-open'); // 👈 Reanuda el scroll
+      document.documentElement.classList.remove('overflow-hidden');
+    }
+  }
+
+  // Iniciar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCarousel);
+  } else {
+    initCarousel();
+  }
+</script>

@@ -196,6 +196,9 @@ export const ui = {
         contact_project_description:
             "Si tienes una idea brillante y quieres llevarla a la pantalla, Rodar y Rodar es tu aliado perfecto. Ofrecemos presupuestos personalizados adaptados a tus necesidades.",
         contact_now: "Contactar ahora",
+        // ... otros
+        read_more: 'Leer más',
+        read_less: 'Leer menos'        
     },
     en: {
         home: "Home",
@@ -366,6 +369,9 @@ export const ui = {
         contact_project_description:
             "If you have a brilliant idea and want to bring it to the screen, Rodar y Rodar is your perfect ally. We offer customized budgets tailored to your needs.",
         contact_now: "Contact now",
+        // ... otros
+        read_more: 'Read more',
+        read_less: 'Read less',
     },
     ca: {
         home: "Inici",
@@ -538,6 +544,9 @@ export const ui = {
         contact_project_description:
             "Si tens una idea brillant i vols portar-la a la pantalla, Rodar y Rodar és el teu aliat perfecte. Oferim pressupostos personalitzats adaptats a les teves necessitats.",
         contact_now: "Contactar ara",
+        // ... otros
+        read_more: 'Llegeix-ne més',
+        read_less: 'Llegeix-ne menys',
     },
 };
 

@@ -1,0 +1,158 @@
+---
+// src/components/FichaModal.astro
+
+interface Props {
+  film: any;
+  lang: string;
+  onClose: () => void;
+}
+
+const { film, lang, onClose } = Astro.props;
+
+// Helper para traducción
+const getTitulo = () => {
+  if (lang === "en" && film.tituloEn) return film.tituloEn;
+  if (lang === "ca" && film.tituloCat) return film.tituloCat;
+  return film.titulo || "Sin título";
+};
+
+const getGenero = () => {
+  if (lang === "en" && film.generoEn) return film.generoEn;
+  if (lang === "ca" && film.generoCat) return film.generoCat;
+  return film.genero || "";
+};
+
+const getSinopsis = () => {
+  if (lang === "en" && film.sinopsisEn) return film.sinopsisEn;
+  if (lang === "ca" && film.sinopsisCat) return film.sinopsisCat;
+  return film.sinopsis || "";
+};
+
+// Traducciones
+const labels = {
+  year: lang === 'ca' ? 'Any' : lang === 'en' ? 'Year' : 'Año',
+  duration: lang === 'ca' ? 'Durada' : lang === 'en' ? 'Duration' : 'Duración',
+  genre: lang === 'ca' ? 'Gènere' : lang === 'en' ? 'Genre' : 'Género',
+  director: lang === 'ca' ? 'Director' : lang === 'en' ? 'Director' : 'Director',
+  screenplay: lang === 'ca' ? 'Guió' : lang === 'en' ? 'Screenplay' : 'Guión',
+  cast: lang === 'ca' ? 'Repartiment' : lang === 'en' ? 'Cast' : 'Reparto',
+  synopsis: lang === 'ca' ? 'Sinopsi' : lang === 'en' ? 'Synopsis' : 'Sinopsis',
+  trailer: lang === 'ca' ? 'Tràiler' : lang === 'en' ? 'Trailer' : 'Tráiler',
+  makingOf: lang === 'ca' ? 'Making of' : lang === 'en' ? 'Making of' : 'Making of',
+  imdb: 'IMDb'
+};
+---
+
+<style>
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+  }
+  .modal-content {
+    background: #111;
+    color: white;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    width: 90%;
+  }
+  .modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modal-body {
+    padding: 20px;
+    line-height: 1.7;
+  }
+  .poster-large {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    float: left;
+    margin: 0 20px 20px 0;
+  }
+  .btn-close {
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    color: white;
+    cursor: pointer;
+  }
+  .links a {
+    margin-right: 15px;
+    color: #e50914;
+    text-decoration: underline;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+</style>
+
+<!-- Usamos client:visible para activar el script solo cuando se renderiza -->
+<div class="modal-backdrop" >
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>{getTitulo()}</h2>
+      <button class="btn-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      {film.urlPoster && (
+        <img src={film.urlPoster} alt={getTitulo()} class="poster-large" />
+      )}
+      <p><strong>{labels.year}:</strong> {film.fecha}</p>
+      <p><strong>{labels.duration}:</strong> {film.duracion} min</p>
+      <p><strong>{labels.genre}:</strong> {getGenero()}</p>
+      <p><strong>{labels.director}:</strong> {film.director}</p>
+      {film.guionistas && <p><strong>{labels.screenplay}:</strong> {film.guionistas}</p>}
+      {film.reparto && <p><strong>{labels.cast}:</strong> {film.reparto}</p>}
+      <p><strong>{labels.synopsis}:</strong></p>
+      <p>{getSinopsis()}</p>
+      <div class="links" style="margin-top: 20px;">
+        {film.linkImdb && (
+          <a href={film.linkImdb} target="_blank" rel="noopener">{labels.imdb}</a>
+        )}
+        {film.urlYoutube && (
+          <a href={film.urlYoutube} target="_blank" rel="noopener">{labels.trailer}</a>
+        )}
+        {film.urlMakingOf && (
+          <a href={film.urlMakingOf} target="_blank" rel="noopener">{labels.makingOf}</a>
+        )}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Cierra el modal
+  function closeModal() {
+    const backdrop = document.querySelector('.modal-backdrop');
+    if (backdrop) {
+      backdrop.remove();
+    }
+    // Llama a onClose del componente
+    window.dispatchEvent(new CustomEvent('modal:closed'));
+  }
+
+  // Escuchar tecla ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Opcional: permite que el padre escuche el cierre
+  window.addEventListener('modal:closed', () => {
+    // Aquí puedes hacer algo si necesitas reaccionar desde fuera
+  });
+</script>
