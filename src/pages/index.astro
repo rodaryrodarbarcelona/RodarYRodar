@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import FichaModal from "../components/FichaModal.astro";
+import GaleriaIndex from "../components/GaleriaIndex.astro";
+
 
 // Idioma
 import { useTranslations, defaultLanguage } from "../i18n/languages";
@@ -67,6 +69,9 @@ const selectedFilm = filmId ? filmografia.find(f => f._id.toString() === filmId)
       <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white">
         Rodar y Rodar Cine
       </h1>
+      <Layout>
+        <GaleriaIndex />
+      </Layout>
 
       <!-- Carrusel de Posters -->
       <div id="poster-carousel" class="overflow-hidden w-full mt-8">
