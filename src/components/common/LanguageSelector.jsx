@@ -58,10 +58,10 @@ const LanguageSelector = () => {
     return (
       <div className="relative">
         <button
-          className="flex items-center space-x-1 text-gray-800 dark:text-white hover:text-primary dark:hover:text-primary transition focus:outline-none"
+          className="flex items-center space-x-1 text-red-500 hover:text-red-600 transition focus:outline-none"
           aria-label="Seleccionar idioma"
         >
-          <span className="uppercase font-medium">es</span>
+          <span className="uppercase font-bold">es</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-4 w-4"
@@ -85,10 +85,10 @@ const LanguageSelector = () => {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={toggleDropdown}
-        className="flex items-center space-x-1 text-gray-800 dark:text-white hover:text-primary dark:hover:text-primary transition focus:outline-none"
+        className="flex items-center space-x-1 text-red-500 hover:text-red-600 transition focus:outline-none"
         aria-label={t("select_language")}
       >
-        <span className="uppercase font-medium">{lang}</span>
+        <span className="uppercase font-bold">{lang}</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-4 w-4"
@@ -112,9 +112,9 @@ const LanguageSelector = () => {
               onClick={() => handleLanguageChange("es")}
               className={`block px-4 py-2 text-sm w-full text-left ${
                 lang === "es"
-                  ? "text-primary font-medium"
-                  : "text-gray-700 dark:text-gray-200"
-              } hover:bg-gray-100 dark:hover:bg-gray-700`}
+                  ? "text-red-500 font-medium"
+                  : "text-gray-800 dark:text-white"
+              } hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors`}
               role="menuitem"
             >
               Español
@@ -123,9 +123,9 @@ const LanguageSelector = () => {
               onClick={() => handleLanguageChange("ca")}
               className={`block px-4 py-2 text-sm w-full text-left ${
                 lang === "ca"
-                  ? "text-primary font-medium"
-                  : "text-gray-700 dark:text-gray-200"
-              } hover:bg-gray-100 dark:hover:bg-gray-700`}
+                  ? "text-red-500 font-medium"
+                  : "text-gray-800 dark:text-white"
+              } hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors`}
               role="menuitem"
             >
               Català
@@ -134,9 +134,9 @@ const LanguageSelector = () => {
               onClick={() => handleLanguageChange("en")}
               className={`block px-4 py-2 text-sm w-full text-left ${
                 lang === "en"
-                  ? "text-primary font-medium"
-                  : "text-gray-700 dark:text-gray-200"
-              } hover:bg-gray-100 dark:hover:bg-gray-700`}
+                  ? "text-red-500 font-medium"
+                  : "text-gray-800 dark:text-white"
+              } hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors`}
               role="menuitem"
             >
               English
