@@ -114,7 +114,7 @@ const LanguageSelector = () => {
                 lang === "es"
                   ? "text-red-500 font-medium"
                   : "text-gray-800 dark:text-white"
-              } hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors`}
+              } hover:bg-gray-400 dark:hover:bg-gray-700 transition-colors`}
               role="menuitem"
             >
               Español
@@ -125,7 +125,7 @@ const LanguageSelector = () => {
                 lang === "ca"
                   ? "text-red-500 font-medium"
                   : "text-gray-800 dark:text-white"
-              } hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors`}
+              } hover:bg-gray-400 dark:hover:bg-gray-800 transition-colors`}
               role="menuitem"
             >
               Català
@@ -136,7 +136,7 @@ const LanguageSelector = () => {
                 lang === "en"
                   ? "text-red-500 font-medium"
                   : "text-gray-800 dark:text-white"
-              } hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors`}
+              } hover:bg-gray-400 dark:hover:bg-gray-800 transition-colors`}
               role="menuitem"
             >
               English
