@@ -99,66 +99,132 @@ try {
     </div>
   </section>
 
-  <section
-    class="bg-gray-50 py-14 md:py-20 border-t border-gray-200 dark:border-gray-700"
-  >
-    <div class="container mx-auto px-4">
-      <!-- Título según normativa oficial -->
-      <h2
-        class="text-2xl text-gray-900 md:text-3xl font-semibold mb-10 text-center"
-      >
-        {t("collaboration_with")} 
-      </h2>
+  <!-- Scroll Infinito de Imágenes -->
+  <section class="bg-white dark:bg-gray-900 overflow-hidden">
+    <div class="relative">
+      <!-- Contenedor del scroll -->
+      <div class="flex animate-scroll">
+        <!-- Primera serie de imágenes -->
+        <div class="flex min-w-max">
+          <div class="w-[600px] h-96 flex-shrink-0">
+            <img
+              src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242019/matthausen_deco_0145_QV_6145_en0uwu.jpg"
+              alt="Producción cinematográfica"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="w-[600px] h-96 flex-shrink-0">
+            <img
+              src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242015/matthausen_deco_0041_QV_7357_mcrmss.jpg"
+              alt="Producción cinematográfica"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="w-[600px] h-96 flex-shrink-0">
+            <img
+              src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242013/Foto_DOS_230720_AltaResolución_0103_qp5d5h.jpg"
+              alt="Producción cinematográfica"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="w-[600px] h-96 flex-shrink-0">
+            <img
+              src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242010/Foto_DOS_230720_AltaResolución_0032_ymgfdd.jpg"
+              alt="Producción cinematográfica"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="w-[600px] h-96 flex-shrink-0">
+            <img
+              src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242007/_MGL7455_rmewxr.jpg"
+              alt="Producción cinematográfica"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="w-[600px] h-96 flex-shrink-0">
+            <img
+              src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761241992/_MGL0801_ollnnb.jpg"
+              alt="Producción cinematográfica"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
 
-      <!-- Logos alineados en vertical en móvil y horizontal en escritorio -->
+        <!-- Segunda serie de imágenes (duplicada para efecto infinito) -->
+        <div class="flex min-w-max">
+          <div class="w-[600px] h-96 flex-shrink-0">
+            <img
+              src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242019/matthausen_deco_0145_QV_6145_en0uwu.jpg"
+              alt="Producción cinematográfica"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="w-[600px] h-96 flex-shrink-0">
+            <img
+              src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242015/matthausen_deco_0041_QV_7357_mcrmss.jpg"
+              alt="Producción cinematográfica"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="w-[600px] h-96 flex-shrink-0">
+            <img
+              src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242013/Foto_DOS_230720_AltaResolución_0103_qp5d5h.jpg"
+              alt="Producción cinematográfica"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="w-[600px] h-96 flex-shrink-0">
+            <img
+              src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242010/Foto_DOS_230720_AltaResolución_0032_ymgfdd.jpg"
+              alt="Producción cinematográfica"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="w-[600px] h-96 flex-shrink-0">
+            <img
+              src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242007/_MGL7455_rmewxr.jpg"
+              alt="Producción cinematográfica"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="w-[600px] h-96 flex-shrink-0">
+            <img
+              src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761241992/_MGL0801_ollnnb.jpg"
+              alt="Producción cinematográfica"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Gradiente para difuminar los bordes -->
       <div
-        class="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16"
+        class="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white dark:from-gray-900 to-transparent z-10"
       >
-        <!-- Logo ICEC (primero según petición) -->
-        <a
-          href="https://icec.gencat.cat"
-          target="_blank"
-          rel="noopener"
-          class="relative p-4 mb-4 md:mb-0 flex items-center justify-center"
-          aria-label="Institut Català de les Empreses Culturals"
-        >
-          <img
-            src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1758906188/icec_logo_y3ba8v.png"
-            alt="Institut Català de les Empreses Culturals"
-            class="max-h-10 md:max-h-10 lg:max-h-10 w-auto object-contain dark:brightness-[1.05]"
-          />
-        </a>
-
-        <!-- Logo Generalitat de Catalunya (segundo según petición) -->
-        <a
-          href="https://cultura.gencat.cat"
-          target="_blank"
-          rel="noopener"
-          class="relative p-4 mb-4 md:mb-0 flex items-center justify-center"
-          aria-label="Departament de Cultura - Generalitat de Catalunya"
-        >
-          <img
-            src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1758906188/gencat_beu0ew.png"
-            alt="Departament de Cultura - Generalitat de Catalunya"
-            class="max-h-10 md:max-h-10 lg:max-h-10 w-auto object-contain dark:brightness-[1.05]"
-          />
-        </a>
-
-        <!-- Logo Catalan Films (tercero) con tamaño ajustado -->
-        <a
-          href="https://catalanfilms.cat/ca/qui-som"
-          target="_blank"
-          rel="noopener"
-          class="relative p-4 flex items-center justify-center"
-          aria-label="Catalan Films"
-        >
-          <img
-            src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1758904096/1610661171-cf-color_cvvfh9.png"
-            alt="Catalan Films"
-            class="max-h-26 md:max-h-26 lg:max-h-26 w-auto object-contain dark:brightness-[1.05]"
-          />
-        </a>
+      </div>
+      <div
+        class="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white dark:from-gray-900 to-transparent z-10"
+      >
       </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+
+  .animate-scroll:hover {
+    animation-play-state: paused;
+  }
+</style>

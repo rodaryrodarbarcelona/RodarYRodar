@@ -11,7 +11,7 @@ const t = useTranslations((Astro.locals as any)?.lang || "es");
     <!-- VERSIÓN ESCRITORIO -->
     <div class="hidden md:grid md:grid-cols-4 gap-8">
       <!-- Logo -->
-      <div class="text-left col-span-1">
+      <div class="text-center col-span-1">
         <Spinner class="h-12 w-auto mb-4" />
         <p class="text-base text-gray-600 dark:text-gray-400">
           © {new Date().getFullYear()} Rodar y Rodar Cine, S.L.
@@ -175,10 +175,98 @@ const t = useTranslations((Astro.locals as any)?.lang || "es");
         </div>
       </div>
     </div>
+    <!-- Sección de colaboraciones al final -->
+    <div class="pt-6 mt-6">
+      <div class="container mx-auto px-4">
+        <div class="flex items-center justify-center space-x-6">
+          <span class="text-sm text-gray-600 dark:text-gray-400">
+            {t("collaboration_with")}
+          </span>
+
+          <!-- Logo ICEC -->
+          <a
+            href="https://icec.gencat.cat"
+            target="_blank"
+            rel="noopener"
+            class="flex items-center justify-center hover:scale-105 transition-transform"
+            aria-label="Institut Català de les Empreses Culturals"
+          >
+            <!-- Logo ICEC - Versión modo claro -->
+            <img
+              src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1758906188/icec_logo_y3ba8v.png"
+              alt="Institut Català de les Empreses Culturals"
+              class="max-h-4 md:max-h-5 w-auto object-contain"
+              style="display: block;"
+              data-theme-element="light-only"
+            />
+            <!-- Logo ICEC - Versión modo oscuro -->
+            <img
+              src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761244433/icec_logo_blanco_t6z9mk.png"
+              alt="Institut Català de les Empreses Culturals"
+              class="max-h-4 md:max-h-5 w-auto object-contain"
+              style="display: none;"
+              data-theme-element="dark-only"
+            />
+          </a>
+
+          <!-- Logo Generalitat de Catalunya -->
+          <a
+            href="https://cultura.gencat.cat"
+            target="_blank"
+            rel="noopener"
+            class="flex items-center justify-center hover:scale-105 transition-transform"
+            aria-label="Departament de Cultura - Generalitat de Catalunya"
+          >
+            <!-- Logo Generalitat - Versión modo claro -->
+            <img
+              src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1758906188/gencat_beu0ew.png"
+              alt="Departament de Cultura - Generalitat de Catalunya"
+              class="max-h-4 md:max-h-5 w-auto object-contain"
+              style="display: block;"
+              data-theme-element="light-only"
+            />
+            <!-- Logo Generalitat - Versión modo oscuro -->
+            <img
+              src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761245753/gencat_blanco_ry2p4h.png"
+              alt="Departament de Cultura - Generalitat de Catalunya"
+              class="max-h-4 md:max-h-5 w-auto object-contain"
+              style="display: none;"
+              data-theme-element="dark-only"
+            />
+          </a>
+
+          <!-- Logo Catalan Films -->
+          <a
+            href="https://catalanfilms.cat/ca/qui-som"
+            target="_blank"
+            rel="noopener"
+            class="flex items-center justify-center hover:scale-105 transition-transform"
+            aria-label="Catalan Films"
+          >
+            <!-- Logo Catalan Films - Versión modo claro -->
+            <img
+              src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1758904096/1610661171-cf-color_cvvfh9.png"
+              alt="Catalan Films"
+              class="max-h-10 md:max-h-12 w-auto object-contain"
+              style="display: block;"
+              data-theme-element="light-only"
+            />
+            <!-- Logo Catalan Films - Versión modo oscuro -->
+            <img
+              src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761245761/1610661171-cf-blanco_mnlpjn.png"
+              alt="Catalan Films"
+              class="max-h-10 md:max-h-12 w-auto object-contain"
+              style="display: none;"
+              data-theme-element="dark-only"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
 
     <!-- Enlaces legales (desktop) -->
     <div
-      class="hidden md:block pt-6 mt-6 border-t border-gray-200 dark:border-gray-700"
+      class="hidden md:block pt-4 mt-4 border-t border-gray-200 dark:border-gray-700"
     >
       <div class="flex justify-end space-x-6">
         <a
@@ -262,7 +350,7 @@ const t = useTranslations((Astro.locals as any)?.lang || "es");
         </div>
         <div class="text-left ml-10">
           <h3 class="text-lg font-semibold mb-3">{t("follow_us")}</h3>
-          <div class="flex flex-wrap gap-4 ">
+          <div class="flex flex-wrap gap-4">
             <!-- Instagram -->
             <a
               href="https://www.instagram.com/rodarfilms/"
@@ -391,3 +479,40 @@ const t = useTranslations((Astro.locals as any)?.lang || "es");
     </div>
   </div>
 </footer>
+
+<script>
+  function updateThemeElements() {
+    const isDark = document.documentElement.classList.contains("dark");
+
+    // Elementos que solo se muestran en modo claro
+    document
+      .querySelectorAll('[data-theme-element="light-only"]')
+      .forEach((el) => {
+        (el as HTMLElement).style.display = isDark ? "none" : "block";
+      });
+
+    // Elementos que solo se muestran en modo oscuro
+    document
+      .querySelectorAll('[data-theme-element="dark-only"]')
+      .forEach((el) => {
+        (el as HTMLElement).style.display = isDark ? "block" : "none";
+      });
+  }
+
+  // Ejecutar al cargar la página
+  document.addEventListener("DOMContentLoaded", updateThemeElements);
+
+  // Ejecutar cuando cambie el tema
+  document.addEventListener("themeChanged", updateThemeElements);
+  window.addEventListener("theme-changed", updateThemeElements);
+
+  // Observer para cambios en la clase 'dark' del html
+  const observer = new MutationObserver(updateThemeElements);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+
+  // Ejecutar inmediatamente
+  updateThemeElements();
+</script>
