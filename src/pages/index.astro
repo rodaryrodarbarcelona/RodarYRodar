@@ -1,65 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { useTranslations, defaultLanguage } from "../i18n/languages";
-import mongoose from "mongoose";
-import FilmografiaModel from "../lib/models/filmografia";
-import { generateSlug, slugManager } from "../utils/slugManager.js";
-
-type Filmografia = {
-  _id: mongoose.Types.ObjectId;
-  titulo: string;
-  tituloEn?: string;
-  tituloCat?: string;
-  urlPoster?: string;
-  sinopsis: string;
-  sinopsisEn?: string;
-  sinopsisCat?: string;
-  fecha: number;
-  genero?: string;
-  generoEn?: string;
-  generoCat?: string;
-  director?: string;
-  __v?: number;
-};
 
 // Obtener idioma actual
 const lang = (Astro.locals as any)?.lang || defaultLanguage;
 const t = useTranslations(lang);
-
-// Función para obtener el título según el idioma
-function getTitulo(item: Filmografia): string {
-  if (lang === "en" && item.tituloEn) return item.tituloEn;
-  if (lang === "ca" && item.tituloCat) return item.tituloCat;
-  return item.titulo;
-}
-
-// Función para generar el slug de la película
-function getFilmSlug(item: Filmografia): string {
-  const baseSlug = generateSlug(getTitulo(item));
-  return slugManager.registerSlug(baseSlug, item._id.toString());
-}
-
-// Conectar a MongoDB y obtener las últimas 3 producciones
-let recentProductions: any[] = [];
-
-try {
-  // @ts-ignore - Ignoramos los errores de TypeScript ya que no lo estamos usando
-  await mongoose.connect(import.meta.env.VITE_MONGO_URI);
-  const results = await FilmografiaModel.find()
-    .sort({ fecha: -1 })
-    .limit(3)
-    .lean();
-
-  recentProductions = results;
-} catch (error) {
-  console.error("Error al obtener producciones:", error);
-}
 ---
 
-<Layout
-  title={t("home") + " - Rodar y Rodar"}
-  description="Rodar y Rodar - Productora cinematográfica"
->
+<Layout>
   <!-- Hero Section -->
   <section class="py-24 relative bg-gray-900">
     <!-- Imagen de fondo con superposición -->
@@ -76,127 +24,225 @@ try {
     </div>
 
     <div class="container mx-auto px-4 text-center relative z-10">
-      <h1 class="text-5xl  text-center md:text-6xl font-bold mb-6 text-white">
-        Rodar y Rodar Cine
+      <h1 class="text-5xl text-center md:text-6xl font-bold mb-6 text-white">
+        Rodar y Rodar
       </h1>
-      <!-- <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10 text-gray-200">
-        {t("hero_description")}
-      </p> -->
-      <!--   <div class="flex flex-wrap justify-center gap-4">
-        <a
-          href="/filmografias"
-          class="px-6 py-3 bg-red-800 text-white font-medium rounded-lg hover:bg-red-900 transition shadow-md"
-        >
-          {t("see_filmography")}
-        </a>
-        <a
-          href="/servicios"
-          class="px-6 py-3 bg-red-800 text-white font-medium rounded-lg hover:bg-red-900 transition shadow-md"
-        >
-          {t("our_services")}
-        </a>
-      </div> -->
     </div>
   </section>
-
-  <!-- Scroll Infinito de Imágenes -->
   <section class="bg-white dark:bg-gray-900 overflow-hidden">
     <div class="relative">
-      <!-- Contenedor del scroll -->
-      <div class="flex animate-scroll">
-        <!-- Primera serie de imágenes -->
-        <div class="flex min-w-max">
-          <div class="w-[600px] h-96 flex-shrink-0">
+      <div id="infinite-carousel" class="flex min-w-max">
+        <!-- Imágenes originales + duplicadas para scroll infinito -->
+        <div class="flex">
+          <div
+            class="w-[600px] h-96 flex-shrink-0 group relative cursor-pointer"
+          >
             <img
               src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242019/matthausen_deco_0145_QV_6145_en0uwu.jpg"
               alt="Producción cinematográfica"
               class="w-full h-full object-cover"
             />
+            <div
+              class="absolute inset-0 flex items-center justify-center bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+              onclick="this.classList.toggle('opacity-100')"
+            >
+              <span class="text-white text-xl font-bold px-4 py-2 rounded"
+                >El fotógrafo de Mauthausen</span
+              >
+            </div>
           </div>
-          <div class="w-[600px] h-96 flex-shrink-0">
+          <div
+            class="w-[600px] h-96 flex-shrink-0 group relative cursor-pointer"
+          >
             <img
               src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242015/matthausen_deco_0041_QV_7357_mcrmss.jpg"
               alt="Producción cinematográfica"
               class="w-full h-full object-cover"
             />
+            <div
+              class="absolute inset-0 flex items-center justify-center bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+              onclick="this.classList.toggle('opacity-100')"
+            >
+              <span class="text-white text-xl font-bold px-4 py-2 rounded"
+                >El fotógrafo de Mauthausen</span
+              >
+            </div>
           </div>
-          <div class="w-[600px] h-96 flex-shrink-0">
+          <div
+            class="w-[600px] h-96 flex-shrink-0 group relative cursor-pointer"
+          >
             <img
               src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242013/Foto_DOS_230720_AltaResolución_0103_qp5d5h.jpg"
               alt="Producción cinematográfica"
               class="w-full h-full object-cover"
             />
+            <div
+              class="absolute inset-0 flex items-center justify-center bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+              onclick="this.classList.toggle('opacity-100')"
+            >
+              <span class="text-white text-xl font-bold px-4 py-2 rounded"
+                >Dos</span
+              >
+            </div>
           </div>
-          <div class="w-[600px] h-96 flex-shrink-0">
+          <div
+            class="w-[600px] h-96 flex-shrink-0 group relative cursor-pointer"
+          >
             <img
               src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242010/Foto_DOS_230720_AltaResolución_0032_ymgfdd.jpg"
               alt="Producción cinematográfica"
               class="w-full h-full object-cover"
             />
+            <div
+              class="absolute inset-0 flex items-center justify-center bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+              onclick="this.classList.toggle('opacity-100')"
+            >
+              <span class="text-white text-xl font-bold px-4 py-2 rounded"
+                >Dos</span
+              >
+            </div>
           </div>
-          <div class="w-[600px] h-96 flex-shrink-0">
+          <div
+            class="w-[600px] h-96 flex-shrink-0 group relative cursor-pointer"
+          >
             <img
               src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242007/_MGL7455_rmewxr.jpg"
               alt="Producción cinematográfica"
               class="w-full h-full object-cover"
             />
+            <div
+              class="absolute inset-0 flex items-center justify-center bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+              onclick="this.classList.toggle('opacity-100')"
+            >
+              <span class="text-white text-xl font-bold px-4 py-2 rounded"
+                >El cuco</span
+              >
+            </div>
           </div>
-          <div class="w-[600px] h-96 flex-shrink-0">
+          <div
+            class="w-[600px] h-96 flex-shrink-0 group relative cursor-pointer"
+          >
             <img
               src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761241992/_MGL0801_ollnnb.jpg"
               alt="Producción cinematográfica"
               class="w-full h-full object-cover"
             />
+            <div
+              class="absolute inset-0 flex items-center justify-center bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+              onclick="this.classList.toggle('opacity-100')"
+            >
+              <span class="text-white text-xl font-bold px-4 py-2 rounded"
+                >El cuco</span
+              >
+            </div>
           </div>
         </div>
-
-        <!-- Segunda serie de imágenes (duplicada para efecto infinito) -->
-        <div class="flex min-w-max">
-          <div class="w-[600px] h-96 flex-shrink-0">
+        <!-- Duplicado para scroll infinito -->
+        <div class="flex">
+          <div
+            class="w-[600px] h-96 flex-shrink-0 group relative cursor-pointer"
+          >
             <img
               src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242019/matthausen_deco_0145_QV_6145_en0uwu.jpg"
               alt="Producción cinematográfica"
               class="w-full h-full object-cover"
             />
+            <div
+              class="absolute inset-0 flex items-center justify-center bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+              onclick="this.classList.toggle('opacity-100')"
+            >
+              <span class="text-white text-xl font-bold px-4 py-2 rounded"
+                >El fotógrafo de Mauthausen</span
+              >
+            </div>
           </div>
-          <div class="w-[600px] h-96 flex-shrink-0">
+          <div
+            class="w-[600px] h-96 flex-shrink-0 group relative cursor-pointer"
+          >
             <img
               src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242015/matthausen_deco_0041_QV_7357_mcrmss.jpg"
               alt="Producción cinematográfica"
               class="w-full h-full object-cover"
             />
+            <div
+              class="absolute inset-0 flex items-center justify-center bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+              onclick="this.classList.toggle('opacity-100')"
+            >
+              <span class="text-white text-xl font-bold px-4 py-2 rounded"
+                >El fotógrafo de Mauthausen</span
+              >
+            </div>
           </div>
-          <div class="w-[600px] h-96 flex-shrink-0">
+          <div
+            class="w-[600px] h-96 flex-shrink-0 group relative cursor-pointer"
+          >
             <img
               src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242013/Foto_DOS_230720_AltaResolución_0103_qp5d5h.jpg"
               alt="Producción cinematográfica"
               class="w-full h-full object-cover"
             />
+            <div
+              class="absolute inset-0 flex items-center justify-center bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+              onclick="this.classList.toggle('opacity-100')"
+            >
+              <span class="text-white text-xl font-bold px-4 py-2 rounded"
+                >Dos</span
+              >
+            </div>
           </div>
-          <div class="w-[600px] h-96 flex-shrink-0">
+          <div
+            class="w-[600px] h-96 flex-shrink-0 group relative cursor-pointer"
+          >
             <img
               src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242010/Foto_DOS_230720_AltaResolución_0032_ymgfdd.jpg"
               alt="Producción cinematográfica"
               class="w-full h-full object-cover"
             />
+            <div
+              class="absolute inset-0 flex items-center justify-center bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+              onclick="this.classList.toggle('opacity-100')"
+            >
+              <span class="text-white text-xl font-bold px-4 py-2 rounded"
+                >Dos</span
+              >
+            </div>
           </div>
-          <div class="w-[600px] h-96 flex-shrink-0">
+          <div
+            class="w-[600px] h-96 flex-shrink-0 group relative cursor-pointer"
+          >
             <img
               src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761242007/_MGL7455_rmewxr.jpg"
               alt="Producción cinematográfica"
               class="w-full h-full object-cover"
             />
+            <div
+              class="absolute inset-0 flex items-center justify-center bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+              onclick="this.classList.toggle('opacity-100')"
+            >
+              <span class="text-white text-xl font-bold px-4 py-2 rounded"
+                >El cuco</span
+              >
+            </div>
           </div>
-          <div class="w-[600px] h-96 flex-shrink-0">
+          <div
+            class="w-[600px] h-96 flex-shrink-0 group relative cursor-pointer"
+          >
             <img
               src="https://res.cloudinary.com/dxytyvnn2/image/upload/v1761241992/_MGL0801_ollnnb.jpg"
               alt="Producción cinematográfica"
               class="w-full h-full object-cover"
             />
+            <div
+              class="absolute inset-0 flex items-center justify-center bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+              onclick="this.classList.toggle('opacity-100')"
+            >
+              <span class="text-white text-xl font-bold px-4 py-2 rounded"
+                >El cuco</span
+              >
+            </div>
           </div>
         </div>
       </div>
-
       <!-- Gradiente para difuminar los bordes -->
       <div
         class="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white dark:from-gray-900 to-transparent z-10"
@@ -206,25 +252,33 @@ try {
         class="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white dark:from-gray-900 to-transparent z-10"
       >
       </div>
+      <script is:inline>
+        // Este script implementa un scroll infinito profesional para el carrusel
+        window.addEventListener("DOMContentLoaded", () => {
+          const carousel = document.getElementById("infinite-carousel");
+          if (!carousel) return;
+
+          const totalWidth = carousel.scrollWidth / 2; // Solo las imágenes originales
+          let start = null;
+          let currentX = 0;
+          const speed = 0.5; // píxeles por frame, ajusta para más rápido/lento
+
+          function step(ts) {
+            if (!start) start = ts;
+            const elapsed = ts - start;
+            currentX -= speed;
+            if (Math.abs(currentX) >= totalWidth) {
+              currentX = 0;
+              start = ts;
+            }
+            carousel.style.transform = `translateX(${currentX}px)`;
+            requestAnimationFrame(step);
+          }
+
+          carousel.style.willChange = "transform";
+          requestAnimationFrame(step);
+        });
+      </script>
     </div>
   </section>
 </Layout>
-
-<style>
-  @keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  .animate-scroll {
-    animation: scroll 30s linear infinite;
-  }
-
-  .animate-scroll:hover {
-    animation-play-state: paused;
-  }
-</style>
